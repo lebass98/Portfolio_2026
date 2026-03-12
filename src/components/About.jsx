@@ -19,7 +19,7 @@ const About = () => {
           >
             <div className="mb-16">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-accent shadow-xl mb-8">
-                <img src="/images/profile.jpg" alt={profile.name} className="w-full h-full object-cover" />
+                <img src={`${import.meta.env.BASE_URL}images/profile.jpg`} alt={profile.name} className="w-full h-full object-cover" />
               </div>
               <span className="text-sm font-black tracking-widest text-accent uppercase bg-black px-4 py-1 inline-block mb-8">Hello</span>
               <h3 className="text-4xl md:text-5xl font-black leading-tight mb-8 font-saira uppercase">

@@ -59,7 +59,7 @@ const Portfolio = () => {
                 <div className="relative aspect-[16/10] bg-white rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
                    {/* Project Image */}
                    <img 
-                    src={project.image} 
+                    src={`${import.meta.env.BASE_URL}${project.image}`} 
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     onError={(e) => {
