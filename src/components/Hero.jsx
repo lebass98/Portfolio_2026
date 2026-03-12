@@ -15,7 +15,7 @@ const Hero = () => {
         </svg>
       </div>
 
-      <div className="w-full px-12 md:px-24 z-10">
+      <div className="w-full px-[60px] z-10">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,17 +28,16 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl md:text-2xl font-bold tracking-[0.2em] mb-8 text-black uppercase opacity-80"
           >
-            {profile.name}
           </motion.p>
 
-          <h1 className="text-[6rem] md:text-[10rem] lg:text-[12rem] font-bold leading-[0.85] tracking-[-0.08em] text-black uppercase mb-12">
+          <h1 className="text-[6rem] md:text-[10rem] lg:text-[12rem] font-bold leading-[0.85] tracking-[-0.08em] text-black uppercase mb-12 whitespace-pre-line">
             <TypeAnimation
               sequence={[
-                profile.title,
+                'UI/UX\nDEVELOPER',
                 5000,
-                'UI/UX DESIGNER',
+                'UI/UX\nDESIGNER',
                 10000,
-                'WEB PUBLISHER',
+                'WEB\nPUBLISHER',
                 10000,
               ]}
               wrapper="span"

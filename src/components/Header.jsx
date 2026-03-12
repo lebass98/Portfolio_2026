@@ -24,7 +24,7 @@ const Header = ({ toggleTheme, theme }) => {
     <div className="capsule-nav-container">
       <div className="capsule-nav-wrapper">
         <a href="#home" className="capsule-nav-logo text-2xl font-bold tracking-tighter">
-          JK<span className="text-accent">.</span>
+          JK.LEE<span className="text-accent">.</span>
         </a>
 
         <motion.header
