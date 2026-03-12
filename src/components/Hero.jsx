@@ -32,9 +32,9 @@ const Hero = () => {
                 profile.title,
                 5000,
                 'UI/UX DESIGNER',
-                5000,
+                10000,
                 'WEB PUBLISHER',
-                5000,
+                10000,
               ]}
               wrapper="span"
               speed={10}
