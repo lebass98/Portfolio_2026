@@ -19,38 +19,38 @@ const About = () => {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mb-16">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-black shadow-xl mb-8">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
                 <img src={`${import.meta.env.BASE_URL}images/profile.jpg`} alt={profile.name} className="w-full h-full object-cover" />
               </div>
-              <span className="text-sm font-bold tracking-widest text-white uppercase bg-black px-4 py-1 inline-block mb-8">Hello</span>
-              <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-black">
+              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">Hello</span>
+              <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
                 Bridging the gap between <br />
-                <span className="text-white underline decoration-white decoration-8 underline-offset-8">Design</span> and <span className="text-white underline decoration-white decoration-8 underline-offset-8">Code</span>.
+                <span className="text-main underline decoration-main decoration-8 underline-offset-8">Design</span> and <span className="text-main underline decoration-main decoration-8 underline-offset-8">Code</span>.
               </h3>
-              <p className="text-xl text-black/80 font-medium leading-relaxed max-w-lg">
+              <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg">
                 I am a UI/UX Developer obsessed with detail and performance. With over 15 years of experience in the web field, I specialize in crafting digital products that are as functional as they are beautiful.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-12">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-4">Contact</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-dark/60 mb-4">Contact</p>
                 <div className="space-y-2">
                   <a href={`mailto:${profile.email}`} className="flex items-center gap-2 group">
-                    <Mail size={16} className="text-black/80 group-hover:text-black transition-colors" />
-                    <span className="font-bold border-b border-black/30 group-hover:border-black transition-all text-black">{profile.email}</span>
+                    <Mail size={16} className="text-dark/80 group-hover:text-dark transition-colors" />
+                    <span className="font-bold border-b border-dark/30 group-hover:border-dark transition-all text-dark">{profile.email}</span>
                   </a>
                   <div className="flex items-center gap-2">
-                    <Phone size={16} className="text-black/80" />
-                    <span className="font-bold text-black">{profile.phone}</span>
+                    <Phone size={16} className="text-dark/80" />
+                    <span className="font-bold text-dark">{profile.phone}</span>
                   </div>
                 </div>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-4">Roles</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-dark/60 mb-4">Roles</p>
                 <div className="flex flex-wrap gap-2">
                   {profile.roles.map(role => (
-                    <span key={role} className="text-xs font-bold px-3 py-1 border border-black text-black rounded-full uppercase">{role}</span>
+                    <span key={role} className="text-xs font-bold px-3 py-1 border border-dark text-dark rounded-full uppercase">{role}</span>
                   ))}
                 </div>
               </div>
@@ -66,28 +66,28 @@ const About = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative pb-12 border-b-2 border-black/10 last:border-0"
+                className="group relative pb-12 border-b-2 border-dark/10 last:border-0"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                   <div>
-                    <span className="text-sm font-bold text-black/60 tracking-widest mb-2 block">{item.period}</span>
-                    <h4 className="text-2xl font-bold uppercase tracking-tighter group-hover:text-black transition-colors flex items-center gap-3 text-black">
+                    <span className="text-sm font-bold text-dark/60 tracking-widest mb-2 block">{item.period}</span>
+                    <h4 className="text-2xl font-bold uppercase tracking-tighter group-hover:text-dark transition-colors flex items-center gap-3 text-dark">
                       {item.company}
-                      <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 text-black" size={24} />
+                      <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 text-dark" size={24} />
                     </h4>
                   </div>
-                  <span className="text-[12px] font-bold uppercase px-4 py-1.5 bg-black text-white rounded-full shadow-lg">
+                  <span className="text-[12px] font-bold uppercase px-4 py-1.5 bg-dark text-main rounded-full shadow-lg">
                     {item.position.split('(')[0]}
                   </span>
                 </div>
 
-                <p className="text-lg font-medium text-black/80 mb-8 max-w-xl">
+                <p className="text-lg font-medium text-dark/80 mb-8 max-w-xl">
                   {item.details}
                 </p>
 
                 <div className="flex flex-wrap gap-2">
                   {item.skills.map(skill => (
-                    <span key={skill} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-black/5 border border-black/10 text-black rounded">
+                    <span key={skill} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-dark/5 border border-dark/10 text-dark rounded">
                       {skill}
                     </span>
                   ))}

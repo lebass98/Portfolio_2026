@@ -21,8 +21,8 @@ const Portfolio = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-sm font-bold tracking-[0.2em] mb-4 text-black/80 uppercase">Selected Works</p>
-            <h2 className="!mb-0 !p-0 text-black">Projects</h2>
+            <p className="text-sm font-bold tracking-[0.2em] mb-4 text-dark/80 uppercase">Selected Works</p>
+            <h2 className="!mb-0 !p-0 text-dark">Projects</h2>
           </motion.div>
 
           {/* Filters */}
@@ -32,8 +32,8 @@ const Portfolio = () => {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`text-[12px] font-bold tracking-widest px-6 py-2 rounded-full border-2 transition-all uppercase ${filter === cat
-                  ? 'bg-black text-white border-black'
-                  : 'bg-transparent border-black/20 text-black/60 hover:border-black/40 hover:text-black'
+                  ? 'bg-dark text-main border-dark'
+                  : 'bg-transparent border-dark/20 text-dark/60 hover:border-dark/40 hover:text-dark'
                   }`}
               >
                 {cat}
@@ -59,7 +59,7 @@ const Portfolio = () => {
                 }}
                 className="group"
               >
-                <div className="relative aspect-[16/10] bg-white rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
+                <div className="relative aspect-[16/10] bg-card rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
                   {/* Project Image */}
                   <img
                     src={`${import.meta.env.BASE_URL}${project.image}`}
@@ -78,7 +78,7 @@ const Portfolio = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-6 right-6 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
+                    className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
                   >
                     <ExternalLink size={20} />
                   </a>
@@ -86,26 +86,26 @@ const Portfolio = () => {
 
                 <div className="mt-6 px-2">
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-xl font-bold tracking-tighter uppercase group-hover:text-black/70 transition-colors line-clamp-1">
+                    <h3 className="text-xl font-bold tracking-tighter uppercase group-hover:text-dark/70 transition-colors line-clamp-1">
                       {project.title}
                     </h3>
-                    <Plus className="text-black group-hover:rotate-90 transition-transform duration-500 shrink-0" strokeWidth={3} size={24} />
+                    <Plus className="text-dark group-hover:rotate-90 transition-transform duration-500 shrink-0" strokeWidth={3} size={24} />
                   </div>
 
-                  <div className="w-full h-[2px] bg-black mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                  <div className="w-full h-[2px] bg-dark mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
 
-                  <p className="text-sm font-medium text-black/80 leading-relaxed max-w-xl line-clamp-2">
+                  <p className="text-sm font-medium text-dark/80 leading-relaxed max-w-xl line-clamp-2">
                     {project.description}
                   </p>
 
                   <div className="flex flex-wrap gap-4 mt-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-bold uppercase text-black/60 tracking-widest">Design</span>
-                      <span className="text-xs font-bold text-black">{project.contribution.design}%</span>
+                      <span className="text-[9px] font-bold uppercase text-dark/60 tracking-widest">Design</span>
+                      <span className="text-xs font-bold text-dark">{project.contribution.design}%</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-bold uppercase text-black/60 tracking-widest">Publish</span>
-                      <span className="text-xs font-bold text-black">{project.contribution.publishing}%</span>
+                      <span className="text-[9px] font-bold uppercase text-dark/60 tracking-widest">Publish</span>
+                      <span className="text-xs font-bold text-dark">{project.contribution.publishing}%</span>
                     </div>
                   </div>
                 </div>

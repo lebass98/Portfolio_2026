@@ -53,7 +53,7 @@ const Header = ({ toggleTheme, theme }) => {
         <div className="capsule-nav-contact flex items-center gap-4">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            className="p-2 rounded-full hover:bg-dark/5 transition-colors"
             aria-label="Toggle Theme"
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}

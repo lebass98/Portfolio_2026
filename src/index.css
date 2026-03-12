@@ -4,10 +4,14 @@
 @import "pretendard-gov/dist/web/static/pretendard-gov.css";
 
 @theme {
-  --color-accent: #FFE600;
+  --color-accent: var(--accent);
   --color-accent-dark: #ccb800;
-  --color-dark: #111427;
-  --color-glass: rgba(255, 255, 255, 0.7);
+  --color-dark: var(--nb-dark);
+  --color-main: var(--bg-main);
+  --color-muted: var(--text-muted);
+  --color-inverse: var(--bg-main);
+  --color-glass: var(--glass-bg);
+  --color-card: var(--glass-card-bg);
   --font-weight-extrabold: 700;
 }
 
@@ -39,7 +43,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-card-bg: #111427;
   --glass-card-border: rgba(255, 255, 255, 0.1);
-  --accent: #FFE600;
+  --accent: #111427; /* Changed to dark in dark mode */
   --nav-capsule-bg: rgba(0, 0, 0, 0.7);
 }
 
