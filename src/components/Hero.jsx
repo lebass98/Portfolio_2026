@@ -30,14 +30,14 @@ const Hero = () => {
             <TypeAnimation
               sequence={[
                 profile.title,
-                2000,
+                3000,
                 'UI/UX DESIGNER',
-                2000,
+                3000,
                 'WEB PUBLISHER',
-                2000,
+                3000,
               ]}
               wrapper="span"
-              speed={50}
+              speed={10}
               repeat={Infinity}
             />
           </h1>
