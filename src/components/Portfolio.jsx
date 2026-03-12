@@ -57,9 +57,9 @@ const Portfolio = () => {
                   delay: (index % 4) * 0.1,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="group"
+                className="group cursor-pointer"
               >
-                <div className="relative aspect-[16/10] bg-card rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
+                <div className="relative aspect-[16/10] bg-card rounded-[5px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
                   {/* Project Image */}
                   <img
                     src={`${import.meta.env.BASE_URL}${project.image}`}

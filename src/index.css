@@ -23,7 +23,7 @@
   --bg-section-yellow: #FFE600;
   --text-main: #111427;
   --text-muted: #4b5563;
-  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg: rgba(255, 255, 255, 0.07);
   --glass-border: rgba(255, 255, 255, 0.8);
   --glass-card-bg: #ffffff;
   --glass-card-border: rgba(0, 0, 0, 0.05);
@@ -39,7 +39,7 @@
   --bg-section-yellow: #111427;
   --text-main: #ffffff;
   --text-muted: #9ca3af;
-  --glass-bg: rgba(0, 0, 0, 0.6);
+  --glass-bg: rgba(255, 255, 255, 0.07);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-card-bg: #111427;
   --glass-card-border: rgba(255, 255, 255, 0.1);

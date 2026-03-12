@@ -30,7 +30,7 @@ const Hero = () => {
           >
           </motion.p>
 
-          <h1 className="text-[6rem] md:text-[10rem] lg:text-[12rem] font-bold leading-[0.85] tracking-[-0.08em] text-dark uppercase mb-12 whitespace-pre-line">
+          <h1 className="text-[6rem] md:text-[10rem] lg:text-[12rem] font-bold leading-[0.85] text-dark uppercase mb-12 whitespace-pre-line">
             <TypeAnimation
               sequence={[
                 'UI/UX\nDEVELOPER',

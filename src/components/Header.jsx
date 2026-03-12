@@ -51,13 +51,19 @@ const Header = ({ toggleTheme, theme }) => {
         </motion.header>
 
         <div className="capsule-nav-contact flex items-center gap-4">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-dark/5 transition-colors"
+            className="w-12 h-12 flex items-center justify-center rounded-full glass-panel shadow-lg transition-all duration-300 group"
             aria-label="Toggle Theme"
           >
-            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-          </button>
+            {theme === 'light' ? (
+              <Moon size={20} className="text-dark group-hover:text-accent transition-colors" />
+            ) : (
+              <Sun size={20} className="text-dark group-hover:text-accent transition-colors" />
+            )}
+          </motion.button>
         </div>
       </div>
     </div>
