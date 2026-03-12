@@ -169,6 +169,14 @@ a:hover .autotext::after {
   border-radius: 32px;
 }
 
+.texture-overlay {
+  background-image: url('/images/footer_texture.png');
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
 .nb-card {
   background: var(--glass-card-bg);
   border-radius: 24px;
