@@ -21,8 +21,8 @@ const Portfolio = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-sm font-bold tracking-[0.2em] mb-4 text-black/60 uppercase">Selected Works</p>
-            <h2 className="!mb-0 !p-0">Projects</h2>
+            <p className="text-sm font-bold tracking-[0.2em] mb-4 text-black/80 uppercase">Selected Works</p>
+            <h2 className="!mb-0 !p-0 text-black">Projects</h2>
           </motion.div>
 
           {/* Filters */}
@@ -34,7 +34,7 @@ const Portfolio = () => {
                 className={`text-[12px] font-black tracking-widest px-6 py-2 rounded-full border-2 transition-all uppercase ${
                   filter === cat 
                     ? 'bg-black text-white border-black' 
-                    : 'bg-transparent border-black/10 text-black/40 hover:border-black/30 hover:text-black'
+                    : 'bg-transparent border-black/20 text-black/60 hover:border-black/40 hover:text-black'
                 }`}
               >
                 {cat}
@@ -91,18 +91,18 @@ const Portfolio = () => {
                   
                   <div className="w-full h-[2px] bg-black mb-6 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
 
-                  <p className="text-lg font-medium text-black/60 leading-relaxed max-w-xl">
+                  <p className="text-lg font-medium text-black/80 leading-relaxed max-w-xl">
                     {project.description}
                   </p>
                   
                   <div className="flex flex-wrap gap-4 mt-6">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-black uppercase text-black/40 tracking-widest">Design</span>
-                      <span className="text-sm font-black">{project.contribution.design}%</span>
+                      <span className="text-[10px] font-black uppercase text-black/60 tracking-widest">Design</span>
+                      <span className="text-sm font-black text-black">{project.contribution.design}%</span>
                     </div>
                     <div className="flex items-center gap-2">
-                       <span className="text-[10px] font-black uppercase text-black/40 tracking-widest">Publish</span>
-                       <span className="text-sm font-black">{project.contribution.publishing}%</span>
+                       <span className="text-[10px] font-black uppercase text-black/60 tracking-widest">Publish</span>
+                       <span className="text-sm font-black text-black">{project.contribution.publishing}%</span>
                     </div>
                   </div>
                 </div>
