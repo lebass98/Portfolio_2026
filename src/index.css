@@ -94,6 +94,13 @@ section {
   margin-right: auto;
 }
 
+section#home {
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+
 section.bg-yellow-theme {
   background-color: var(--bg-section-yellow);
   max-width: none;
