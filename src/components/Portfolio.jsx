@@ -56,7 +56,7 @@ const Portfolio = () => {
                 transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
                 className="group"
               >
-                <div className="relative aspect-[16/10] bg-white rounded-[40px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
+                <div className="relative aspect-[16/10] bg-white rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
                    {/* Project Image */}
                    <img 
                     src={project.image} 
@@ -68,7 +68,7 @@ const Portfolio = () => {
                   />
                   
                   {/* Internal Link / Overlay */}
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[40px]" />
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[10px]" />
                   
                   {/* Hover Button */}
                   <a 
