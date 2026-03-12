@@ -22,42 +22,44 @@ const Header = ({ toggleTheme, theme }) => {
 
   return (
     <div className="capsule-nav-container">
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, cubicBezier: [0.16, 1, 0.3, 1] }}
-        className="capsule-nav"
-      >
-        <a href="#home" className="text-xl font-black tracking-tighter text-[var(--text-main)] font-saira dark-mode-toggle">
+      <div className="capsule-nav-wrapper">
+        <a href="#home" className="capsule-nav-logo text-2xl font-bold tracking-tighter">
           JK<span className="text-accent">.</span>
         </a>
 
-        <nav className="h_nav">
-          <ul className="flex items-center gap-12">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="text-[14px] font-bold tracking-[0.1em] text-[var(--text-main)] hover:text-accent transition-all flex items-center"
-                >
-                  <span className="autotext" data-text={link.name}>{link.name}</span>
-                  {link.count && <em className="nav-item-count ml-1 not-italic">{link.count}</em>}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <motion.header
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, cubicBezier: [0.16, 1, 0.3, 1] }}
+          className="capsule-nav"
+        >
+          <nav className="h_nav">
+            <ul className="flex items-center gap-10">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="flex items-center"
+                  >
+                    <span className="autotext" data-text={link.name}>{link.name}</span>
+                    {link.count && <em className="nav-item-count">{link.count}</em>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </motion.header>
 
-        <div className="flex items-center gap-4 pl-4 border-l border-[var(--glass-border)]">
+        <div className="capsule-nav-contact flex items-center gap-4">
           <button
             onClick={toggleTheme}
-            className="p-1.5 rounded-full text-[var(--text-main)] hover:bg-black/5 dark:hover:bg-white/5 transition-colors dark-mode-toggle"
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
             aria-label="Toggle Theme"
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
         </div>
-      </motion.header>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Pretendard GOV Local Fonts (installed via npm) */
+@import "pretendard-gov/dist/web/variable/pretendardvariable-gov-dynamic-subset.css";
+@import "pretendard-gov/dist/web/static/pretendard-gov.css";
 
 @theme {
   --color-accent: #FFE600;
@@ -6,10 +9,6 @@
   --color-dark: #111427;
   --color-glass: rgba(255, 255, 255, 0.7);
 }
-
-/* Pretendard & Saira Font */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;600;700;800&display=swap");
 
 :root {
   /* Newbird Inspired Theme - Default: Light (Yellow/White) */
@@ -46,13 +45,15 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, .font-saira {
-  font-family: 'Saira', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
 }
 
 /* Glassmorphism Capsule Nav - Updated for Newbird + User Request */
@@ -62,33 +63,49 @@ h1, h2, h3, .font-saira {
   right: 0;
   top: 0;
   z-index: 200;
-  padding: 50px 0;
+  padding: 30px 40px;
   pointer-events: none;
-  mix-blend-mode: difference;
+}
+
+.capsule-nav-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .capsule-nav {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07ㄴ);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 9999px;
   padding: 0 40px;
-  height: 70px;
+  height: 60px;
   pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 50px;
-  margin: 0 auto;
-  width: fit-content;
+  gap: 40px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
-.capsule-nav * {
-  color: #ffffff; /* Will be inverted against backgrounds */
+[data-theme='dark'] .capsule-nav {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Autotext Animation Effect */
+.capsule-nav-logo,
+.capsule-nav-contact {
+  pointer-events: auto;
+  color: var(--text-main);
+}
+
+/* Autotext Animation Effect - Newbird Style */
 .autotext {
   position: relative;
   display: inline-block;
@@ -105,32 +122,40 @@ h1, h2, h3, .font-saira {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--text-main);
   font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.05em;
 }
 
 .autotext::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
   color: var(--nb-yellow);
 }
 
 a:hover .autotext::before {
-  transform: translateY(-20px);
+  transform: translateY(-100%);
 }
 
 a:hover .autotext::after {
-  transform: translateY(-20px);
+  transform: translateY(-100%);
 }
 
 .nav-item-count {
-  font-family: 'Saira', sans-serif;
-  font-size: 10px;
-  font-weight: 800;
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
   vertical-align: super;
   margin-left: 2px;
   color: var(--nb-yellow);
+  opacity: 0.6;
 }
 
 .dark-mode-toggle {
   mix-blend-mode: difference;
-  color: white; /* Difference mode on dark/yellow background */
+  color: white;
+  /* Difference mode on dark/yellow background */
 }
 
 .glass-panel {
@@ -175,7 +200,7 @@ section.bg-yellow-theme {
   padding-right: 0;
 }
 
-section.bg-yellow-theme > div {
+section.bg-yellow-theme>div {
   max-width: 90rem;
   margin: 0 auto;
   padding: 0 2rem;
@@ -183,7 +208,7 @@ section.bg-yellow-theme > div {
 
 h2 {
   font-size: 3.5rem;
-  font-weight: 800;
+  font-weight: 700;
   text-align: left;
   margin-bottom: 5rem;
   letter-spacing: -0.05em;
@@ -204,4 +229,62 @@ h2 {
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (max-width: 1024px) {
+  .capsule-nav-container {
+    padding: 20px;
+  }
+
+  .capsule-nav {
+    gap: 20px;
+    padding: 0 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .capsule-nav-wrapper {
+    justify-content: center;
+  }
+
+  .capsule-nav-logo,
+  .capsule-nav-contact {
+    position: absolute;
+  }
+
+  .capsule-nav-logo {
+    left: 20px;
+    font-size: 1.2rem;
+  }
+
+  .capsule-nav-contact {
+    right: 20px;
+  }
+
+  .capsule-nav {
+    gap: 15px;
+    padding: 0 20px;
+    height: 50px;
+  }
+
+  .autotext::before,
+  .autotext::after {
+    font-size: 11px;
+  }
+
+  .h_nav ul {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .capsule-nav-logo,
+  .capsule-nav-contact {
+    display: none;
+  }
+
+  .capsule-nav {
+    width: 90%;
+  }
 }
