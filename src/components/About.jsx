@@ -13,9 +13,10 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-24">
           {/* Left Column: Intro & Profile */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mb-16">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-black shadow-xl mb-8">
@@ -61,10 +62,10 @@ const About = () => {
             {experience.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative pb-12 border-b-2 border-black/10 last:border-0"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">

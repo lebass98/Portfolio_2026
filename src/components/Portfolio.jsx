@@ -50,10 +50,14 @@ const Portfolio = () => {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: (index % 2) * 0.2,
+                  ease: [0.16, 1, 0.3, 1] 
+                }}
                 className="group"
               >
                 <div className="relative aspect-[16/10] bg-white rounded-[10px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">

@@ -17,14 +17,19 @@ const Hero = () => {
 
       <div className="w-full px-12 md:px-24 z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl"
         >
-          <p className="text-xl md:text-2xl font-black tracking-[0.2em] mb-8 text-black uppercase opacity-80 font-saira">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xl md:text-2xl font-black tracking-[0.2em] mb-8 text-black uppercase opacity-80 font-saira"
+          >
             {profile.name}
-          </p>
+          </motion.p>
           
           <h1 className="text-[6rem] md:text-[10rem] lg:text-[12rem] font-black leading-[0.85] tracking-[-0.08em] text-black uppercase mb-12 font-saira">
             <TypeAnimation
@@ -44,9 +49,9 @@ const Hero = () => {
 
           <div className="flex flex-col md:flex-row gap-12 mt-16 md:mt-24">
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-md"
             >
               <p className="text-2xl font-bold leading-tight text-black mb-6">

@@ -7,9 +7,10 @@ const Footer = () => {
       <div className="container mx-auto px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-3xl"
           >
             <p className="text-accent text-xl font-black tracking-widest uppercase mb-8">Ready to start?</p>
@@ -18,7 +19,13 @@ const Footer = () => {
             </h2>
           </motion.div>
 
-          <div className="flex flex-col gap-8 md:text-right">
+          <motion.div 
+            className="flex flex-col gap-8 md:text-right"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
              <div>
                <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-2">Socials</p>
                <div className="flex md:justify-end gap-6 text-sm font-black uppercase tracking-widest">
@@ -33,7 +40,7 @@ const Footer = () => {
                   {portfolioData.profile.email}
                 </a>
              </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
