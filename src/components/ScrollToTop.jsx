@@ -27,7 +27,7 @@ const ScrollToTop = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed bottom-10 right-10 z-50 flex flex-col gap-4">
+      <div className="fixed bottom-10 right-15 z-50 flex flex-col gap-4">
         {/* Contact/Write Button (Newbird Style) */}
         <motion.a
           href="mailto:dongbookro@gmail.com"
@@ -39,8 +39,8 @@ const ScrollToTop = () => {
           aria-label="Contact me"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-            <path d="m15 5 4 4"/>
+            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+            <path d="m15 5 4 4" />
           </svg>
         </motion.a>
 
@@ -56,9 +56,9 @@ const ScrollToTop = () => {
             className="w-14 h-14 flex items-center justify-center rounded-full glass-panel shadow-2xl group transition-all duration-300"
             aria-label="Scroll to top"
           >
-            <ArrowUp 
-              size={24} 
-              className="text-dark group-hover:text-accent transition-colors duration-300" 
+            <ArrowUp
+              size={24}
+              className="text-dark group-hover:text-accent transition-colors duration-300"
               strokeWidth={2.5}
             />
           </motion.button>
