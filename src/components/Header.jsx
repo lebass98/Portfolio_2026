@@ -123,7 +123,7 @@ const Header = ({ toggleTheme, theme }) => {
                   toggleTheme();
                   setIsMenuOpen(false);
                 }}
-                className="w-full py-6 mt-4 bg-accent text-black font-black uppercase tracking-widest flex items-center justify-center gap-3 rounded-2xl"
+                className="w-full py-6 mt-4 bg-accent text-dark font-black uppercase tracking-widest flex items-center justify-center gap-3 rounded-2xl"
               >
                 {theme === 'light' ? (
                   <>
