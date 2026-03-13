@@ -95,7 +95,6 @@ h3 {
   padding: 0 40px;
   height: 60px;
   pointer-events: auto;
-  /* display: flex; - Removed to allow Tailwind breakpoint classes (hidden md:flex) to work */
   align-items: center;
   justify-content: center;
   gap: 40px;
