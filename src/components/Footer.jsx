@@ -6,7 +6,7 @@ const Footer = () => {
   const { profile } = portfolioData;
 
   return (
-    <footer id="contact" className="relative bg-[#FFE600] text-[#111427] pt-24 pb-12 overflow-hidden min-h-[700px] flex flex-col justify-between transition-colors duration-500">
+    <footer id="contact" className="relative bg-accent text-dark pt-24 pb-12 overflow-hidden min-h-[700px] flex flex-col justify-between transition-colors duration-500">
       {/* Plastic Wrap Texture Overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-50 mix-blend-multiply z-10"
