@@ -17,7 +17,7 @@ const Footer = () => {
         }}
       />
 
-      <div className="px-[60px] relative z-20">
+      <div className="px-8 md:px-[60px] relative z-20">
         <div className="flex justify-between items-start mb-16">
           <span className="text-sm font-bold tracking-widest uppercase flex items-center gap-2">
             INFORMATION <span className="w-8 h-[2px] bg-dark"></span>
@@ -77,7 +77,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="px-[60px] pb-12 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
+      <div className="px-8 md:px-[60px] pb-12 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
         <div className="flex items-center gap-4">
           <span className="text-2xl font-bold tracking-tighter uppercase">
             JK.LEE<span className="text-white">.</span>

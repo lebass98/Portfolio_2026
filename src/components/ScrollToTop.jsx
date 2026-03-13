@@ -27,7 +27,7 @@ const ScrollToTop = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed bottom-10 right-15 z-50 flex flex-col gap-4">
+      <div className="fixed bottom-10 right-15 z-50 flex flex-col gap-4 mb:right-[0]">
         {/* Contact/Write Button (Newbird Style) */}
         <motion.a
           href="mailto:dongbookro@gmail.com"
