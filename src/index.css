@@ -165,15 +165,7 @@ a:hover .autotext::after {
   /* Difference mode on dark/yellow background */
 }
 
-@layer utilities {
-  .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 32px;
-  }
-}
+
 
 .texture-overlay {
   background-image: url('./assets/images/footer_texture.png');
@@ -305,6 +297,15 @@ html {
   .h_nav ul {
     gap: 15px;
   }
+}
+
+/* Force Glassmorphism - Forced for Build Consistency */
+.glass-panel {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--glass-border) !important;
+  isolation: isolate; /* Create new stacking context */
 }
 
 @media (max-width: 480px) {
