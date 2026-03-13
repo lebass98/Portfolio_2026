@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import profileImg from '../assets/images/profile.jpg';
 
 const About = () => {
   const { profile, experience } = portfolioData;
@@ -20,7 +21,7 @@ const About = () => {
           >
             <div className="mb-16">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
-                <img src={`${import.meta.env.BASE_URL}images/profile.jpg`} alt={profile.name} className="w-full h-full object-cover" />
+                <img src={profileImg} alt={profile.name} className="w-full h-full object-cover" />
               </div>
               <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">Hello</span>
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">

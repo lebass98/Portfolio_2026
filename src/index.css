@@ -4,6 +4,7 @@
 @import "pretendard-gov/dist/web/static/pretendard-gov.css";
 
 @theme {
+  /* Core Colors */
   --color-accent: var(--accent);
   --color-accent-dark: #ccb800;
   --color-dark: var(--nb-dark);
@@ -12,11 +13,13 @@
   --color-inverse: var(--bg-main);
   --color-glass: var(--glass-bg);
   --color-card: var(--glass-card-bg);
+  
+  /* Weights */
   --font-weight-extrabold: 700;
 }
 
 :root {
-  /* Newbird Inspired Theme - Default: Light (Yellow/White) */
+  /* Newbird Inspired Theme - Light Mode Defaults */
   --nb-yellow: #FFE600;
   --nb-dark: #111427;
   --bg-main: #ffffff;
@@ -33,17 +36,18 @@
 }
 
 [data-theme='dark'] {
+  /* Dark Mode Overrides */
   --nb-yellow: #FFE600;
   --nb-dark: #ffffff;
   --bg-main: #000000;
   --bg-section-yellow: #111427;
   --text-main: #ffffff;
   --text-muted: #9ca3af;
-  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-bg: rgba(255, 255, 255, 0.12); /* Increased for visibility */
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-card-bg: #111427;
   --glass-card-border: rgba(255, 255, 255, 0.1);
-  --accent: #111427; /* Changed to dark in dark mode */
+  --accent: #111427;
   --nav-capsule-bg: rgba(0, 0, 0, 0.7);
 }
 
@@ -170,7 +174,7 @@ a:hover .autotext::after {
 }
 
 .texture-overlay {
-  background-image: url('/images/footer_texture.png');
+  background-image: url('./assets/images/footer_texture.png');
   background-size: cover;
   background-position: center;
   mix-blend-mode: overlay;

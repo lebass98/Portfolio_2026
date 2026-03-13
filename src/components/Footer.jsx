@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { ArrowUpRight, Download, MoveRight } from 'lucide-react';
+import footerTexture from '../assets/images/footer_texture.png';
 
 const Footer = () => {
   const { profile } = portfolioData;
@@ -11,7 +12,7 @@ const Footer = () => {
       <div
         className="absolute inset-0 pointer-events-none opacity-50 mix-blend-multiply z-10"
         style={{
-          backgroundImage: `url('${import.meta.env.BASE_URL}images/footer_texture.png')`,
+          backgroundImage: `url(${footerTexture})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
