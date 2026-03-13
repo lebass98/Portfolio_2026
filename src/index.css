@@ -90,7 +90,7 @@ h3 {
   padding: 0 40px;
   height: 60px;
   pointer-events: auto;
-  display: flex;
+  /* display: flex; - Removed to allow Tailwind breakpoint classes (hidden md:flex) to work */
   align-items: center;
   justify-content: center;
   gap: 40px;
@@ -243,7 +243,7 @@ html {
 
 @media (max-width: 1024px) {
   .capsule-nav-container {
-    padding: 20px;
+    padding: 20px 30px;
   }
 
   .capsule-nav {
@@ -255,11 +255,15 @@ html {
 @media (max-width: 768px) {
   .capsule-nav-wrapper {
     justify-content: center;
+    height: 60px;
+    position: relative;
   }
 
   .capsule-nav-logo,
   .capsule-nav-contact {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .capsule-nav-logo {
@@ -269,6 +273,16 @@ html {
 
   .capsule-nav-contact {
     right: 20px;
+  }
+
+  section {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  section.bg-yellow-theme>div {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .capsule-nav {
@@ -291,7 +305,7 @@ html {
 
   .capsule-nav-logo,
   .capsule-nav-contact {
-    display: none;
+    /* display: none; - Removed to keep logo and hamburger visible on small mobile */
   }
 
   .capsule-nav {

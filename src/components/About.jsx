@@ -7,7 +7,7 @@ const About = () => {
 
   return (
     <section id="about" className="bg-yellow-theme transition-colors duration-500">
-      <div className="px-[60px]">
+      <div className="px-8 md:px-[60px]">
         <h2 className="mb-24">About / Career</h2>
 
         <div className="grid lg:grid-cols-2 gap-24">

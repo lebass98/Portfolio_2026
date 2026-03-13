@@ -13,7 +13,7 @@ const Portfolio = () => {
 
   return (
     <section id="portfolio" className="bg-yellow-theme transition-colors duration-500">
-      <div className="px-[60px]">
+      <div className="px-8 md:px-[60px]">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}

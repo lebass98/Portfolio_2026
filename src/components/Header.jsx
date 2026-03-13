@@ -24,7 +24,10 @@ const Header = ({ toggleTheme, theme }) => {
   return (
     <div className="capsule-nav-container">
       <div className="capsule-nav-wrapper">
-        <a href="#home" className="capsule-nav-logo text-2xl font-bold tracking-tighter">
+        <a 
+          href="#home" 
+          className={`capsule-nav-logo text-2xl font-bold tracking-tighter transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none translate-y-[-20px]' : 'opacity-100'}`}
+        >
           JK.LEE<span className="text-accent">.</span>
         </a>
 
@@ -33,7 +36,7 @@ const Header = ({ toggleTheme, theme }) => {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, cubicBezier: [0.16, 1, 0.3, 1] }}
-          className="capsule-nav hidden md:flex"
+          className={`capsule-nav hidden md:flex transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         >
           <nav className="h_nav">
             <ul className="flex items-center gap-10">

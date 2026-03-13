@@ -15,7 +15,7 @@ const Hero = () => {
         </svg>
       </div>
 
-      <div className="w-full px-[60px] z-10">
+      <div className="w-full px-8 md:px-[60px] z-10">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
