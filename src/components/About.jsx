@@ -23,13 +23,13 @@ const About = () => {
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
                 <img src={profileImg} alt={profile.name} className="w-full h-full object-cover" />
               </div>
-              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">Hello</span>
+              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">About Me</span>
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
-                Bridging the gap between <br />
-                <span className="text-main underline decoration-main decoration-8 underline-offset-8">Design</span> and <span className="text-main underline decoration-main decoration-8 underline-offset-8">Code</span>.
+                디자인과 코드의 <br />
+                <span className="text-main underline decoration-main decoration-8 underline-offset-8">경계</span>를 허무는 <span className="text-main underline decoration-main decoration-8 underline-offset-8">퍼블리셔</span>
               </h3>
-              <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg">
-                I am a UI/UX Developer obsessed with detail and performance. With over 15 years of experience in the web field, I specialize in crafting digital products that are as functional as they are beautiful.
+              <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg whitespace-pre-line">
+                {profile.intro}
               </p>
             </div>
 
