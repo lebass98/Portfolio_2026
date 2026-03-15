@@ -66,7 +66,13 @@ const About = () => {
               <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">About Me</span>
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
                 디자인과 코드의 <br />
-                <span className="text-main underline decoration-main decoration-8 underline-offset-8">경계</span>를 허무는 <span className="text-main underline decoration-main decoration-8 underline-offset-8">퍼블리셔</span>
+                <span 
+                  className="text-main underline decoration-main decoration-8 underline-offset-8"
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.4)' }}
+                >경계</span>를 허무는 <span 
+                  className="text-main underline decoration-main decoration-8 underline-offset-8"
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.4)' }}
+                >퍼블리셔</span>
               </h3>
               <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg whitespace-pre-line">
                 {profile.intro}
