@@ -18,7 +18,7 @@ export const portfolioData = {
     {
       period: "2018.09 ~ 2019.09",
       company: "(주)휴앤컴퍼니",
-      position: "웹솔루션팀 차장 (프로모션 및 쇼핑몰 구축)",
+      position: "웹솔루션팀 차장",
       details: "다양한 이커머스 솔루션과 프로모션 사이트의 총괄 퍼블리싱을 담당하며, 사용자 구매 전환을 극대화하는 인터랙티브 UI 구현에 집중했습니다.",
       skills: ["JS", "HTML5", "jQuery", "SCSS"]
     },
@@ -30,17 +30,24 @@ export const portfolioData = {
       skills: ["UI/UX", "Publishing", "Team Leading"]
     },
     {
-      period: "2013.06 ~ 2015.09",
-      company: "커리어 전환 및 확장기",
+      period: "2014.07 ~ 2015.09",
+      company: "(주)트리니티비앤에이치",
       position: "Senior Web Publisher",
-      details: "2013년 하반기, 웹 디자이너에서 전문 웹 퍼블리셔로 전향하며 더욱 견고한 마크업과 스크립트 역량을 쌓았습니다. (얀트리, 트리니티비앤에이치 등)",
+      details: "웹 퍼블리셔로서의 전문성을 확고히 다진 시기로, 견고한 마크업과 스크립트 역량을 통해 완성도 높은 결과물을 만들어냈습니다.",
       skills: ["Web Standards", "Interaction", "SEO"]
     },
     {
-      period: "2004.03 ~ 2013.05",
-      company: "디자인 전문 역량 강화기",
+      period: "2013.06 ~ 2014.06",
+      company: "(주)얀트리",
+      position: "Senior Web Publisher / 팀장",
+      details: "2013년 하반기, 웹 디자이너에서 퍼블리셔로 전향하며 더욱 깊이 있는 코딩 기술을 습득하고 종합쇼핑몰 운영을 총괄했습니다.",
+      skills: ["Web Standards", "Interaction", "Management"]
+    },
+    {
+      period: "2009.06 ~ 2013.03",
+      company: "(주)트라이씨클 (하프클럽)",
       position: "Senior Web Designer",
-      details: "약 9년간 트라이씨클(하프클럽) 등에서 근무하며 웹의 시각적 언어를 마스터했습니다. 디자인의 원리를 깊이 이해하는 퍼블리셔로서의 토대를 마련한 시기입니다.",
+      details: "약 9년간 트라이씨클 등에서 근무하며 웹의 시각적 언어를 마스터했습니다. 디자인의 원리를 깊이 이해하는 퍼블리셔로서의 토대를 마련한 시기입니다.",
       skills: ["Creative Design", "Concept Planning", "Graphic"]
     }
   ],
