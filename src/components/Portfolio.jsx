@@ -42,8 +42,8 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Project Grid - 4 Columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+        {/* Project Grid - 3 Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -54,7 +54,7 @@ const Portfolio = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{
                   duration: 0.8,
-                  delay: (index % 4) * 0.1,
+                  delay: (index % 3) * 0.1,
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 className="group cursor-pointer"
