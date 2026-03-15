@@ -11,9 +11,9 @@ export const portfolioData = {
     {
       period: "2023.07 ~ Present",
       company: "워드앤코드 (WordNcode)",
-      position: "CEO / UI/UX Specialist",
-      details: "1인 기업으로서 전문적인 UI/UX 컨설팅, 디자인 및 고성능 프론트엔드 퍼블리싱 솔루션을 제공하며 다수의 기업 프로젝트를 성공적으로 수행하고 있습니다.",
-      skills: ["React", "Vite", "Tailwind", "Consulting", "Publishing"]
+      position: "대표 / UI/UX 디렉터",
+      details: "관공서 및 공공기관 전문 웹 에이전시로서, 국가 행정부 관련 대규모 프로젝트의 UI/UX 디자인과 웹 표준 퍼블리싱을 총괄하며 신뢰도 높은 웹 솔루션을 제공하고 있습니다.",
+      skills: ["Agency", "Public Project", "UI/UX Director", "Publishing"]
     },
     {
       period: "2019.09 ~ 2023.06",
