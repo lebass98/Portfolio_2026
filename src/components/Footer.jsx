@@ -8,16 +8,6 @@ const Footer = () => {
 
   return (
     <footer id="contact" className="relative bg-accent text-dark pt-24 pb-12 overflow-hidden min-h-[700px] flex flex-col justify-between transition-colors duration-500">
-      {/* Plastic Wrap Texture Overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-50 mix-blend-multiply z-10"
-        style={{
-          backgroundImage: `url(${footerTexture})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      />
-
       <div className="px-8 md:px-[60px] relative z-20">
         <div className="flex justify-between items-start mb-16">
           <span className="text-sm font-bold tracking-widest uppercase flex items-center gap-2">
