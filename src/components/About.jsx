@@ -1,10 +1,50 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { 
+  Mail, 
+  Phone, 
+  ArrowUpRight, 
+  Zap, 
+  Atom, 
+  Code2, 
+  Palette, 
+  Terminal, 
+  Figma, 
+  Users, 
+  Globe, 
+  Search, 
+  Layout, 
+  Cpu, 
+  PenTool,
+  CheckCircle2,
+  MousePointer2,
+  Lightbulb,
+  Image as ImageIcon
+} from 'lucide-react';
 import profileImg from '../assets/images/profile.jpg';
 
 const About = () => {
   const { profile, experience } = portfolioData;
+
+  const getSkillIcon = (skill) => {
+    const s = skill.toLowerCase();
+    if (s.includes('vite')) return <Zap size={10} />;
+    if (s.includes('react')) return <Atom size={10} />;
+    if (s.includes('html')) return <Code2 size={10} />;
+    if (s.includes('css') || s.includes('scss')) return <Palette size={10} />;
+    if (s.includes('js') || s.includes('jquery') || s.includes('javascript')) return <Terminal size={10} />;
+    if (s.includes('ui') || s.includes('ux') || s.includes('figma')) return <Figma size={10} />;
+    if (s.includes('leading') || s.includes('team') || s.includes('users')) return <Users size={10} />;
+    if (s.includes('web') || s.includes('standard')) return <Globe size={10} />;
+    if (s.includes('seo') || s.includes('search')) return <Search size={10} />;
+    if (s.includes('publishing')) return <Layout size={10} />;
+    if (s.includes('interaction')) return <MousePointer2 size={10} />;
+    if (s.includes('design') || s.includes('creative')) return <PenTool size={10} />;
+    if (s.includes('planning') || s.includes('concept')) return <Lightbulb size={10} />;
+    if (s.includes('graphic') || s.includes('image')) return <ImageIcon size={10} />;
+    
+    return <Cpu size={10} />;
+  };
 
   return (
     <section id="about" className="bg-yellow-theme transition-colors duration-500">
@@ -88,7 +128,8 @@ const About = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {item.skills.map(skill => (
-                    <span key={skill} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-dark/5 border border-dark/10 text-dark rounded">
+                    <span key={skill} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-dark/5 border border-dark/10 text-dark rounded group-hover:bg-dark group-hover:text-main group-hover:border-dark transition-all duration-300">
+                      {getSkillIcon(skill)}
                       {skill}
                     </span>
                   ))}
