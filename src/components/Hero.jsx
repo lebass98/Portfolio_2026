@@ -67,11 +67,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Aesthetic Overlay Line */}
-      <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-dark/10 hidden md:block" />
-      <div className="absolute bottom-12 left-12 text-[10px] font-bold tracking-widest text-dark/30 uppercase hidden md:block">
-        © 2026 Portfolio / Powered by Pretendard Gov
-      </div>
     </section>
   );
 };
