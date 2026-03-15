@@ -8,12 +8,7 @@ const Hero = () => {
   return (
     <section id="home" className="h-screen flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
       {/* Background Graphic Element */}
-      <div className="absolute top-0 right-0 w-2/3 h-full opacity-10 pointer-events-none">
-        <svg viewBox="0 0 800 800" className="w-full h-full text-dark fill-current">
-          <path d="M769 229L1037 260.9M927 880L731 737" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <circle cx="400" cy="400" r="300" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        </svg>
-      </div>
+
 
       <div className="w-full px-8 md:px-[60px] z-10">
         <motion.div
