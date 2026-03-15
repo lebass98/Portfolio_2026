@@ -9,6 +9,13 @@ export const portfolioData = {
   },
   experience: [
     {
+      period: "2023.07 ~ Present",
+      company: "워드앤코드 (WordNcode)",
+      position: "CEO / UI/UX Specialist",
+      details: "1인 기업으로서 전문적인 UI/UX 컨설팅, 디자인 및 고성능 프론트엔드 퍼블리싱 솔루션을 제공하며 다수의 기업 프로젝트를 성공적으로 수행하고 있습니다.",
+      skills: ["React", "Vite", "Tailwind", "Consulting", "Publishing"]
+    },
+    {
       period: "2019.09 ~ 2023.06",
       company: "(주)후이즈",
       position: "홈페이지 제작팀 과장 (메인 디자이너 / 메인 퍼블리셔)",
@@ -47,8 +54,15 @@ export const portfolioData = {
       period: "2009.06 ~ 2013.03",
       company: "(주)트라이씨클 (하프클럽)",
       position: "Senior Web Designer",
-      details: "약 9년간 트라이씨클 등에서 근무하며 웹의 시각적 언어를 마스터했습니다. 디자인의 원리를 깊이 이해하는 퍼블리셔로서의 토대를 마련한 시기입니다.",
+      details: "약 4년간 트라이씨클 등에서 근무하며 웹의 시각적 언어를 마스터했습니다. 디자인의 원리를 깊이 이해하는 퍼블리셔로서의 토대를 마련한 시기입니다.",
       skills: ["Creative Design", "Concept Planning", "Graphic"]
+    },
+    {
+      period: "2004.03 ~ 2009.05",
+      company: "Freelance & Junior Designer",
+      position: "Web Designer",
+      details: "IT 업계에 첫 발을 내딛으며 웹 디자인 전반에 걸친 기초를 다졌고, 다양한 프로젝트를 통해 실무 역량을 쌓았습니다.",
+      skills: ["Graphic Design", "Flash", "HTML/CSS"]
     }
   ],
   projects: [
