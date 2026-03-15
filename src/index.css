@@ -1,7 +1,5 @@
 @import "tailwindcss";
-/* Pretendard GOV Local Fonts (installed via npm) */
-@import "pretendard-gov/dist/web/variable/pretendardvariable-gov-dynamic-subset.css";
-@import "pretendard-gov/dist/web/static/pretendard-gov.css";
+
 
 @theme {
   /* Core Colors */
