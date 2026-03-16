@@ -1,61 +1,68 @@
 export const portfolioData = {
   profile: {
     name: "이재광",
-    title: "UI/UX DEVELOPER",
-    intro: "UI/UX DEVELOPER 이재광을 소개합니다.",
+    title: "UI/UX, FRONTEND & WEB DESIGN",
+    intro: "디자인의 감각과 퍼블리싱의 기술을 잇는 20년 차 베테랑,\nUI/UX 디자이너 겸 퍼블리셔 이재광입니다.",
     phone: "010-5244-1251",
     email: "dongbookro@gmail.com",
-    roles: ["UI/UX Developer", "Web Publisher", "Web Designer"]
+    roles: ["UI/UX Designer", "Web Designer", "Frontend Developer", "Web Publisher"]
   },
   experience: [
     {
-      period: "2024.05 ~ 현재",
-      company: "워드앤코드",
-      position: "웹퍼블팀 팀장 (메인 퍼블리셔 / 프론트앤드 개발)",
-      details: "사원수 29명 / 팀원 4명",
-      skills: ["JS", "React", "jQuery"]
+      period: "2023.07 ~ Present",
+      company: "워드앤코드 (WordNcode)",
+      position: "대표 / UI/UX & Frontend 디렉터",
+      details: "관공서 및 공공기관 전문 웹 에이전시로서, 국가 행정부 관련 대규모 프로젝트의 UI/UX 디자인과 웹 표준 퍼블리싱을 총괄하며 신뢰도 높은 웹 솔루션을 제공하고 있습니다.",
+      skills: ["Agency", "Public Project", "UI/UX Director", "Publishing"]
     },
     {
       period: "2019.09 ~ 2023.06",
       company: "(주)후이즈",
       position: "홈페이지 제작팀 과장 (메인 디자이너 / 메인 퍼블리셔)",
-      details: "사원수 120명 / 팀원 6명",
-      skills: ["JS", "HTML5", "jQuery"]
+      details: "대형 웹 에이전시에서의 풍부한 제작 경험을 바탕으로, 굴지의 중견기업 및 공공기관의 웹 표준 퍼블리싱과 UI/UX 디자인 프로젝트를 성공적으로 리딩했습니다.",
+      skills: ["Vite", "React", "HTML5", "CSS3", "jQuery"]
     },
     {
       period: "2018.09 ~ 2019.09",
       company: "(주)휴앤컴퍼니",
-      position: "웹솔루션팀 차장 (프로모션 홈페이지 / 쇼핑몰 제작)",
-      details: "사원수 25명 / 팀원 3명",
-      skills: ["JS", "HTML5", "jQuery"]
+      position: "웹솔루션팀 차장",
+      details: "다양한 이커머스 솔루션과 프로모션 사이트의 총괄 퍼블리싱을 담당하며, 사용자 구매 전환을 극대화하는 인터랙티브 UI 구현에 집중했습니다.",
+      skills: ["JS", "HTML5", "jQuery", "SCSS"]
     },
     {
       period: "2015.09 ~ 2018.08",
       company: "(주)코리안몰",
       position: "홈페이지 / 쇼핑몰 제작팀 팀장",
-      details: "사원수 50명 / 팀원 5명",
-      skills: ["JS", "HTML5", "jQuery"]
+      details: "글로벌 역직구 쇼핑몰의 프론트엔드 환경을 구축하고 팀을 매니징하며, 다국어 지원 및 확장성 있는 코드 구조를 설계했습니다.",
+      skills: ["UI/UX", "Frontend Development", "Publishing", "Team Leading"]
     },
     {
       period: "2014.07 ~ 2015.09",
       company: "(주)트리니티비앤에이치",
-      position: "화장품 및 미용기기 홈쇼핑 / 쇼핑몰 제작 및 운영",
-      details: "사원수 8명 / 팀원 2명",
-      skills: ["JS", "HTML5", "jQuery"]
+      position: "Senior Web Publisher",
+      details: "웹 퍼블리셔로서의 전문성을 확고히 다진 시기로, 견고한 마크업과 스크립트 역량을 통해 완성도 높은 결과물을 만들어냈습니다.",
+      skills: ["Web Standards", "Interaction", "SEO"]
     },
     {
       period: "2013.06 ~ 2014.06",
       company: "(주)얀트리",
-      position: "디자인팀 팀장 / 종합쇼핑몰 제작 및 운영",
-      details: "사원수 25명 / 팀원 5명",
-      skills: ["JS", "HTML5", "jQuery"]
+      position: "Senior Web Publisher / 팀장",
+      details: "2013년 하반기, 웹 디자이너에서 퍼블리셔로 전향하며 더욱 깊이 있는 코딩 기술을 습득하고 종합쇼핑몰 운영을 총괄했습니다.",
+      skills: ["Web Standards", "Interaction", "Management"]
     },
     {
       period: "2009.06 ~ 2013.03",
       company: "(주)트라이씨클 (하프클럽)",
-      position: "디자인팀 대리 / 쇼핑몰내 디자인 및 코딩",
-      details: "사원수 185명 / 팀원 9명",
-      skills: ["JS", "HTML5", "jQuery"]
+      position: "Senior Web Designer",
+      details: "약 4년간 트라이씨클 등에서 근무하며 웹의 시각적 언어를 마스터했습니다. 디자인의 원리를 깊이 이해하는 퍼블리셔로서의 토대를 마련한 시기입니다.",
+      skills: ["Creative Design", "Concept Planning", "Graphic"]
+    },
+    {
+      period: "2004.03 ~ 2009.05",
+      company: "Freelance & Junior Designer",
+      position: "Web Designer",
+      details: "IT 업계에 첫 발을 내딛으며 웹 디자인 전반에 걸친 기초를 다졌고, 다양한 프로젝트를 통해 실무 역량을 쌓았습니다.",
+      skills: ["Graphic Design", "Flash", "HTML/CSS"]
     }
   ],
   projects: [

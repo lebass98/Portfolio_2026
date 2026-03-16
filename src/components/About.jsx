@@ -1,10 +1,51 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { 
+  Mail, 
+  Phone, 
+  ArrowUpRight, 
+  Zap, 
+  Atom, 
+  Code2, 
+  Palette, 
+  Terminal, 
+  Figma, 
+  Users, 
+  Globe, 
+  Search, 
+  Layout, 
+  Cpu, 
+  PenTool,
+  CheckCircle2,
+  MousePointer2,
+  Lightbulb,
+  Image as ImageIcon
+} from 'lucide-react';
 import profileImg from '../assets/images/profile.jpg';
 
 const About = () => {
   const { profile, experience } = portfolioData;
+
+  const getSkillIcon = (skill) => {
+    const s = skill.toLowerCase();
+    if (s.includes('vite')) return <Zap size={10} />;
+    if (s.includes('react')) return <Atom size={10} />;
+    if (s.includes('html')) return <Code2 size={10} />;
+    if (s.includes('css') || s.includes('scss')) return <Palette size={10} />;
+    if (s.includes('js') || s.includes('jquery') || s.includes('javascript')) return <Terminal size={10} />;
+    if (s.includes('ui') || s.includes('ux') || s.includes('figma')) return <Figma size={10} />;
+    if (s.includes('leading') || s.includes('team') || s.includes('users')) return <Users size={10} />;
+    if (s.includes('web') || s.includes('standard')) return <Globe size={10} />;
+    if (s.includes('seo') || s.includes('search')) return <Search size={10} />;
+    if (s.includes('publishing')) return <Layout size={10} />;
+    if (s.includes('interaction')) return <MousePointer2 size={10} />;
+    if (s.includes('design') || s.includes('creative')) return <PenTool size={10} />;
+    if (s.includes('planning') || s.includes('concept')) return <Lightbulb size={10} />;
+    if (s.includes('frontend')) return <Code2 size={10} />;
+    if (s.includes('graphic') || s.includes('image')) return <ImageIcon size={10} />;
+    
+    return <Cpu size={10} />;
+  };
 
   return (
     <section id="about" className="bg-yellow-theme transition-colors duration-500">
@@ -23,13 +64,19 @@ const About = () => {
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
                 <img src={profileImg} alt={profile.name} className="w-full h-full object-cover" />
               </div>
-              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">Hello</span>
+              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">About Me</span>
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
-                Bridging the gap between <br />
-                <span className="text-main underline decoration-main decoration-8 underline-offset-8">Design</span> and <span className="text-main underline decoration-main decoration-8 underline-offset-8">Code</span>.
+                디자인과 코드의 <br />
+                <span 
+                  className="text-main underline decoration-main decoration-8 underline-offset-8"
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
+                >경계</span>를 허무는 <span 
+                  className="text-main underline decoration-main decoration-8 underline-offset-8"
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
+                >퍼블리셔</span>
               </h3>
-              <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg">
-                I am a UI/UX Developer obsessed with detail and performance. With over 15 years of experience in the web field, I specialize in crafting digital products that are as functional as they are beautiful.
+              <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg whitespace-pre-line">
+                {profile.intro}
               </p>
             </div>
 
@@ -88,7 +135,8 @@ const About = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {item.skills.map(skill => (
-                    <span key={skill} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-dark/5 border border-dark/10 text-dark rounded">
+                    <span key={skill} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-dark/5 border border-dark/10 text-dark rounded group-hover:bg-dark group-hover:text-main group-hover:border-dark transition-all duration-300">
+                      {getSkillIcon(skill)}
                       {skill}
                     </span>
                   ))}

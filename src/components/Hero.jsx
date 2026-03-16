@@ -8,12 +8,7 @@ const Hero = () => {
   return (
     <section id="home" className="h-screen flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
       {/* Background Graphic Element */}
-      <div className="absolute top-0 right-0 w-2/3 h-full opacity-10 pointer-events-none">
-        <svg viewBox="0 0 800 800" className="w-full h-full text-dark fill-current">
-          <path d="M769 229L1037 260.9M927 880L731 737" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <circle cx="400" cy="400" r="300" fill="none" stroke="currentColor" strokeWidth="0.5" />
-        </svg>
-      </div>
+
 
       <div className="w-full px-8 md:px-[60px] z-10">
         <motion.div
@@ -30,15 +25,19 @@ const Hero = () => {
           >
           </motion.p>
 
-          <h1 className="text-[3.4rem] sm:text-[4rem] md:text-[10rem] lg:text-[12rem] font-bold leading-[1.1] md:leading-[0.85] text-dark uppercase mb-12 whitespace-pre-line break-words">
+          <h1 className="text-[3.4rem] sm:text-[4rem] md:text-[9rem] lg:text-[10rem] font-bold leading-[1.1] md:leading-[0.85] text-dark uppercase mb-12 whitespace-pre-line break-words">
             <TypeAnimation
               sequence={[
                 'UI/UX\nDEVELOPER',
-                5000,
+                2000,
+                'FRONTEND\nDEVELOPER',
+                2000,
+                'WEB\nDESIGNER',
+                2000,
                 'UI/UX\nDESIGNER',
-                10000,
+                2000,
                 'WEB\nPUBLISHER',
-                10000,
+                2000,
               ]}
               wrapper="span"
               speed={10}
@@ -67,11 +66,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Aesthetic Overlay Line */}
-      <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-dark/10 hidden md:block" />
-      <div className="absolute bottom-12 left-12 text-[10px] font-bold tracking-widest text-dark/30 uppercase hidden md:block">
-        © 2026 Portfolio / Powered by Pretendard Gov
-      </div>
     </section>
   );
 };
