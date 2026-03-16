@@ -9,6 +9,13 @@ export const portfolioData = {
   },
   experience: [
     {
+      period: "2024.05 ~ 현재",
+      company: "워드앤코드",
+      position: "웹퍼블팀 팀장 (메인 퍼블리셔 / 프론트앤드 개발)",
+      details: "사원수 29명 / 팀원 4명",
+      skills: ["JS", "React", "jQuery"]
+    },
+    {
       period: "2019.09 ~ 2023.06",
       company: "(주)후이즈",
       position: "홈페이지 제작팀 과장 (메인 디자이너 / 메인 퍼블리셔)",
