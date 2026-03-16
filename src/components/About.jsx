@@ -41,6 +41,7 @@ const About = () => {
     if (s.includes('interaction')) return <MousePointer2 size={10} />;
     if (s.includes('design') || s.includes('creative')) return <PenTool size={10} />;
     if (s.includes('planning') || s.includes('concept')) return <Lightbulb size={10} />;
+    if (s.includes('frontend')) return <Code2 size={10} />;
     if (s.includes('graphic') || s.includes('image')) return <ImageIcon size={10} />;
     
     return <Cpu size={10} />;
@@ -68,10 +69,10 @@ const About = () => {
                 디자인과 코드의 <br />
                 <span 
                   className="text-main underline decoration-main decoration-8 underline-offset-8"
-                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.4)' }}
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
                 >경계</span>를 허무는 <span 
                   className="text-main underline decoration-main decoration-8 underline-offset-8"
-                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.4)' }}
+                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
                 >퍼블리셔</span>
               </h3>
               <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg whitespace-pre-line">

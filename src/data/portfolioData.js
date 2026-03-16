@@ -1,17 +1,17 @@
 export const portfolioData = {
   profile: {
     name: "이재광",
-    title: "UI/UX DEVELOPER",
+    title: "UI/UX, FRONTEND & WEB DESIGN",
     intro: "디자인의 감각과 퍼블리싱의 기술을 잇는 20년 차 베테랑,\nUI/UX 디자이너 겸 퍼블리셔 이재광입니다.",
     phone: "010-5244-1251",
     email: "dongbookro@gmail.com",
-    roles: ["UI/UX Developer", "Web Publisher", "Web Designer"]
+    roles: ["UI/UX Designer", "Web Designer", "Frontend Developer", "Web Publisher"]
   },
   experience: [
     {
       period: "2023.07 ~ Present",
       company: "워드앤코드 (WordNcode)",
-      position: "대표 / UI/UX 디렉터",
+      position: "대표 / UI/UX & Frontend 디렉터",
       details: "관공서 및 공공기관 전문 웹 에이전시로서, 국가 행정부 관련 대규모 프로젝트의 UI/UX 디자인과 웹 표준 퍼블리싱을 총괄하며 신뢰도 높은 웹 솔루션을 제공하고 있습니다.",
       skills: ["Agency", "Public Project", "UI/UX Director", "Publishing"]
     },
@@ -34,7 +34,7 @@ export const portfolioData = {
       company: "(주)코리안몰",
       position: "홈페이지 / 쇼핑몰 제작팀 팀장",
       details: "글로벌 역직구 쇼핑몰의 프론트엔드 환경을 구축하고 팀을 매니징하며, 다국어 지원 및 확장성 있는 코드 구조를 설계했습니다.",
-      skills: ["UI/UX", "Publishing", "Team Leading"]
+      skills: ["UI/UX", "Frontend Development", "Publishing", "Team Leading"]
     },
     {
       period: "2014.07 ~ 2015.09",
