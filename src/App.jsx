@@ -5,6 +5,8 @@ import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import SmoothScroll from './components/SmoothScroll';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -19,16 +21,19 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen transition-colors duration-300">
-      <Header toggleTheme={toggleTheme} theme={theme} />
-      <main>
-        <Hero />
-        <About />
-        <Portfolio />
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </div>
+    <SmoothScroll>
+      <div className="min-h-screen transition-colors duration-300">
+        <CustomCursor />
+        <Header toggleTheme={toggleTheme} theme={theme} />
+        <main>
+          <Hero />
+          <About />
+          <Portfolio />
+        </main>
+        <Footer />
+        <ScrollToTop theme={theme} />
+      </div>
+    </SmoothScroll>
   );
 }
 
