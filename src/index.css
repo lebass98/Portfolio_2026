@@ -52,7 +52,7 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -60,7 +60,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", sans-serif;
 }
 
 /* Glassmorphism Capsule Nav - Updated for Newbird + User Request */
@@ -147,7 +147,7 @@ a:hover .autotext::after {
 }
 
 .nav-item-count {
-  font-family: "Pretendard GOV Variable", "Pretendard GOV", sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", sans-serif;
   font-size: 9px;
   font-weight: 700;
   vertical-align: super;
