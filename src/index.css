@@ -392,6 +392,21 @@ html.lenis, html.lenis body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
+/* Glass Panel for Floating Buttons (Theme, Top, Mobile Menu) */
+.glass-panel {
+  background: var(--nav-capsule-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .glass-panel {
+  background: var(--nav-capsule-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
 .glass-glow {
   position: relative;
 }
