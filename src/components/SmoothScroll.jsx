@@ -15,6 +15,22 @@ const SmoothScroll = ({ children }) => {
       infinite: false,
     });
 
+    // Add smooth scroll for anchor links
+    const handleHashLinkClick = (e) => {
+      const anchor = e.target.closest('a');
+      if (anchor && anchor.hash && anchor.origin === window.location.origin && anchor.pathname === window.location.pathname) {
+        const id = anchor.hash;
+        if (id === '#') return;
+        const targetElement = document.querySelector(id);
+        if (targetElement) {
+          e.preventDefault();
+          lenis.scrollTo(targetElement, { offset: -20 });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleHashLinkClick);
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -23,6 +39,7 @@ const SmoothScroll = ({ children }) => {
     requestAnimationFrame(raf);
 
     return () => {
+      document.removeEventListener('click', handleHashLinkClick);
       lenis.destroy();
     };
   }, []);
