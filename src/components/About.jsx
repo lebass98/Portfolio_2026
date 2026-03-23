@@ -22,9 +22,13 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import profileImg from '../assets/images/profile.jpg';
+import { useRef } from 'react';
+import SectionParallaxBackground from './SectionParallaxBackground';
+import bgImage from '../assets/images/parallax_about.png';
 
-const About = () => {
+const About = ({ theme }) => {
   const { profile, experience } = portfolioData;
+  const sectionRef = useRef(null);
 
   const getSkillIcon = (skill) => {
     const s = skill.toLowerCase();
@@ -48,8 +52,9 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="bg-yellow-theme transition-colors duration-500">
-      <div className="px-8 md:px-[60px]">
+    <section id="about" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
+      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
+      <div className="px-8 md:px-[60px] relative z-10">
         <h2 className="mb-24">About / Career</h2>
 
         <div className="grid lg:grid-cols-2 gap-24">

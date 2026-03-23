@@ -1,13 +1,18 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { portfolioData } from '../data/portfolioData';
+import { useRef } from 'react';
+import SectionParallaxBackground from './SectionParallaxBackground';
+import bgImage from '../assets/images/parallax_hero.png';
 
-const Hero = () => {
+const Hero = ({ theme }) => {
   const { profile } = portfolioData;
+  const sectionRef = useRef(null);
 
   return (
-    <section id="home" className="h-screen flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
+    <section id="home" ref={sectionRef} className="h-screen flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
       {/* Background Graphic Element */}
+      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
 
 
       <div className="w-full px-8 md:px-[60px] z-10">

@@ -3,11 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { ExternalLink, Plus } from 'lucide-react';
 import { ProjectSkeleton } from './Skeleton';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import SectionParallaxBackground from './SectionParallaxBackground';
+import bgImage from '../assets/images/parallax_portfolio.png';
 
-const Portfolio = () => {
+const Portfolio = ({ theme }) => {
   const [filter, setFilter] = useState('All');
   const [loading, setLoading] = useState(true);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     // Simulate loading for premium feel
@@ -22,8 +25,9 @@ const Portfolio = () => {
     : portfolioData.projects.filter(p => p.category === filter);
 
   return (
-    <section id="portfolio" className="bg-yellow-theme transition-colors duration-500">
-      <div className="px-8 md:px-[60px]">
+    <section id="portfolio" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
+      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
+      <div className="px-8 md:px-[60px] relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}

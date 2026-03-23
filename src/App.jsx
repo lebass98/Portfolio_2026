@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import SmoothScroll from './components/SmoothScroll';
 import CustomCursor from './components/CustomCursor';
+import ParallaxBackground from './components/ParallaxBackground';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -22,13 +23,13 @@ function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen transition-colors duration-300">
+      <div className="min-h-screen transition-colors duration-300 relative z-0">
         <CustomCursor />
         <Header toggleTheme={toggleTheme} theme={theme} />
         <main>
-          <Hero />
-          <About />
-          <Portfolio />
+          <Hero theme={theme} />
+          <About theme={theme} />
+          <Portfolio theme={theme} />
         </main>
         <Footer />
         <ScrollToTop theme={theme} />
