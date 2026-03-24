@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = ({ toggleTheme, theme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,22 +16,34 @@ const Header = ({ toggleTheme, theme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll to hash on load or path change if we came from another page
+  useEffect(() => {
+    if (pathname === '/' && window.location.hash) {
+      setTimeout(() => {
+        const id = window.location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [pathname]);
+
   const navLinks = [
-    { name: 'PROJECTS', href: '#portfolio', count: '28' },
-    { name: 'ABOUT', href: '#about' },
-    { name: 'CAREER', href: '#experience' },
-    { name: 'CONTACT', href: '#contact' },
+    { name: 'PROJECTS', href: '/#portfolio', count: '28' },
+    { name: 'ABOUT', href: '/#about' },
+    { name: 'CAREER', href: '/#experience' },
+    { name: 'INFO', href: '/info' },
+    { name: 'CONTACT', href: '/#contact' },
   ];
 
   return (
     <div className="capsule-nav-container">
       <div className="capsule-nav-wrapper">
-        <a 
-          href="#home" 
+        <Link 
+          to="/" 
           className={`capsule-nav-logo text-2xl font-bold tracking-tighter transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none translate-y-[-20px]' : 'opacity-100'}`}
         >
           JK.LEE<span className="text-accent">.</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <motion.header
@@ -42,13 +56,13 @@ const Header = ({ toggleTheme, theme }) => {
             <ul className="flex items-center gap-10">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="flex items-center"
                   >
                     <span className="autotext" data-text={link.name}>{link.name}</span>
                     {link.count && <em className="nav-item-count">{link.count}</em>}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -102,8 +116,8 @@ const Header = ({ toggleTheme, theme }) => {
                 <ul className="flex flex-col items-center gap-6">
                   {navLinks.map((link) => (
                     <li key={link.name} className="w-full">
-                      <a
-                        href={link.href}
+                      <Link
+                        to={link.href}
                         onClick={() => setIsMenuOpen(false)}
                         className="flex items-center justify-center gap-2 group w-full py-4 border-b border-white/10"
                       >
@@ -111,7 +125,7 @@ const Header = ({ toggleTheme, theme }) => {
                           {link.name}
                         </span>
                         {link.count && <em className="text-accent text-xs font-black not-italic">{link.count}</em>}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

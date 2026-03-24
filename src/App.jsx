@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Portfolio from './components/Portfolio';
+import Home from './pages/Home';
+import Info from './components/Info';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import SmoothScroll from './components/SmoothScroll';
@@ -27,9 +27,10 @@ function App() {
         <CustomCursor />
         <Header toggleTheme={toggleTheme} theme={theme} />
         <main>
-          <Hero theme={theme} />
-          <About theme={theme} />
-          <Portfolio theme={theme} />
+          <Routes>
+            <Route path="/" element={<Home theme={theme} />} />
+            <Route path="/info" element={<Info theme={theme} />} />
+          </Routes>
         </main>
         <Footer />
         <ScrollToTop theme={theme} />
