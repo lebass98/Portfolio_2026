@@ -5,7 +5,7 @@ import { ExternalLink, Plus } from 'lucide-react';
 import { ProjectSkeleton } from './Skeleton';
 import { useEffect, useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
-import bgImage from '../assets/images/parallax_portfolio.png';
+import bgImage from '../assets/images/pic_plastic03.png';
 
 const Portfolio = ({ theme }) => {
   const [filter, setFilter] = useState('All');

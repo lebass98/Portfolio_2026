@@ -24,7 +24,7 @@ import {
 import profileImg from '../assets/images/profile.jpg';
 import { useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
-import bgImage from '../assets/images/parallax_about.png';
+import bgImage from '../assets/images/pic_plastic02.png';
 
 const About = ({ theme }) => {
   const { profile, experience } = portfolioData;
@@ -73,11 +73,9 @@ const About = ({ theme }) => {
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
                 디자인과 코드의 <br />
                 <span 
-                  className="text-main underline decoration-main decoration-8 underline-offset-8"
-                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
+                  className="underline decoration-8 underline-offset-8"
                 >경계</span>를 허무는 <span 
-                  className="text-main underline decoration-main decoration-8 underline-offset-8"
-                  style={{ textShadow: '0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1)' }}
+                  className="underline decoration-8 underline-offset-8"
                 >퍼블리셔</span>
               </h3>
               <p className="text-xl text-dark/80 font-medium leading-relaxed max-w-lg whitespace-pre-line">

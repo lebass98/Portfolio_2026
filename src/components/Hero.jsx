@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { portfolioData } from '../data/portfolioData';
 import { useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
-import bgImage from '../assets/images/parallax_hero.png';
+import bgImage from '../assets/images/pic_plastic01.png';
 
 const Hero = ({ theme }) => {
   const { profile } = portfolioData;

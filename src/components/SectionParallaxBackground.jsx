@@ -25,7 +25,7 @@ const SectionParallaxBackground = ({ bgImage, theme, containerRef }) => {
           backgroundSize: '1920px',
           backgroundRepeat: 'repeat',
           backgroundPosition: 'center',
-          opacity: theme === 'dark' ? 0.3 : 0.15,
+          opacity: theme === 'dark' ? 0.3 : 1,
           mixBlendMode: theme === 'dark' ? 'screen' : 'multiply',
           willChange: 'transform'
         }}
