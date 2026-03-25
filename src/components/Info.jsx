@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { 
-  MessageSquare, Users, PenTool, CheckCircle2, 
+import {
+  MessageSquare, Users, PenTool, CheckCircle2,
   Monitor, Book, Calendar, Gift, Heart, Stethoscope,
   Smile, Coffee, Terminal, Layout, Smartphone, Database, ChevronRight, Plus, Search
 } from 'lucide-react';
 import { useRef } from 'react';
+import coinImg from '../assets/images/coin.png';
+import plasticBg from '../assets/images/pic_plastic01.png';
 
 const Info = ({ theme }) => {
   const sectionRef = useRef(null);
@@ -43,27 +45,99 @@ const Info = ({ theme }) => {
   };
 
   return (
-    <section id="info" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden py-24">
-      <div className="px-8 md:px-[60px] relative z-10 space-y-32">
-        
-        {/* INFO HERO */}
-        <div className="flex flex-col items-start justify-center min-h-[50vh]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 className="text-5xl md:text-7xl lg:text-9xl font-black leading-[0.9] text-dark uppercase mb-8 tracking-tighter">
-              We Will Find <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-dark to-dark/40">The Answer</span>
-            </h2>
-            <p className="text-xl md:text-3xl font-bold text-dark/80 max-w-3xl leading-relaxed">
-              우리는 답을 찾을 것이다. 늘 그랬듯이. <br/>
-              <span className="text-lg md:text-xl font-medium mt-4 block">끊임없는 도전 정신과 끈기로 더 높은 목표를 향해 나아가며, 계속해서 성장하고 발전합니다.</span>
-            </p>
-          </motion.div>
+    <section id="info" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
+
+      {/* INFO HERO */}
+      <div className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Background Plastic Texture */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src={plasticBg}
+            alt="texture"
+            className="w-full h-full object-cover opacity-80 mix-blend-multiply transition-opacity duration-300 pointer-events-none"
+          />
         </div>
+
+        <div className="relative z-10 w-full px-8 md:px-[60px] flex flex-col items-center select-none py-20">
+          {/* Top Line: WE WILL FIND + STAR */}
+          <div className="flex items-center justify-center w-full relative mb-[-3vw]">
+            <h2 className="text-[12vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center">
+              WE WILL FIND
+              <motion.div
+                animate={{ rotate: [0, 90, 450, 450] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 4, 
+                  times: [0, 0.2, 0.5, 1],
+                  ease: "easeInOut"
+                }}
+                className="ml-[2vw] flex-shrink-0"
+              >
+                <svg width="6vw" height="6vw" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 0 L54 46 L100 50 L54 54 L50 100 L46 54 L0 50 L46 46 Z" fill="currentColor" />
+                </svg>
+              </motion.div>
+            </h2>
+          </div>
+
+          {/* Middle Line: THE [COIN] ANSWER */}
+          <div className="flex items-center justify-center w-full relative mb-[-1vw]">
+            <h2 className="text-[12vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center whitespace-nowrap">
+              THE
+              <motion.div
+                animate={{ y: [-40, 40] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  repeatType: "mirror", 
+                  duration: 3, 
+                  ease: "easeInOut" 
+                }}
+                className="mx-[4vw] relative w-[18vw] h-[18vw] flex items-center justify-center overflow-hidden"
+              >
+                <img 
+                  src={coinImg} 
+                  alt="coin" 
+                  className="w-full h-full object-cover drop-shadow-2xl scale-[1.1]"
+                  style={{ mixBlendMode: 'multiply' }} 
+                />
+              </motion.div>
+              ANSWER
+            </h2>
+          </div>
+
+          {/* Bottom Line: WE ALWAYS HAVE */}
+          <div className="w-full text-center">
+            <h2 className="text-[15vw] font-black leading-none text-dark tracking-[-0.08em] uppercase">
+              WE ALWAYS HAVE
+            </h2>
+          </div>
+
+          {/* Side Small Text (Left) */}
+          <div className="absolute left-8 md:left-[60px] top-[40%] -translate-y-1/2 text-left hidden xl:block">
+            <div className="space-y-1 text-xs md:text-[14px] font-bold text-dark/90 tracking-tight max-w-[200px]">
+              <p className="flex items-center gap-2 underline underline-offset-4 decoration-2">
+                <span className="block w-4 h-4 bg-dark"></span> WITH A CHALLENGING SPIRIT
+              </p>
+              <p>AND PERSEVERANCE, WE PURSUE HIGHER</p>
+              <p className="flex items-center gap-2">
+                <span className="text-2xl">✦</span> GROWTH AND DEVELOPMENT.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Small Text */}
+          <div className="mt-8 text-center w-full max-w-2xl mx-auto">
+            <p className="text-base md:text-xl font-bold text-dark mb-1">
+              우리는 답을 찾을 것이다. 늘 그랬듯이.
+            </p>
+            <p className="text-sm md:text-base text-dark/80 font-medium">
+              끊임없는 도전 정신과 끈기로 더 높은 목표를 향해 나아가며
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-8 md:px-[60px] relative z-10 space-y-32 py-24">
 
         {/* WORK STYLE */}
         <div>
@@ -88,7 +162,7 @@ const Info = ({ theme }) => {
               { title: 'MAKE TOGETHER', sub: '함께 만들어갑니다.', desc: '아주 작은 문제부터 프로젝트 전반까지 끊임없이 소통하며, 빠른 피드백과 유연한 대응으로 최고의 결과물을 만듭니다.', icon: <Users size={32} /> },
               { title: 'OPEN FEEDBACK', sub: '의견을 존중합니다.', desc: '서로의 의견을 존중하고, 더 나은 결과를 위한 피드백은 자유롭게 주고받습니다.', icon: <CheckCircle2 size={32} /> },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i} custom={i} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="glass-card p-8 rounded-2xl group hover:bg-dark transition-all duration-500"
               >
@@ -119,7 +193,7 @@ const Info = ({ theme }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
             {benefits.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i} custom={i % 4} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="flex items-start gap-4 p-4 border-b-2 border-dark/10 hover:border-dark transition-colors"
               >
@@ -151,7 +225,7 @@ const Info = ({ theme }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {positions.map((pos, i) => (
-              <motion.div 
+              <motion.div
                 key={i} custom={i % 3} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="group cursor-pointer glass-glow rounded-2xl p-8 border-2 border-transparent hover:border-dark transition-all duration-300"
               >
@@ -192,7 +266,7 @@ const Info = ({ theme }) => {
               { step: '03', title: '처우 협의', desc: '합격자의 입사일과 처우 협의' },
               { step: '04', title: '입사안내', desc: '입사 확정 후 제출 서류 안내' },
             ].map((process, i) => (
-              <motion.div 
+              <motion.div
                 key={i} custom={i} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="glass-card p-6 rounded-2xl relative overflow-hidden"
               >
@@ -225,7 +299,7 @@ const Info = ({ theme }) => {
               { q: '불합격 이력이 있어도 재지원이 가능한가요?', a: '제한은 없습니다. 이력서를 보완해 주시면 더욱 신중히 검토하겠습니다.' },
               { q: '정해진 인터뷰 복장 규정이 있나요?', a: '깔끔한 복장이면 충분하니 부담 갖지 않으셔도 되며 자유로운 복장으로 참여 가능합니다.' },
             ].map((faq, i) => (
-              <motion.div 
+              <motion.div
                 key={i} custom={i} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 className="border-b-2 border-dark/10 pb-6 group"
               >
