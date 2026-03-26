@@ -48,20 +48,40 @@ const Info = ({ theme }) => {
     <section id="info" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
 
       {/* INFO HERO */}
-      <div className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative h-[110vh] flex flex-col items-center justify-center overflow-hidden">
         {/* Background Plastic Texture */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.img
+            initial={{ scale: 1.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.6 }}
+            transition={{ duration: 2, ease: "easeOut" }}
             src={plasticBg}
             alt="texture"
-            className="w-full h-full object-cover opacity-80 mix-blend-multiply transition-opacity duration-300 pointer-events-none"
+            className="w-full h-full object-cover mix-blend-multiply transition-opacity duration-300 pointer-events-none"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-yellow-theme/50" />
         </div>
 
+        {/* Large Decorative Text Background */}
+        <motion.div 
+          style={{ y: '-10%' }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 0.03, x: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute left-0 top-1/2 -translate-y-1/2 text-[30vw] font-black text-dark select-none pointer-events-none leading-none tracking-tighter"
+        >
+          INFO
+        </motion.div>
+
         <div className="relative z-10 w-full px-8 md:px-[60px] flex flex-col items-center select-none py-20">
-          {/* Top Line: WE WILL FIND + STAR */}
-          <div className="flex items-center justify-center w-full relative mb-[-3vw]">
-            <h2 className="text-[12vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center">
+          {/* Top Line: WE WILL FIND */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center justify-center w-full relative mb-[-2vw]"
+          >
+            <h2 className="text-[10vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center">
               WE WILL FIND
               <motion.div
                 animate={{ rotate: [0, 90, 450, 450] }}
@@ -73,67 +93,118 @@ const Info = ({ theme }) => {
                 }}
                 className="ml-[2vw] flex-shrink-0"
               >
-                <svg width="6vw" height="6vw" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="5vw" height="5vw" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M50 0 L54 46 L100 50 L54 54 L50 100 L46 54 L0 50 L46 46 Z" fill="currentColor" />
                 </svg>
               </motion.div>
             </h2>
-          </div>
+          </motion.div>
 
           {/* Middle Line: THE [COIN] ANSWER */}
-          <div className="flex items-center justify-center w-full relative mb-[-1vw]">
-            <h2 className="text-[12vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center whitespace-nowrap">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center justify-center w-full relative mb-[-1vw]"
+          >
+            <h2 className="text-[12vw] font-black leading-none text-dark tracking-[-0.05em] uppercase flex items-center whitespace-nowrap">
               THE
               <motion.div
-                animate={{ y: [-40, 40] }}
-                transition={{ 
-                  repeat: Infinity, 
-                  repeatType: "mirror", 
-                  duration: 3, 
-                  ease: "easeInOut" 
+                animate={{ 
+                  y: [-20, 20],
+                  rotateY: [0, 180, 360],
+                  scale: [1, 1.1, 1]
                 }}
-                className="mx-[4vw] relative w-[18vw] h-[18vw] flex items-center justify-center overflow-hidden"
+                transition={{ 
+                  y: { repeat: Infinity, repeatType: "mirror", duration: 3, ease: "easeInOut" },
+                  rotateY: { repeat: Infinity, duration: 6, ease: "linear" },
+                  scale: { repeat: Infinity, repeatType: "mirror", duration: 4, ease: "easeInOut" }
+                }}
+                className="mx-[3vw] relative w-[16vw] h-[16vw] flex items-center justify-center perspective-[1000px]"
               >
                 <img 
                   src={coinImg} 
                   alt="coin" 
-                  className="w-full h-full object-cover drop-shadow-2xl scale-[1.1]"
+                  className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
                   style={{ mixBlendMode: 'multiply' }} 
                 />
               </motion.div>
               ANSWER
             </h2>
-          </div>
+          </motion.div>
 
           {/* Bottom Line: WE ALWAYS HAVE */}
-          <div className="w-full text-center">
-            <h2 className="text-[15vw] font-black leading-none text-dark tracking-[-0.08em] uppercase">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full text-center"
+          >
+            <h2 className="text-[14vw] font-medium leading-none tracking-[-0.08em] uppercase text-transparent stroke-dark stroke-1 md:stroke-2" style={{ WebkitTextStroke: '2px var(--nb-dark)' }}>
               WE ALWAYS HAVE
             </h2>
-          </div>
+          </motion.div>
+
+          {/* Floating Floating labels/elements */}
+          <motion.div
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute right-10 top-1/4 hidden lg:block"
+          >
+            <div className="bg-dark text-main px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase rotate-12 flex items-center gap-2">
+              <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+              Modern Approach
+            </div>
+          </motion.div>
 
           {/* Side Small Text (Left) */}
-          <div className="absolute left-8 md:left-[60px] top-[40%] -translate-y-1/2 text-left hidden xl:block">
-            <div className="space-y-1 text-xs md:text-[14px] font-bold text-dark/90 tracking-tight max-w-[200px]">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="absolute left-8 md:left-[60px] top-[40%] -translate-y-1/2 text-left hidden xl:block"
+          >
+            <div className="space-y-1 text-xs md:text-[14px] font-bold text-dark tracking-tight max-w-[200px]">
               <p className="flex items-center gap-2 underline underline-offset-4 decoration-2">
-                <span className="block w-4 h-4 bg-dark"></span> WITH A CHALLENGING SPIRIT
+                <span className="block w-4 h-4 bg-dark"></span> WITH CHALLENGE
               </p>
               <p>AND PERSEVERANCE, WE PURSUE HIGHER</p>
               <p className="flex items-center gap-2">
-                <span className="text-2xl">✦</span> GROWTH AND DEVELOPMENT.
+                <span className="text-2xl animate-spin-slow">✦</span> GROWTH AND DEV.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bottom Small Text */}
-          <div className="mt-8 text-center w-full max-w-2xl mx-auto">
-            <p className="text-base md:text-xl font-bold text-dark mb-1">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12 text-center w-full max-w-2xl mx-auto"
+          >
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="h-[1px] w-12 bg-dark/20"></span>
+              <p className="text-xs font-black tracking-[0.3em] text-dark/40 uppercase">Since 2026</p>
+              <span className="h-[1px] w-12 bg-dark/20"></span>
+            </div>
+            <p className="text-lg md:text-2xl font-black text-dark mb-2 tracking-tight">
               우리는 답을 찾을 것이다. 늘 그랬듯이.
             </p>
-            <p className="text-sm md:text-base text-dark/80 font-medium">
-              끊임없는 도전 정신과 끈기로 더 높은 목표를 향해 나아가며
+            <p className="text-sm md:text-base text-dark/60 font-bold max-w-md mx-auto leading-relaxed">
+              끊임없는 도전 정신과 끈기로 더 높은 목표를 향해 나아가며<br />
+              사용자에게 최상의 경험을 선사하기 위해 치열하게 고민합니다.
             </p>
-          </div>
+            
+            {/* Scroll Indicator */}
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="mt-16 flex flex-col items-center gap-2"
+            >
+              <span className="text-[10px] font-black tracking-widest uppercase opacity-30">Scroll Down</span>
+              <div className="w-[1px] h-12 bg-gradient-to-b from-dark to-transparent opacity-20" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
@@ -148,28 +219,39 @@ const Info = ({ theme }) => {
             variants={fadeUpVariant}
             className="mb-16"
           >
-            <h3 className="text-sm font-bold tracking-[0.2em] mb-4 text-dark/80 uppercase">WORK STYLE</h3>
-            <h4 className="text-3xl md:text-5xl font-bold text-dark mb-4 tracking-tighter">저희가 일하는 방식이에요.</h4>
-            <p className="text-lg font-medium text-dark/70 max-w-2xl">
-              좋은 결과는 좋은 방식에서 나온다고 믿어요. 우리는 어떻게 일하고, 어떤 태도로 협업하는지 솔직하게 담았어요.
+            <div className="flex items-center gap-4 mb-4">
+              <h3 className="text-sm font-black tracking-[0.3em] text-dark/80 uppercase">WORK STYLE</h3>
+              <div className="h-[2px] flex-1 bg-dark/10"></div>
+            </div>
+            <h4 className="text-4xl md:text-6xl font-black text-dark mb-6 tracking-tighter leading-none">
+              좋은 방식이<br />좋은 결과를 만듭니다.
+            </h4>
+            <p className="text-lg md:text-xl font-bold text-dark/60 max-w-2xl leading-relaxed">
+              우리는 어떻게 일하고, 어떤 태도로 협업하는지 솔직하게 담았습니다.<br />
+              서로의 성장을 돕는 문화를 지향합니다.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { title: 'WE ASK', sub: '우리는 질문 합니다.', desc: '끊임없이 WHY를 질문하며 진짜 문제를 찾아내고 치열하게 고민하여 솔루션을 제시합니다.', icon: <MessageSquare size={32} /> },
-              { title: 'DIFFERENT VIEWS', sub: '다른 시선으로 봅니다.', desc: '좋은 결과물을 제공하기 위해 늘 의심하고 지속적인 검증을 통해 더 나은 결과물을 만들어냅니다.', icon: <Search size={32} /> },
-              { title: 'MAKE TOGETHER', sub: '함께 만들어갑니다.', desc: '아주 작은 문제부터 프로젝트 전반까지 끊임없이 소통하며, 빠른 피드백과 유연한 대응으로 최고의 결과물을 만듭니다.', icon: <Users size={32} /> },
-              { title: 'OPEN FEEDBACK', sub: '의견을 존중합니다.', desc: '서로의 의견을 존중하고, 더 나은 결과를 위한 피드백은 자유롭게 주고받습니다.', icon: <CheckCircle2 size={32} /> },
+              { title: 'WE ASK', sub: '우리는 질문 합니다.', desc: '끊임없이 WHY를 질문하며 진짜 문제를 찾아내고 치열하게 고민하여 솔루션을 제시합니다.', icon: <MessageSquare size={40} strokeWidth={2.5} /> },
+              { title: 'DIFFERENT VIEWS', sub: '다른 시선으로 봅니다.', desc: '좋은 결과물을 제공하기 위해 늘 의심하고 지속적인 검증을 통해 더 나은 결과물을 만들어냅니다.', icon: <Search size={40} strokeWidth={2.5} /> },
+              { title: 'MAKE TOGETHER', sub: '함께 만들어갑니다.', desc: '아주 작은 문제부터 프로젝트 전반까지 끊임없이 소통하며, 빠른 피드백과 유연한 대응으로 최고의 결과물을 만듭니다.', icon: <Users size={40} strokeWidth={2.5} /> },
+              { title: 'OPEN FEEDBACK', sub: '의견을 존중합니다.', desc: '서로의 의견을 존중하고, 더 나은 결과를 위한 피드백은 자유롭게 주고받습니다.', icon: <CheckCircle2 size={40} strokeWidth={2.5} /> },
             ].map((item, i) => (
               <motion.div
                 key={i} custom={i} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="glass-card p-8 rounded-2xl group hover:bg-dark transition-all duration-500"
+                className="group relative bg-white/40 backdrop-blur-sm p-10 rounded-[32px] overflow-hidden border border-white/20 transition-all duration-700 hover:bg-dark hover:-translate-y-4 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]"
               >
-                <div className="text-dark group-hover:text-main mb-6 transition-colors duration-300">{item.icon}</div>
-                <strong className="block text-xl font-black text-dark group-hover:text-main tracking-tight uppercase mb-2 transition-colors duration-300">{item.title}</strong>
-                <span className="block text-sm font-bold text-dark/80 group-hover:text-main/80 mb-4 transition-colors duration-300">{item.sub}</span>
-                <p className="text-sm text-dark/60 font-medium leading-relaxed group-hover:text-main/60 transition-colors duration-300">{item.desc}</p>
+                {/* Decorative numbering background */}
+                <span className="absolute -top-4 -right-4 text-9xl font-black text-dark/5 group-hover:text-white/[0.03] transition-colors duration-500">0{i+1}</span>
+                
+                <div className="relative z-10">
+                  <div className="text-dark group-hover:text-accent mb-8 transition-all duration-500 group-hover:scale-110 origin-left">{item.icon}</div>
+                  <strong className="block text-2xl font-black text-dark group-hover:text-white tracking-tight uppercase mb-2 transition-colors duration-500">{item.title}</strong>
+                  <span className="block text-sm font-black text-dark/40 group-hover:text-accent/80 mb-6 transition-colors duration-500">{item.sub}</span>
+                  <p className="text-sm text-dark/70 font-bold leading-relaxed group-hover:text-white/60 transition-colors duration-500">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
