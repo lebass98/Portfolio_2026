@@ -52,79 +52,159 @@ const ProjectSeowon = ({ theme }) => {
   return (
     <div ref={containerRef} className="bg-yellow-theme transition-colors duration-500 relative min-h-screen">
       
-      {/* 백그라운드 텍스처 효과 (제거하려면 이 div 자체를 지우세요) */}
+      {/* 백그라운드 텍스처 효과 */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply" style={{ backgroundImage: `url(${bgTexture})` }} />
 
-      {/* 2️⃣ 탑 네비게이션 공간 여백 (헤더가 fixed이므로 필요) */}
-      <div className="pt-[140px] px-8 md:px-[60px] relative z-10 max-w-[1920px] mx-auto">
-        
-        {/* 뒤로가기 버튼 */}
-        <Link to="/" className="inline-flex items-center gap-4 text-xs font-bold tracking-widest uppercase mb-16 text-dark opacity-60 hover:opacity-100 transition-opacity">
-          <ArrowLeft size={16} /> BACK TO PROJECTS
-        </Link>
+      {/* ============================================================ 
+          1️⃣ 히로 섹션 (Image 1 참고): 풀스크린 레이아웃 
+          ============================================================ */}
+      <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-gradient-to-br from-[#0055A2] to-[#0099DA] text-white">
+        {/* 히로 섹션 내 배경 요소 */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `url(${bgTexture})`, mixBlendMode: 'overlay' }} />
 
-        {/* ==================== 
-            SECTION 1: HERO TITLE 
-            ==================== */}
-        <div className="mb-24 md:mb-40">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 border-b-2 border-dark/10 pb-12">
-            <div>
-              <p className="text-sm font-bold tracking-[0.2em] mb-4 text-dark/60 uppercase">CLIENT</p>
-              {/* 제목 수정 부분 */}
-              <div className="overflow-hidden">
-                <motion.h1 
-                  variants={textRevealVariant} initial="hidden" animate="visible"
-                  className="text-4xl md:text-6xl lg:text-8xl font-black text-dark tracking-tighter uppercase leading-none"
-                >
-                  SEOWON<br />HERITAGE
-                </motion.h1>
+        <div className="w-full px-8 md:px-[60px] relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+          {/* 좌측: 타이틀 및 로고 영역 */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1"
+          >
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <span className="text-xl md:text-2xl font-bold tracking-tighter opacity-80 italic">UNESCO WORLD HERITAGE</span>
               </div>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] uppercase">
+                한국의 서원<br />
+                <span className="text-3xl md:text-5xl lg:text-6xl opacity-90 tracking-normal font-bold">통합관리센터</span>
+              </h1>
             </div>
-            <div className="text-left md:text-right">
-               <p className="text-sm font-bold tracking-[0.2em] mb-4 text-dark/60 uppercase">PRODUCTION</p>
-               <div className="overflow-hidden">
-                 <motion.h2 
-                   variants={textRevealVariant} initial="hidden" animate="visible" custom={1}
-                   className="text-2xl md:text-4xl font-bold text-dark tracking-tighter uppercase leading-none"
-                 >
-                   WordNcode
-                 </motion.h2>
-               </div>
+          </motion.div>
+
+          {/* 우측: 목업 이미지 영역 (노트북 & 휴대폰) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1 relative"
+          >
+            <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700">
+               <img 
+                 src="/portfolio_2026/images/portfolio/scr_03.jpg" 
+                 alt="Project Mockup Laptop" 
+                 className="w-full rounded-lg"
+                 onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426' }}
+               />
+               
+               {/* 휴대폰 목업 효과 */}
+               <motion.div 
+                 initial={{ y: 50, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.8, duration: 1 }}
+                 className="absolute -left-10 -bottom-10 w-1/3 border-8 border-dark rounded-[2.5rem] overflow-hidden shadow-2xl hidden lg:block"
+               >
+                  <img 
+                    src="/portfolio_2026/images/portfolio/scr_03.jpg" 
+                    alt="Project Mockup Mobile" 
+                    className="w-full h-full object-cover aspect-[9/19]"
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2340' }}
+                  />
+               </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 히로 섹션 하단: 인포메이션 (클라이언트 / 제작사) */}
+        <div className="absolute bottom-12 left-8 md:left-[60px] right-8 md:right-[60px] flex justify-between items-end z-20 font-bold">
+          <div className="text-left">
+            <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">CLIENT</p>
+            <p className="text-sm md:text-lg tracking-tight uppercase">(재)세계유산 한국의 서원</p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">PRODUCTION</p>
+            <div className="flex flex-col items-end">
+               <span className="text-[10px] tracking-widest border-b border-white pb-1 mb-1 opacity-80 uppercase">NEWBIRD STYLE</span>
+               <p className="text-lg md:text-2xl tracking-tighter italic font-black">WordNcode</p>
             </div>
           </div>
+        </div>
+      </section>
 
+      {/* ============================================================ 
+          2️⃣ 오버뷰 섹션 (Image 2 참고): 요약 및 상세 정보 
+          ============================================================ */}
+      <section className="py-24 md:py-40 px-8 md:px-[60px] bg-white text-dark relative z-10">
+        <div className="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
+          
+          {/* 오버뷰 좌측: 프로젝트 심볼/로고 */}
           <motion.div 
-            variants={fadeUpVariant} initial="hidden" animate="visible" custom={3}
-            className="grid grid-cols-1 md:grid-cols-12 gap-12 text-dark"
+            variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            className="lg:col-span-4 flex items-start justify-center lg:justify-start"
           >
-            {/* 프로젝트 설명글 */}
-            <div className="md:col-span-8 text-xl md:text-2xl font-medium leading-relaxed opacity-80">
-              한국의 서원 프로젝트는 세계유산으로서의 가치를 보다 직관적으로 이해하고, 신뢰도를 높일 수 있도록 사용자 경험(UI/UX) 전반을 설계하는 것을 목표로 진행되었습니다. 전통적인 아름다움과 직관적인 정보 구조를 결합하여 사용자들에게 매끄러운 경험을 제공합니다.
+            <div className="w-full max-w-[300px] aspect-video bg-dark/5 rounded-xl flex items-center justify-center border border-dark/5 p-8">
+               {/* 실제 프로젝트 로고 이미지가 있다면 여기에 넣으세요 */}
+               <h2 className="text-3xl font-black tracking-tighter text-center uppercase">
+                  SEOWON<br /><span className="text-lg opacity-50 tracking-normal font-bold">HERITAGE</span>
+               </h2>
             </div>
-            
-            {/* 프로젝트 요약 정보 (날짜, 서비스 형태, 카테고리 등) */}
-            <div className="md:col-span-4 space-y-8 text-sm md:text-base">
-              <div className="flex flex-col border-b border-dark/10 pb-4">
-                <span className="font-bold tracking-[0.2em] opacity-50 mb-2 uppercase text-xs">DATE</span>
-                <span className="font-black">2023.08</span>
+          </motion.div>
+
+          {/* 오버뷰 우측: 텍스트 및 메타데이터 */}
+          <motion.div 
+            variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}
+            className="lg:col-span-8 flex flex-col gap-16"
+          >
+            {/* 설명 텍스트 영역 */}
+            <div className="space-y-8">
+              <span className="text-sm font-black tracking-[0.4em] text-dark/30 uppercase">[OVERVIEW]</span>
+              <p className="text-xl md:text-2xl font-medium leading-relaxed opacity-80 max-w-4xl">
+                한국의 서원 통합관리센터 프로젝트는 유네스코 세계유산으로 등재된 9개 서원의 역사적 가치와 정보를 사용자가 보다 직관적으로 이해할 수 있도록 UI/UX 전반을 리뉴얼한 프로젝트입니다. 
+                노후화된 서비스 경험을 현대적으로 재정의하고, 모바일과 웹 환경에서 일관된 고품질의 디지털 아카이브를 제공하는 데 집중했습니다.
+              </p>
+            </div>
+
+            {/* 메타데이터 그리드 (DATE, SERVICE, CATEGORY) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-16 border-t border-dark/10">
+              <div className="space-y-4">
+                <p className="text-xs font-black tracking-[0.3em] text-dark/40 uppercase">DATE</p>
+                <div className="h-px w-8 bg-dark/20" />
+                <p className="text-lg font-black tracking-tight">2023.08</p>
               </div>
-              <div className="flex flex-col border-b border-dark/10 pb-4">
-                <span className="font-bold tracking-[0.2em] opacity-50 mb-2 uppercase text-xs">SERVICE</span>
-                <span className="font-medium whitespace-pre-line leading-relaxed">UI/UX Design{'\n'}Frontend Development{'\n'}MarkUp</span>
+              <div className="space-y-4">
+                <p className="text-xs font-black tracking-[0.3em] text-dark/40 uppercase">SERVICE</p>
+                <div className="h-px w-8 bg-dark/20" />
+                <ul className="text-sm md:text-base font-bold space-y-1">
+                  <li>UI/UX DESIGN</li>
+                  <li>DEVELOPMENT</li>
+                  <li>MARKUP</li>
+                </ul>
               </div>
-              <div className="flex flex-col border-b border-dark/10 pb-4">
-                <span className="font-bold tracking-[0.2em] opacity-50 mb-2 uppercase text-xs">CATEGORY</span>
-                <span className="font-medium whitespace-pre-line leading-relaxed">WEB PUBLISH{'\n'}PUBLIC INSTITUTION</span>
+              <div className="space-y-4">
+                <p className="text-xs font-black tracking-[0.3em] text-dark/40 uppercase">CATEGORY</p>
+                <div className="h-px w-8 bg-dark/20" />
+                <ul className="text-sm md:text-base font-bold space-y-1">
+                  <li>HERITAGE</li>
+                  <li>BRAND HOMEPAGE</li>
+                </ul>
               </div>
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* 공통 컨텐츠 영역 (그리드 정렬 유지) */}
+      <div className="px-8 md:px-[60px] relative z-10 max-w-[1920px] mx-auto py-24">
+        
+        {/* 뒤로가기 버튼 */}
+        <Link to="/" className="inline-flex items-center gap-4 text-xs font-bold tracking-widest uppercase mb-24 text-dark opacity-60 hover:opacity-100 transition-opacity">
+          <ArrowLeft size={16} /> BACK TO PROJECTS
+        </Link>
 
         {/* ==================== 
             SECTION 2: PARALLAX IMAGE 
             ==================== */}
         <motion.div 
-          variants={fadeUpVariant} initial="hidden" animate="visible" custom={5}
+          variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
           className="w-full h-[50vh] md:h-[80vh] overflow-hidden rounded-2xl md:rounded-[40px] mb-24 md:mb-40 shadow-2xl relative"
         >
           {/* 이미지는 bg-cover로 꽉 차게 들어갑니다. 이미지 경로를 변경하세요 */}
@@ -182,7 +262,7 @@ const ProjectSeowon = ({ theme }) => {
                         <span className="text-4xl font-medium text-dark tracking-tighter">Aa</span>
                         <span className="text-2xl font-medium text-dark uppercase">Medium</span>
                      </div>
-                     <div className="flex justify-between items-center">
+                     <div className="flex justify-between items-center border-b border-dark/5 pb-4">
                         <span className="text-3xl font-light text-dark tracking-tighter">Aa</span>
                         <span className="text-2xl font-light text-dark uppercase">Light</span>
                      </div>
@@ -247,7 +327,7 @@ const ProjectSeowon = ({ theme }) => {
             ==================== */}
         <motion.div 
            variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
-           className="border-t-2 border-dark/10 pt-24 mb-32 pb-32"
+           className="border-t-2 border-dark/10 pt-24 mb-32"
         >
            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-4">
