@@ -465,3 +465,22 @@ html.lenis, html.lenis body {
     width: 90%;
   }
 }
+
+/* Vertical Marquee Animations */
+@keyframes vertical-scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.animate-vertical-scroll-slow {
+  animation: vertical-scroll 30s linear infinite;
+}
+
+.animate-vertical-scroll-fast-reverse {
+  animation: vertical-scroll 20s linear infinite reverse;
+}
+
+/* Force dark hover background with !important */
+.hover\:bg-dark:hover {
+  background-color: var(--nb-dark) !important;
+}

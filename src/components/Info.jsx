@@ -47,163 +47,132 @@ const Info = ({ theme }) => {
   return (
     <section id="info" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
 
-      {/* INFO HERO */}
-      <div className="relative h-[110vh] flex flex-col items-center justify-center overflow-hidden">
-        {/* Background Plastic Texture */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.img
-            initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            src={plasticBg}
-            alt="texture"
-            className="w-full h-full object-cover mix-blend-multiply transition-opacity duration-300 pointer-events-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-yellow-theme/50" />
+      {/* SPECTER-INSPIRED INFO HERO */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-yellow-theme pt-32 pb-20">
+        
+        {/* Abstract Background Geometry (Subtle Lines) */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+          <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path d="M0,200 Q500,100 1000,200" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
+            <path d="M0,500 Q500,400 1000,500" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
+            <path d="M0,800 Q500,700 1000,800" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
+            <circle cx="500" cy="500" r="300" fill="none" stroke="var(--nb-dark)" strokeWidth="0.2" />
+          </svg>
         </div>
 
-        {/* Large Decorative Text Background */}
-        <motion.div 
-          style={{ y: '-10%' }}
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 0.03, x: 0 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute left-0 top-1/2 -translate-y-1/2 text-[30vw] font-black text-dark select-none pointer-events-none leading-none tracking-tighter"
-        >
-          INFO
-        </motion.div>
+        <div className="relative z-10 w-full max-w-7xl px-8 md:px-[60px] flex flex-col items-center text-center">
+          
+          {/* Top Floating Notification Cards */}
+          <div className="relative h-40 w-full flex justify-center items-center mb-10">
+             <motion.div 
+               initial={{ opacity: 0, y: 20, scale: 0.9 }}
+               animate={{ opacity: 1, y: 0, scale: 1 }}
+               transition={{ duration: 0.8, delay: 0.2 }}
+               className="absolute z-30 bg-white shadow-2xl rounded-2xl p-4 flex items-center gap-4 border border-dark/5"
+             >
+                <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                  <Monitor size={20} className="text-dark" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] font-bold text-dark/40 uppercase">System Status</p>
+                  <p className="text-sm font-black text-dark">Optimization Complete by 98%</p>
+                </div>
+             </motion.div>
 
-        <div className="relative z-10 w-full px-8 md:px-[60px] flex flex-col items-center select-none py-20">
-          {/* Top Line: WE WILL FIND */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+             <motion.div 
+               initial={{ opacity: 0, x: -50, rotate: -5 }}
+               animate={{ opacity: 0.6, x: -140, y: -40, rotate: -12 }}
+               transition={{ duration: 1, delay: 0.4 }}
+               className="absolute z-20 bg-white/50 backdrop-blur shadow-xl rounded-2xl p-3 flex items-center gap-3 border border-dark/5 hidden md:flex"
+             >
+                <Smartphone size={16} className="text-dark/40" />
+                <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Responsive Layout Ready</p>
+             </motion.div>
+
+             <motion.div 
+               initial={{ opacity: 0, x: 50, rotate: 5 }}
+               animate={{ opacity: 0.6, x: 140, y: 20, rotate: 8 }}
+               transition={{ duration: 1, delay: 0.5 }}
+               className="absolute z-20 bg-white/50 backdrop-blur shadow-xl rounded-2xl p-3 flex items-center gap-3 border border-dark/5 hidden md:flex"
+             >
+                <PenTool size={16} className="text-dark/40" />
+                <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Pixel Perfect Design</p>
+             </motion.div>
+          </div>
+
+          {/* Main Headline with Mask Reveal and Hover Interaction */}
+          <div className="overflow-hidden mb-10">
+            <motion.h2 
+              className="font-black text-dark"
+              style={{ 
+                fontSize: 'min(8vw, 130px)', 
+                lineHeight: '1.1', 
+                letterSpacing: '-0.04em' 
+              }}
+            >
+              {"Crafting experiences as they happen.".split(" ").map((word, i) => (
+                <span key={i} className="inline-block overflow-hidden mr-[0.3em] align-top">
+                  <motion.span
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: i * 0.1, 
+                      ease: [0.16, 1, 0.3, 1] 
+                    }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      color: "rgba(0,0,0,0.6)",
+                      transition: { duration: 0.2 }
+                    }}
+                    className={`inline-block whitespace-nowrap cursor-default ${
+                      word.includes("happen") ? "opacity-40" : ""
+                    }`}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
+            </motion.h2>
+          </div>
+
+          {/* Subheadline */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-center w-full relative mb-[-2vw]"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-lg md:text-2xl font-bold text-dark/60 max-w-3xl mb-12 leading-relaxed"
           >
-            <h2 className="text-[10vw] font-light leading-none text-dark tracking-[-0.05em] uppercase flex items-center">
-              WE WILL FIND
-              <motion.div
-                animate={{ rotate: [0, 90, 450, 450] }}
-                transition={{ 
-                  repeat: Infinity, 
-                  duration: 4, 
-                  times: [0, 0.2, 0.5, 1],
-                  ease: "easeInOut"
-                }}
-                className="ml-[2vw] flex-shrink-0"
-              >
-                <svg width="5vw" height="5vw" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 0 L54 46 L100 50 L54 54 L50 100 L46 54 L0 50 L46 46 Z" fill="currentColor" />
-                </svg>
-              </motion.div>
-            </h2>
-          </motion.div>
+            Harness the power of creative code and user-centric design <br className="hidden md:block"/>
+            to build the digital future with confidence and precision.
+          </motion.p>
 
-          {/* Middle Line: THE [COIN] ANSWER */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-center w-full relative mb-[-1vw]"
-          >
-            <h2 className="text-[12vw] font-black leading-none text-dark tracking-[-0.05em] uppercase flex items-center whitespace-nowrap">
-              THE
-              <motion.div
-                animate={{ 
-                  y: [-20, 20],
-                  rotateY: [0, 180, 360],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  y: { repeat: Infinity, repeatType: "mirror", duration: 3, ease: "easeInOut" },
-                  rotateY: { repeat: Infinity, duration: 6, ease: "linear" },
-                  scale: { repeat: Infinity, repeatType: "mirror", duration: 4, ease: "easeInOut" }
-                }}
-                className="mx-[3vw] relative w-[16vw] h-[16vw] flex items-center justify-center perspective-[1000px]"
-              >
-                <img 
-                  src={coinImg} 
-                  alt="coin" 
-                  className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
-                  style={{ mixBlendMode: 'multiply' }} 
-                />
-              </motion.div>
-              ANSWER
-            </h2>
-          </motion.div>
-
-          {/* Bottom Line: WE ALWAYS HAVE */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full text-center"
-          >
-            <h2 className="text-[14vw] font-medium leading-none tracking-[-0.08em] uppercase text-transparent stroke-dark stroke-1 md:stroke-2" style={{ WebkitTextStroke: '2px var(--nb-dark)' }}>
-              WE ALWAYS HAVE
-            </h2>
-          </motion.div>
-
-          {/* Floating Floating labels/elements */}
+          {/* Pill CTA Button */}
           <motion.div
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute right-10 top-1/4 hidden lg:block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
-            <div className="bg-dark text-main px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase rotate-12 flex items-center gap-2">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-              Modern Approach
-            </div>
+            <button className="bg-dark text-white hover:bg-black transition-all px-10 py-5 rounded-full text-lg font-black tracking-tighter shadow-2xl hover:scale-105 active:scale-95">
+              Explore Our Work
+            </button>
           </motion.div>
 
-          {/* Side Small Text (Left) */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="absolute left-8 md:left-[60px] top-[40%] -translate-y-1/2 text-left hidden xl:block"
-          >
-            <div className="space-y-1 text-xs md:text-[14px] font-bold text-dark tracking-tight max-w-[200px]">
-              <p className="flex items-center gap-2 underline underline-offset-4 decoration-2">
-                <span className="block w-4 h-4 bg-dark"></span> WITH CHALLENGE
-              </p>
-              <p>AND PERSEVERANCE, WE PURSUE HIGHER</p>
-              <p className="flex items-center gap-2">
-                <span className="text-2xl animate-spin-slow">✦</span> GROWTH AND DEV.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Bottom Small Text */}
+          {/* Technology Logos (Social Proof Style) */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="mt-12 text-center w-full max-w-2xl mx-auto"
+            transition={{ duration: 2, delay: 1 }}
+            className="mt-28 w-full"
           >
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="h-[1px] w-12 bg-dark/20"></span>
-              <p className="text-xs font-black tracking-[0.3em] text-dark/40 uppercase">Since 2026</p>
-              <span className="h-[1px] w-12 bg-dark/20"></span>
+            <p className="text-[10px] font-black tracking-[0.3em] text-dark/30 uppercase mb-8">Trusted by Modern Technology</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-30 grayscale hover:opacity-80 transition-opacity duration-500">
+               <div className="flex items-center gap-2 font-black text-xl italic"><Layout size={24} /> REACT</div>
+               <div className="flex items-center gap-2 font-black text-xl italic"><Smartphone size={24} /> NEXT.JS</div>
+               <div className="flex items-center gap-2 font-black text-xl italic"><Terminal size={24} /> TAILWIND</div>
+               <div className="flex items-center gap-2 font-black text-xl italic"><Database size={24} /> FRAMER</div>
+               <div className="flex items-center gap-2 font-black text-xl italic"><Search size={24} /> GSAP</div>
             </div>
-            <p className="text-lg md:text-2xl font-black text-dark mb-2 tracking-tight">
-              우리는 답을 찾을 것이다. 늘 그랬듯이.
-            </p>
-            <p className="text-sm md:text-base text-dark/60 font-bold max-w-md mx-auto leading-relaxed">
-              끊임없는 도전 정신과 끈기로 더 높은 목표를 향해 나아가며<br />
-              사용자에게 최상의 경험을 선사하기 위해 치열하게 고민합니다.
-            </p>
-            
-            {/* Scroll Indicator */}
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="mt-16 flex flex-col items-center gap-2"
-            >
-              <span className="text-[10px] font-black tracking-widest uppercase opacity-30">Scroll Down</span>
-              <div className="w-[1px] h-12 bg-gradient-to-b from-dark to-transparent opacity-20" />
-            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -226,10 +195,6 @@ const Info = ({ theme }) => {
             <h4 className="text-4xl md:text-6xl font-black text-dark mb-6 tracking-tighter leading-none">
               좋은 방식이<br />좋은 결과를 만듭니다.
             </h4>
-            <p className="text-lg md:text-xl font-bold text-dark/60 max-w-2xl leading-relaxed">
-              우리는 어떻게 일하고, 어떤 태도로 협업하는지 솔직하게 담았습니다.<br />
-              서로의 성장을 돕는 문화를 지향합니다.
-            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -241,16 +206,13 @@ const Info = ({ theme }) => {
             ].map((item, i) => (
               <motion.div
                 key={i} custom={i} variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                className="group relative bg-white/40 backdrop-blur-sm p-10 rounded-[32px] overflow-hidden border border-white/20 transition-all duration-700 hover:bg-dark hover:-translate-y-4 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]"
+                className="group glass-card p-10 rounded-[32px] overflow-hidden transition-all duration-700 hover:bg-dark hover:-translate-y-4 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]"
               >
-                {/* Decorative numbering background */}
-                <span className="absolute -top-4 -right-4 text-9xl font-black text-dark/5 group-hover:text-white/[0.03] transition-colors duration-500">0{i+1}</span>
-                
                 <div className="relative z-10">
-                  <div className="text-dark group-hover:text-accent mb-8 transition-all duration-500 group-hover:scale-110 origin-left">{item.icon}</div>
-                  <strong className="block text-2xl font-black text-dark group-hover:text-white tracking-tight uppercase mb-2 transition-colors duration-500">{item.title}</strong>
-                  <span className="block text-sm font-black text-dark/40 group-hover:text-accent/80 mb-6 transition-colors duration-500">{item.sub}</span>
-                  <p className="text-sm text-dark/70 font-bold leading-relaxed group-hover:text-white/60 transition-colors duration-500">{item.desc}</p>
+                  <div className="text-dark group-hover:text-(--bg-section-yellow) mb-8 transition-all duration-500 group-hover:scale-110 origin-left">{item.icon}</div>
+                  <strong className="block text-2xl font-black text-dark group-hover:text-(--bg-section-yellow) tracking-tight uppercase mb-2 transition-colors duration-500">{item.title}</strong>
+                  <span className="block text-sm font-black text-dark/40 group-hover:text-(--bg-section-yellow)/80 mb-6 transition-colors duration-500">{item.sub}</span>
+                  <p className="text-sm text-dark/70 font-bold leading-relaxed group-hover:text-(--bg-section-yellow)/60 transition-colors duration-500">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
