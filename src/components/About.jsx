@@ -21,7 +21,7 @@ import {
   Lightbulb,
   Image as ImageIcon
 } from 'lucide-react';
-import profileImg from '../assets/images/profile.jpg';
+import profileImg from '../assets/images/lee.png';
 import { useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
 import bgImage from '../assets/images/pic_plastic02.png';
