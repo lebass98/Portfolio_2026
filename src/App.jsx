@@ -8,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SmoothScroll from './components/SmoothScroll';
 import CustomCursor from './components/CustomCursor';
 import ParallaxBackground from './components/ParallaxBackground';
+import ProjectSeowon from './pages/ProjectSeowon';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home theme={theme} />} />
             <Route path="/info" element={<Info theme={theme} />} />
+            <Route path="/project/seowon" element={<ProjectSeowon theme={theme} />} />
           </Routes>
         </main>
         <Footer />

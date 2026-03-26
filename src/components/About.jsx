@@ -52,7 +52,7 @@ const About = ({ theme }) => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-visible">
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
       <div className="px-8 md:px-[60px] relative z-10">
         <h2 className="mb-24">About / Career</h2>
@@ -64,8 +64,9 @@ const About = ({ theme }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:sticky lg:top-32 lg:self-start h-fit mb-16"
           >
-            <div className="mb-16">
+            <div>
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
                 <img src={profileImg} alt={profile.name} className="w-full h-full object-cover" />
               </div>

@@ -184,6 +184,10 @@ section, footer {
   overflow: hidden;
 }
 
+section#about {
+  overflow: visible !important;
+}
+
 section::before, footer::before {
   content: '';
   position: absolute;

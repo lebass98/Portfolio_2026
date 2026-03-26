@@ -79,7 +79,7 @@ export const portfolioData = {
     {
       id: 2,
       title: "(재)세계유산 한국의 서원 통합관리센터",
-      url: "https://k-seowon.or.kr",
+      url: "/project/seowon",
       image: "images/portfolio/scr_03.jpg",
       contribution: { design: 50, publishing: 100 },
       category: "Web Design & Publish",

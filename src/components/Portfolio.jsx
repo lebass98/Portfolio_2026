@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { ExternalLink, Plus } from 'lucide-react';
 import { ProjectSkeleton } from './Skeleton';
+import { Link } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
 import bgImage from '../assets/images/pic_plastic03.png';
@@ -91,14 +92,23 @@ const Portfolio = ({ theme }) => {
                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[10px]" />
 
                     {/* Hover Button */}
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
+                    {project.url.startsWith('/') ? (
+                      <Link
+                        to={project.url}
+                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
+                      >
+                        <ExternalLink size={20} />
+                      </Link>
+                    ) : (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
                   </div>
 
                   <div className="mt-6 px-2">
