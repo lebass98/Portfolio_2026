@@ -3,6 +3,8 @@ import { portfolioData } from '../data/portfolioData';
 import { ArrowUpRight, Download, MoveRight } from 'lucide-react';
 import footerTexture from '../assets/images/footer_texture.png';
 
+import lebassLogo from '../lebass_logo.svg';
+
 const Footer = () => {
   const { profile } = portfolioData;
 
@@ -70,9 +72,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="px-8 md:px-[60px] pb-12 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
         <div className="flex items-center gap-4">
-          <span className="text-2xl font-bold tracking-tighter uppercase">
-            JK.LEE<span className="text-white">.</span>
-          </span>
+          <img src={lebassLogo} alt="LEBASS" className="logo-svg h-11 w-auto" />
         </div>
 
 

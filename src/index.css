@@ -111,6 +111,20 @@ h3 {
   color: var(--text-main);
 }
 
+.logo-svg {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+[data-theme='dark'] .logo-svg {
+  filter: invert(1) brightness(2);
+}
+
+/* Ensure the footer logo remains black/invis on yellow if not careful, 
+   but since it's bg-accent (yellow) and text-dark, it should be fine.
+   However, we should check footer context. 
+   Header sits on various backgrounds.
+*/
+
 /* Autotext Animation Effect - Newbird Style */
 .autotext {
   position: relative;
@@ -309,12 +323,12 @@ h2 {
   }
 
   .capsule-nav-logo {
-    left: 20px;
+    left: 0;
     font-size: 1.2rem;
   }
 
   .capsule-nav-contact {
-    right: 20px;
+    right: 0;
   }
 
   section {
@@ -434,12 +448,6 @@ html.lenis, html.lenis body {
 }
 
 @media (max-width: 480px) {
-
-  .capsule-nav-logo,
-  .capsule-nav-contact {
-    /* display: none; - Removed to keep logo and hamburger visible on small mobile */
-  }
-
   .capsule-nav {
     width: 90%;
   }

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
+import lebassLogo from '../lebass_logo.svg';
+
 const Header = ({ toggleTheme, theme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,9 +42,9 @@ const Header = ({ toggleTheme, theme }) => {
       <div className="capsule-nav-wrapper">
         <Link 
           to="/" 
-          className={`capsule-nav-logo text-2xl font-bold tracking-tighter transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none translate-y-[-20px]' : 'opacity-100'}`}
+          className={`capsule-nav-logo transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none translate-y-[-20px]' : 'opacity-100'}`}
         >
-          JK.LEE<span className="text-accent">.</span>
+          <img src={lebassLogo} alt="LEBASS" className="logo-svg h-9 md:h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
