@@ -11,11 +11,11 @@ import ParallaxBackground from './components/ParallaxBackground';
 import ProjectSeowon from './pages/ProjectSeowon';
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [theme, setTheme] = useState(localStorage.getItem('nb_theme') || 'dark');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('nb_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
