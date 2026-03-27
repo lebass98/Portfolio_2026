@@ -11,7 +11,7 @@ import ParallaxBackground from './components/ParallaxBackground';
 import ProjectSeowon from './pages/ProjectSeowon';
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

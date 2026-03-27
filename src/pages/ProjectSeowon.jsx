@@ -58,73 +58,116 @@ const ProjectSeowon = ({ theme }) => {
       {/* ============================================================ 
           1️⃣ 히로 섹션 (Image 1 참고): 풀스크린 레이아웃 
           ============================================================ */}
-      <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-gradient-to-br from-[#0055A2] to-[#0099DA] text-white">
-        {/* 히로 섹션 내 배경 요소 */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `url(${bgTexture})`, mixBlendMode: 'overlay' }} />
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#0055A2] to-[#0099DA] text-white">
+        {/* ============================================================ 
+            데스크탑 레이아웃 (md 이상)
+            ============================================================ */}
+        <div className="hidden md:flex relative h-screen min-h-[800px] items-center">
+          {/* 히로 섹션 내 배경 요소 */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `url(${bgTexture})`, mixBlendMode: 'overlay' }} />
 
-        <div className="w-full px-8 md:px-[0] relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* 좌측: 타이틀 및 로고 영역 */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1"
-          >
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-4">
-                <span className="text-xl md:text-2xl font-bold tracking-tighter opacity-80 italic">UNESCO WORLD HERITAGE</span>
+          <div className="w-full px-8 md:px-[0] relative z-10 flex flex-row items-center justify-between gap-12">
+            {/* 좌측: 타이틀 및 로고 영역 */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="flex-1"
+            >
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center gap-4">
+                  <span className="text-xl md:text-2xl font-bold tracking-tighter opacity-80 italic">UNESCO WORLD HERITAGE</span>
+                </div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] uppercase drop-shadow-lg">
+                  한국의 서원<br />
+                  <span className="text-3xl md:text-5xl lg:text-6xl opacity-90 tracking-tight font-bold">통합관리센터</span>
+                </h1>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold tracking-tighter leading-[0.9] uppercase">
-                한국의 서원<br />
-                <span className="text-3xl md:text-5xl lg:text-6xl opacity-90 tracking-normal font-bold">통합관리센터</span>
-              </h1>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* 우측: 목업 이미지 영역 (노트북 & 휴대폰) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 relative"
-          >
-            <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700">
-              <img
-                src="/portfolio_2026/images/portfolio/scr_03.jpg"
-                alt="Project Mockup Laptop"
-                className="w-full rounded-lg"
-                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426' }}
-              />
-
-              {/* 휴대폰 목업 효과 */}
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8, duration: 1 }}
-                className="absolute -left-10 -bottom-10 w-1/3 border-8 border-dark rounded-[2.5rem] overflow-hidden shadow-2xl hidden lg:block"
-              >
+            {/* 우측: 목업 이미지 영역 (노트북 & 휴대폰) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="flex-1 relative"
+            >
+              <div className="relative z-10 drop-shadow-[0_45px_45px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-700">
                 <img
                   src="/portfolio_2026/images/portfolio/scr_03.jpg"
-                  alt="Project Mockup Mobile"
-                  className="w-full h-full object-cover aspect-[9/19]"
-                  onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2340' }}
+                  alt="Project Mockup Laptop"
+                  className="w-full rounded-lg"
+                  onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426' }}
                 />
-              </motion.div>
+
+                {/* 휴대폰 목업 효과 */}
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 1 }}
+                  className="absolute -left-10 -bottom-10 w-1/3 border-8 border-dark rounded-[2.5rem] overflow-hidden shadow-2xl hidden lg:block"
+                >
+                  <img
+                    src="/portfolio_2026/images/portfolio/scr_03.jpg"
+                    alt="Project Mockup Mobile"
+                    className="w-full h-full object-cover aspect-[9/19]"
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2340' }}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* 히로 섹션 하단: 인포메이션 (클라이언트 / 제작사) */}
+          <div className="absolute bottom-12 left-[60px] right-[60px] flex justify-between items-end z-20 font-bold">
+            <div className="text-left">
+              <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">CLIENT</p>
+              <p className="text-lg tracking-tight uppercase">(재)세계유산 한국의 서원</p>
             </div>
-          </motion.div>
+            <div className="text-right">
+              <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">PRODUCTION</p>
+              <div className="flex flex-col items-end">
+                <span className="text-[10px] tracking-widest border-b border-white pb-1 mb-1 opacity-80 uppercase">NEWBIRD STYLE</span>
+                <p className="text-2xl tracking-tighter italic font-black">WordNcode</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* 히로 섹션 하단: 인포메이션 (클라이언트 / 제작사) */}
-        <div className="absolute bottom-12 left-8 md:left-[60px] right-8 md:right-[60px] flex justify-between items-end z-20 font-bold">
-          <div className="text-left">
-            <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">CLIENT</p>
-            <p className="text-sm md:text-lg tracking-tight uppercase">(재)세계유산 한국의 서원</p>
+        {/* ============================================================ 
+            모바일 레이아웃 (md 미만) : 이미지 형태의 레이아웃
+            ============================================================ */}
+        <div className="md:hidden flex flex-col w-full relative pb-0">
+          <div className="py-8 z-10 flex flex-col gap-4 mb-8">
+            <span className="text-sm font-bold tracking-tighter opacity-80 italic">UNESCO WORLD HERITAGE</span>
+            <h1 className="text-4xl font-extrabold tracking-tighter leading-tight uppercase drop-shadow-md">
+              한국의 서원<br />
+              <span className="text-2xl opacity-90 tracking-tight font-bold">통합관리센터</span>
+            </h1>
           </div>
-          <div className="text-right">
-            <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-2">PRODUCTION</p>
-            <div className="flex flex-col items-end">
-              <span className="text-[10px] tracking-widest border-b border-white pb-1 mb-1 opacity-80 uppercase">NEWBIRD STYLE</span>
-              <p className="text-lg md:text-2xl tracking-tighter italic font-black">WordNcode</p>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full relative z-0 mt-4 drop-shadow-[0_20px_25px_rgba(0,0,0,0.5)]"
+          >
+            <img
+              src="/portfolio_2026/images/portfolio/scr_03.jpg"
+              alt="Project Mobile Image View"
+              className="w-full object-cover rounded-t-3xl border-t-4 border-white/10"
+              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426' }}
+            />
+          </motion.div>
+
+          <div className="w-full px-8 py-8 flex justify-between items-end font-bold">
+            <div className="text-left">
+              <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-1">CLIENT</p>
+              <p className="text-sm tracking-tight uppercase text-white/90">세계유산 한국의 서원</p>
+            </div>
+            <div className="text-right">
+              <p className="text-[10px] font-bold tracking-[0.3em] opacity-60 uppercase mb-1">PRODUCTION</p>
+              <p className="text-lg tracking-tighter italic font-black text-white/90">WordNcode</p>
             </div>
           </div>
         </div>
