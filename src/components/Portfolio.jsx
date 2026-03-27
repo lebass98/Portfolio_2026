@@ -77,19 +77,16 @@ const Portfolio = ({ theme }) => {
                   }}
                   className="group cursor-pointer glass-glow"
                 >
-                  <div className="relative aspect-[16/10] glass-card rounded-[5px] overflow-hidden shadow-2xl transition-all duration-700 group-hover:scale-[1.03] group-hover:-rotate-1">
+                  <div className="relative aspect-[16/10] glass-card rounded-[5px] overflow-hidden shadow-2xl transition-all duration-700 staggered-scroll-container">
                     {/* Project Image */}
                     <img
                       src={`${import.meta.env.BASE_URL}${project.image}`}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      className="w-full h-full object-cover object-top transition-all duration-1000 staggered-scroll-img"
                       onError={(e) => {
                         e.target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426';
                       }}
                     />
-
-                    {/* Internal Link / Overlay */}
-                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[10px]" />
 
                     {/* Hover Button */}
                     {project.url.startsWith('/') ? (
