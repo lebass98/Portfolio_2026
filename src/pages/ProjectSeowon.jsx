@@ -401,7 +401,7 @@ const ProjectSeowon = ({ theme }) => {
 
           <div className="mt-32 text-center">
             <p className="text-lg md:text-2xl font-bold tracking-tight text-dark opacity-60 italic mb-8">"Design that breaks boundaries."</p>
-            <Link to="/#portfolio" className="inline-block bg-dark text-main px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition-transform shadow-2xl">
+            <Link to="/#portfolio" className="inline-block bg-dark text-[var(--bg-main)] px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition-transform shadow-2xl">
               BACK TO HOME
             </Link>
           </div>

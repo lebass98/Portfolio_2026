@@ -47,7 +47,7 @@ const Portfolio = ({ theme }) => {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`text-[12px] font-bold tracking-widest px-6 py-2 rounded-full border-2 transition-all uppercase ${filter === cat
-                  ? 'bg-dark text-main border-dark'
+                  ? 'bg-dark text-[var(--bg-main)] border-dark'
                   : 'bg-transparent border-dark/20 text-dark/60 hover:border-dark/40 hover:text-dark'
                   }`}
               >
@@ -95,7 +95,7 @@ const Portfolio = ({ theme }) => {
                     {project.url.startsWith('/') ? (
                       <Link
                         to={project.url}
-                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
+                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-[var(--bg-main)] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
                       >
                         <ExternalLink size={20} />
                       </Link>
@@ -104,7 +104,7 @@ const Portfolio = ({ theme }) => {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-main rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
+                        className="absolute bottom-6 right-6 w-12 h-12 bg-dark text-[var(--bg-main)] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-xl scale-90 group-hover:scale-100"
                       >
                         <ExternalLink size={20} />
                       </a>

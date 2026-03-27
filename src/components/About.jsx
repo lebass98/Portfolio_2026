@@ -70,7 +70,7 @@ const About = ({ theme }) => {
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
                 <img src={profileImg} alt={profile.name} className="w-full h-full object-cover" />
               </div>
-              <span className="text-sm font-bold tracking-widest text-main uppercase bg-dark px-4 py-1 inline-block mb-8">About Me</span>
+              <span className="text-sm font-bold tracking-widest text-[var(--bg-main)] uppercase bg-dark px-4 py-1 inline-block mb-8">About Me</span>
               <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-8 uppercase text-dark">
                 디자인과 코드의 <br />
                 <span 
@@ -132,7 +132,7 @@ const About = ({ theme }) => {
                       <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 text-dark" size={24} />
                     </h4>
                   </div>
-                  <span className="text-[12px] font-bold uppercase px-4 py-1.5 bg-dark text-main rounded-full shadow-lg">
+                  <span className="text-[12px] font-bold uppercase px-4 py-1.5 bg-dark text-[var(--bg-main)] rounded-full shadow-lg">
                     {item.position.split('(')[0]}
                   </span>
                 </div>
