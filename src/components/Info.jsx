@@ -36,11 +36,15 @@ const Info = ({ theme }) => {
   ];
 
   const fadeUpVariant = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: (custom = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: custom * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { 
+        delay: custom * 0.12, 
+        duration: 1, 
+        ease: [0.22, 1, 0.36, 1] 
+      }
     })
   };
 
@@ -118,7 +122,7 @@ const Info = ({ theme }) => {
                     transition={{ 
                       duration: 0.8, 
                       delay: i * 0.1, 
-                      ease: [0.16, 1, 0.3, 1] 
+                      ease: [0.22, 1, 0.36, 1] 
                     }}
                     whileHover={{ 
                       scale: 1.05,

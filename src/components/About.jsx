@@ -60,10 +60,10 @@ const About = ({ theme }) => {
         <div className="grid lg:grid-cols-2 gap-24">
           {/* Left Column: Intro & Profile */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:sticky lg:top-32 lg:self-start h-fit mb-16"
           >
             <div>
@@ -114,11 +114,15 @@ const About = ({ theme }) => {
             {experience.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow p-6 mb-8 rounded-2xl transition-all"
+                initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 1.2, 
+                  delay: index * 0.15, 
+                  ease: [0.22, 1, 0.36, 1] 
+                }}
+                className="group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow p-6 mb-8 rounded-2xl"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                   <div>
