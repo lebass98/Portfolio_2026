@@ -103,7 +103,6 @@ const Footer = () => {
               </div>
               
               <div className="opacity-50 text-sm font-bold leading-relaxed max-w-sm">
-                뉴버드는 디지털 익스피리언스 에이전시입니다.<br/>
                 우리와 함께 새로운 것을 발견하세요.
               </div>
             </div>

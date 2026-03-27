@@ -72,7 +72,7 @@ const Info = ({ theme }) => {
                initial={{ opacity: 0, y: 20, scale: 0.9 }}
                animate={{ opacity: 1, y: 0, scale: 1 }}
                transition={{ duration: 0.8, delay: 0.2 }}
-               className="absolute z-30 bg-white shadow-2xl rounded-2xl p-4 flex items-center gap-4 border border-dark/5"
+               className="absolute z-30 glass-card shadow-2xl rounded-2xl p-4 flex items-center gap-4 border border-dark/5"
              >
                 <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                   <Monitor size={20} className="text-dark" />
@@ -87,7 +87,7 @@ const Info = ({ theme }) => {
                initial={{ opacity: 0, x: -50, rotate: -5 }}
                animate={{ opacity: 0.6, x: -140, y: -40, rotate: -12 }}
                transition={{ duration: 1, delay: 0.4 }}
-               className="absolute z-20 bg-white/50 backdrop-blur shadow-xl rounded-2xl p-3 flex items-center gap-3 border border-dark/5 hidden md:flex"
+               className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
              >
                 <Smartphone size={16} className="text-dark/40" />
                 <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Responsive Layout Ready</p>
@@ -97,7 +97,7 @@ const Info = ({ theme }) => {
                initial={{ opacity: 0, x: 50, rotate: 5 }}
                animate={{ opacity: 0.6, x: 140, y: 20, rotate: 8 }}
                transition={{ duration: 1, delay: 0.5 }}
-               className="absolute z-20 bg-white/50 backdrop-blur shadow-xl rounded-2xl p-3 flex items-center gap-3 border border-dark/5 hidden md:flex"
+               className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
              >
                 <PenTool size={16} className="text-dark/40" />
                 <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Pixel Perfect Design</p>
@@ -157,7 +157,7 @@ const Info = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <button className="bg-dark text-white hover:bg-black transition-all px-10 py-5 rounded-full text-lg font-black tracking-tighter shadow-2xl hover:scale-105 active:scale-95">
+            <button className="bg-dark text-[var(--bg-main)] transition-all px-10 py-5 rounded-full text-lg font-black tracking-tighter shadow-2xl hover:scale-105 active:scale-95 hover:opacity-80">
               Explore Our Work
             </button>
           </motion.div>
@@ -319,7 +319,7 @@ const Info = ({ theme }) => {
                 className="glass-card p-6 rounded-2xl relative overflow-hidden"
               >
                 <span className="text-7xl font-black text-dark/5 absolute -right-2 -bottom-2">{process.step}</span>
-                <span className="text-xs font-bold text-main bg-dark px-2 py-1 inline-block mb-4">{process.step}</span>
+                <span className="text-xs font-bold text-[var(--bg-main)] bg-dark px-2 py-1 inline-block mb-4">{process.step}</span>
                 <strong className="block text-2xl font-bold text-dark tracking-tighter mb-4">{process.title}</strong>
                 <p className="text-sm font-medium text-dark/70 relative z-10">{process.desc}</p>
               </motion.div>
