@@ -24,7 +24,7 @@ function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen transition-colors duration-300 relative z-0">
+      <div className="min-h-screen transition-colors duration-300 relative z-0 overflow-y-hidden">
         <CustomCursor />
         <Header toggleTheme={toggleTheme} theme={theme} />
         <main>
