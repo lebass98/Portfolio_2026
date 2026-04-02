@@ -27,7 +27,7 @@ function App() {
       <div className="min-h-screen transition-colors duration-300 relative z-0 overflow-y-hidden">
         <CustomCursor />
         <Header toggleTheme={toggleTheme} theme={theme} />
-        <main>
+        <main style={{overflow:"hidden"}}>
           <Routes>
             <Route path="/" element={<Home theme={theme} />} />
             <Route path="/info" element={<Info theme={theme} />} />
