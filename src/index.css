@@ -66,43 +66,62 @@ h3 {
 /* Glassmorphism Capsule Nav - Updated for Newbird + User Request */
 .capsule-nav-container {
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   z-index: 200;
   padding: 30px 60px;
-  pointer-events: none;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.capsule-nav-container.scrolled {
+  top: 20px;
+  width: calc(100% - 60px);
+  max-width: 1800px;
+  padding: 20px 40px;
+  border-radius: 20px !important;
+  
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .capsule-nav-container.scrolled {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .capsule-nav-wrapper {
-  max-width: none;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 }
 
 .capsule-nav {
-  background: rgba(255, 255, 255, 0.07);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 9999px;
-  padding: 0 40px;
-  height: 60px;
-  pointer-events: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   align-items: center;
   justify-content: center;
   gap: 40px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-[data-theme='dark'] .capsule-nav {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .capsule-nav-logo,
@@ -305,18 +324,33 @@ h2 {
   .capsule-nav-container {
     padding: 20px 30px;
   }
+  .capsule-nav-container.scrolled {
+    width: calc(100% - 40px);
+    padding: 15px 30px;
+  }
 
   .capsule-nav {
     gap: 20px;
-    padding: 0 25px;
   }
 }
 
 @media (max-width: 768px) {
+  .capsule-nav-container {
+    top: 20px;
+    padding: 15px 20px;
+  }
+  .capsule-nav-container.scrolled {
+    top: 15px;
+    height: 60px;
+    width: calc(100% - 30px);
+    padding: 0 20px;
+  }
+
   .capsule-nav-wrapper {
     justify-content: center;
-    height: 60px;
+    height: 100%;
     position: relative;
+    width: 100%;
   }
 
   .capsule-nav-logo,
@@ -347,8 +381,6 @@ h2 {
 
   .capsule-nav {
     gap: 15px;
-    padding: 0 20px;
-    height: 50px;
   }
 
   .autotext::before,
@@ -465,9 +497,6 @@ html.lenis, html.lenis body {
 }
 
 @media (max-width: 480px) {
-  .capsule-nav {
-    width: 90%;
-  }
 }
 
 /* Vertical Marquee Animations */

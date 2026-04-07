@@ -38,22 +38,23 @@ const Header = ({ toggleTheme, theme }) => {
   ];
 
   return (
-    <div className="capsule-nav-container">
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, cubicBezier: [0.16, 1, 0.3, 1] }}
+        className={`capsule-nav-container ${isScrolled ? 'scrolled' : ''}`}
+      >
       <div className="capsule-nav-wrapper">
         <Link 
           to="/" 
-          className={`capsule-nav-logo transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none translate-y-[-20px]' : 'opacity-100'}`}
+          className="capsule-nav-logo transition-all duration-300"
         >
           <img src={lebassLogo} alt="LEBASS" className="logo-svg h-9 md:h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
-        <motion.header
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, cubicBezier: [0.16, 1, 0.3, 1] }}
-          className={`capsule-nav hidden md:flex transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        >
+        <div className={`capsule-nav hidden md:flex transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <nav className="h_nav">
             <ul className="flex items-center gap-10">
               {navLinks.map((link) => (
@@ -69,7 +70,7 @@ const Header = ({ toggleTheme, theme }) => {
               ))}
             </ul>
           </nav>
-        </motion.header>
+        </div>
 
         {/* Mobile Hamburger Button */}
         <div className="md:hidden flex items-center gap-4 capsule-nav-contact">
@@ -99,6 +100,8 @@ const Header = ({ toggleTheme, theme }) => {
         </div>
       </div>
 
+      </motion.header>
+
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
@@ -107,13 +110,14 @@ const Header = ({ toggleTheme, theme }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[205] flex items-center justify-center p-6 md:hidden pointer-events-auto"
+            className="fixed inset-0 flex flex-col items-center p-6 md:hidden pointer-events-auto"
+            style={{ zIndex: 190 }}
           >
             <div 
-              className="absolute inset-0 bg-black/60 backdrop-blur-md"
+              className="absolute inset-0 bg-black/90 backdrop-blur-xl"
               onClick={() => setIsMenuOpen(false)}
             />
-            <div className="relative w-full max-w-sm glass-panel p-8 flex flex-col items-center gap-8 shadow-2xl">
+            <div className="relative w-full max-w-sm flex flex-col items-center justify-center h-full gap-8 z-10 pt-20">
               <nav className="w-full">
                 <ul className="flex flex-col items-center gap-6">
                   {navLinks.map((link) => (
@@ -123,10 +127,10 @@ const Header = ({ toggleTheme, theme }) => {
                         onClick={() => setIsMenuOpen(false)}
                         className="flex items-center justify-center gap-2 group w-full py-4 border-b border-white/10"
                       >
-                        <span className="text-2xl font-black tracking-widest text-white group-hover:text-accent transition-colors uppercase">
+                        <span className="text-3xl font-black tracking-widest text-white group-hover:text-accent transition-colors uppercase">
                           {link.name}
                         </span>
-                        {link.count && <em className="text-accent text-xs font-black not-italic">{link.count}</em>}
+                        {link.count && <em className="text-accent text-sm font-black not-italic">{link.count}</em>}
                       </Link>
                     </li>
                   ))}
@@ -157,7 +161,7 @@ const Header = ({ toggleTheme, theme }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 
