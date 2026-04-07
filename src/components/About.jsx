@@ -36,34 +36,78 @@ const About = ({ theme }) => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // Intro block reveal
-    gsap.from('.about-intro', {
-      scrollTrigger: {
-        trigger: '.about-intro',
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out'
-    });
+    const isDesktop = window.innerWidth >= 1024;
+    
+    if (isDesktop) {
+      const experienceList = containerRef.current.querySelector('#experience');
+      const introBlock = containerRef.current.querySelector('.about-intro');
+      
+      const updatePin = () => {
+        const totalHeight = experienceList.scrollHeight;
+        const viewHeight = window.innerHeight;
+        const buffer = 200; // Increased buffer for top/bottom spacing
+        const scrollDistance = totalHeight - viewHeight + buffer;
+        
+        if (scrollDistance > 0) {
+          gsap.to(experienceList, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: () => `+=${scrollDistance}`,
+              pin: true,
+              pinSpacing: true,
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+            y: () => -scrollDistance + 100, // Leave a little space at the bottom
+            ease: 'none'
+          });
 
-    // Experience cards stagger reveal
-    gsap.from('.experience-card', {
-      scrollTrigger: {
-        trigger: '#experience',
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-      y: 50,
-      scale: 0.98,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.15,
-      ease: 'power3.out'
-    });
+          // Intro block entrance
+          gsap.from(introBlock, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top center',
+            },
+            x: -50,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          });
+        }
+      };
 
+      updatePin();
+      window.addEventListener('resize', ScrollTrigger.refresh);
+      return () => window.removeEventListener('resize', ScrollTrigger.refresh);
+    } else {
+      // Mobile - Standard staggered reveal (No pinning)
+      gsap.from('.about-intro', {
+        scrollTrigger: {
+          trigger: '.about-intro',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out'
+      });
+
+      gsap.from('.experience-card', {
+        scrollTrigger: {
+          trigger: '#experience',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 50,
+        scale: 0.98,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+    }
   }, { scope: containerRef });
 
   const getSkillIcon = (skill) => {
@@ -96,7 +140,7 @@ const About = ({ theme }) => {
         <div className="grid lg:grid-cols-2 gap-24">
           {/* Left Column: Intro & Profile */}
           <div
-            className="about-intro lg:sticky lg:top-32 lg:self-start h-fit mb-16"
+            className="about-intro h-fit mb-16"
           >
             <div>
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">

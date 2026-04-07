@@ -203,9 +203,9 @@ section, footer {
   overflow: hidden;
 }
 
-section#about {
+/* section#about {
   overflow: visible !important;
-}
+} */
 
 section::before, footer::before {
   content: '';
