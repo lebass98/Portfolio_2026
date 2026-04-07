@@ -1,9 +1,21 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 import lightPreview from '../assets/images/theme_light.png';
 import darkPreview from '../assets/images/theme_dark.png';
 
 const ThemeSelection = ({ onSelect }) => {
+  useEffect(() => {
+    // Lock scroll on mount
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    
+    // Restore scroll on unmount
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
