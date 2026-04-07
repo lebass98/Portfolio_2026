@@ -50,7 +50,7 @@ const Header = ({ toggleTheme, theme }) => {
           to="/" 
           className="capsule-nav-logo transition-all duration-300"
         >
-          <img src={lebassLogo} alt="LEBASS" className="logo-svg h-9 md:h-10 w-auto" />
+          <img src={lebassLogo} alt="LEBASS" className="logo-svg h-[25px] md:h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

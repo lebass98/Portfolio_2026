@@ -36,7 +36,7 @@ const Hero = ({ theme }) => {
   }, { scope: containerRef });
 
   return (
-    <section id="home" ref={sectionRef} className="h-screen flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
+    <section id="home" ref={sectionRef} className="min-h-[85vh] flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
       {/* Background Graphic Element */}
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
 

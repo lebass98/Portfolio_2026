@@ -45,7 +45,7 @@ const About = ({ theme }) => {
       const updatePin = () => {
         const totalHeight = experienceList.scrollHeight;
         const viewHeight = window.innerHeight;
-        const buffer = 200; // Increased buffer for top/bottom spacing
+        const buffer = 40; // Highly optimized buffer to eliminate ANY dead scroll
         const scrollDistance = totalHeight - viewHeight + buffer;
         
         if (scrollDistance > 0) {
@@ -59,7 +59,7 @@ const About = ({ theme }) => {
               scrub: true,
               invalidateOnRefresh: true,
             },
-            y: () => -scrollDistance + 100, // Leave a little space at the bottom
+            y: () => -scrollDistance + 20, // Tighter spacing at bottom
             ease: 'none'
           });
 
@@ -137,7 +137,7 @@ const About = ({ theme }) => {
       <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
         <h2 className="mb-24">About / Career</h2>
 
-        <div className="grid lg:grid-cols-2 gap-24">
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12">
           {/* Left Column: Intro & Profile */}
           <div
             className="about-intro h-fit mb-16"
