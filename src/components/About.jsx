@@ -1,4 +1,7 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { portfolioData } from '../data/portfolioData';
 import { 
   Mail, 
@@ -22,13 +25,46 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import profileImg from '../assets/images/lee.png';
-import { useRef } from 'react';
 import SectionParallaxBackground from './SectionParallaxBackground';
 import bgImage from '../assets/images/pic_plastic02.png';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const About = ({ theme }) => {
   const { profile, experience } = portfolioData;
   const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    // Intro block reveal
+    gsap.from('.about-intro', {
+      scrollTrigger: {
+        trigger: '.about-intro',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out'
+    });
+
+    // Experience cards stagger reveal
+    gsap.from('.experience-card', {
+      scrollTrigger: {
+        trigger: '#experience',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 50,
+      scale: 0.98,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+
+  }, { scope: containerRef });
 
   const getSkillIcon = (skill) => {
     const s = skill.toLowerCase();
@@ -54,17 +90,13 @@ const About = ({ theme }) => {
   return (
     <section id="about" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-visible">
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
-      <div className="px-8 md:px-[60px] relative z-10">
+      <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
         <h2 className="mb-24">About / Career</h2>
 
         <div className="grid lg:grid-cols-2 gap-24">
           {/* Left Column: Intro & Profile */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:sticky lg:top-32 lg:self-start h-fit mb-16"
+          <div
+            className="about-intro lg:sticky lg:top-32 lg:self-start h-fit mb-16"
           >
             <div>
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-dark shadow-xl mb-8">
@@ -84,7 +116,7 @@ const About = ({ theme }) => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-12">
+            <div className="grid sm:grid-cols-2 gap-12 mt-12">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-dark/60 mb-4">Contact</p>
                 <div className="space-y-2">
@@ -107,22 +139,14 @@ const About = ({ theme }) => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Experience Timeline */}
           <div id="experience" className="space-y-16">
             {experience.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 40, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ 
-                  duration: 1.2, 
-                  delay: index * 0.15, 
-                  ease: [0.22, 1, 0.36, 1] 
-                }}
-                className="group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow p-6 mb-8 rounded-2xl"
+                className="experience-card group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow p-6 mb-8 rounded-2xl"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                   <div>
@@ -149,7 +173,7 @@ const About = ({ theme }) => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
