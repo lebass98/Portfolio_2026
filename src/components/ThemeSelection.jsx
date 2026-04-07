@@ -32,8 +32,7 @@ const ThemeSelection = ({ onSelect }) => {
         >
           <p className="text-[10px] md:text-sm font-black tracking-[0.4em] text-white/40 uppercase mb-4">Choose your experience</p>
           <h2 className="text-3xl md:text-6xl font-black tracking-tighter text-white uppercase italic">
-            Select Your <br />
-            <span className="text-yellow-theme transition-colors">Visual Mode</span>
+            <span className="text-yellow-theme transition-colors">비주얼 모드를</span><br />선택해주세요            
           </h2>
         </motion.div>
 
