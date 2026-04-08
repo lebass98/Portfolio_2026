@@ -81,7 +81,6 @@ h3 {
   display: flex;
   align-items: center;
   border-radius: 0;
-
   background: transparent;
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
@@ -96,10 +95,10 @@ h3 {
   max-width: 1800px;
   padding: 20px 40px;
   border-radius: 20px !important;
-  
+
   background: rgba(255, 255, 255, 0.07);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
@@ -201,7 +200,8 @@ a:hover .autotext::after {
 
 
 /* Global Texture System */
-section, footer {
+section,
+footer {
   position: relative;
   overflow: hidden;
 }
@@ -210,7 +210,8 @@ section, footer {
   overflow: visible !important;
 } */
 
-section::before, footer::before {
+section::before,
+footer::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -224,7 +225,7 @@ section::before, footer::before {
   transition: opacity 0.5s ease;
 }
 
-[data-theme='dark'] section::before, 
+[data-theme='dark'] section::before,
 [data-theme='dark'] footer::before {
   opacity: 0.08;
 }
@@ -252,13 +253,15 @@ footer::before {
 }
 
 /* Ensure content stays above the texture */
-section > div, footer > div {
+section>div,
+footer>div {
   position: relative;
   z-index: 10;
 }
 
 .texture-overlay {
-  display: none; /* Replaced by global system */
+  display: none;
+  /* Replaced by global system */
 }
 
 .nb-card {
@@ -286,6 +289,7 @@ section#home {
   max-width: none;
   margin: 0;
   width: 100%;
+  height: 100vh;
 }
 
 section.bg-yellow-theme {
@@ -327,6 +331,7 @@ h2 {
   .capsule-nav-container {
     padding: 20px 30px;
   }
+
   .capsule-nav-container.scrolled {
     width: calc(100% - 40px);
     padding: 15px 30px;
@@ -342,6 +347,7 @@ h2 {
     top: 20px;
     padding: 15px 20px;
   }
+
   .capsule-nav-container.scrolled {
     top: 15px;
     height: 60px;
@@ -397,7 +403,8 @@ h2 {
 }
 
 /* Custom Scrollbar for Lenis */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -490,6 +497,7 @@ html.lenis, html.lenis body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -499,13 +507,17 @@ html.lenis, html.lenis body {
   animation: spin-slow 8s linear infinite;
 }
 
-@media (max-width: 480px) {
-}
+@media (max-width: 480px) {}
 
 /* Vertical Marquee Animations */
 @keyframes vertical-scroll {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 .animate-vertical-scroll-slow {
@@ -523,15 +535,41 @@ html.lenis, html.lenis body {
 
 /* Staggered Scroll Animation for Portfolio Thumbnails */
 @keyframes staggeredScroll {
-  0% { object-position: top; }
-  15% { object-position: 0 20%; }
-  25% { object-position: 0 20%; }
-  40% { object-position: 0 50%; }
-  50% { object-position: 0 50%; }
-  65% { object-position: 0 80%; }
-  75% { object-position: 0 80%; }
-  90% { object-position: bottom; }
-  100% { object-position: bottom; }
+  0% {
+    object-position: top;
+  }
+
+  15% {
+    object-position: 0 20%;
+  }
+
+  25% {
+    object-position: 0 20%;
+  }
+
+  40% {
+    object-position: 0 50%;
+  }
+
+  50% {
+    object-position: 0 50%;
+  }
+
+  65% {
+    object-position: 0 80%;
+  }
+
+  75% {
+    object-position: 0 80%;
+  }
+
+  90% {
+    object-position: bottom;
+  }
+
+  100% {
+    object-position: bottom;
+  }
 }
 
 .staggered-scroll-container:hover .staggered-scroll-img {
