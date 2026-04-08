@@ -12,7 +12,7 @@
   --color-glass: var(--glass-bg);
   --color-card: var(--glass-card-bg);
 
-  --color-yellow-theme: #FFE600;
+  --color-yellow-theme: var(--bg-section-yellow);
   --color-indigo-theme: #6366f1;
 
   /* Weights */

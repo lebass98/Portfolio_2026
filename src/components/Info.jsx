@@ -126,11 +126,11 @@ const Info = ({ theme }) => {
                     }}
                     whileHover={{ 
                       scale: 1.05,
-                      color: "rgba(0,0,0,0.6)",
+                      color: theme === 'dark' ? "rgba(255,220,0,0.6)" : "rgba(0,0,0,0.6)",
                       transition: { duration: 0.2 }
                     }}
                     className={`inline-block whitespace-nowrap cursor-default ${
-                      word.includes("happen") ? "opacity-40" : ""
+                      word.includes("happen") ? "opacity-30" : ""
                     }`}
                   >
                     {word}
@@ -213,10 +213,10 @@ const Info = ({ theme }) => {
                 className="group glass-card p-10 rounded-[32px] overflow-hidden transition-all duration-700 hover:bg-dark hover:-translate-y-4 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]"
               >
                 <div className="relative z-10">
-                  <div className="text-dark group-hover:text-(--bg-section-yellow) mb-8 transition-all duration-500 group-hover:scale-110 origin-left">{item.icon}</div>
-                  <strong className="block text-2xl font-black text-dark group-hover:text-(--bg-section-yellow) tracking-tight uppercase mb-2 transition-colors duration-500">{item.title}</strong>
-                  <span className="block text-sm font-black text-dark/40 group-hover:text-(--bg-section-yellow)/80 mb-6 transition-colors duration-500">{item.sub}</span>
-                  <p className="text-sm text-dark/70 font-bold leading-relaxed group-hover:text-(--bg-section-yellow)/60 transition-colors duration-500">{item.desc}</p>
+                  <div className="text-dark group-hover:text-yellow-theme mb-8 transition-all duration-500 group-hover:scale-110 origin-left">{item.icon}</div>
+                  <strong className="block text-2xl font-black text-dark group-hover:text-yellow-theme tracking-tight uppercase mb-2 transition-colors duration-500">{item.title}</strong>
+                  <span className="block text-sm font-black text-dark/40 group-hover:text-yellow-theme/80 mb-6 transition-colors duration-500">{item.sub}</span>
+                  <p className="text-sm text-dark/70 font-bold leading-relaxed group-hover:text-yellow-theme/60 transition-colors duration-500">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
