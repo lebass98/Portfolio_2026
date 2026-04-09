@@ -96,6 +96,8 @@ const About = ({ theme }) => {
       return () => {
         clearTimeout(timer);
         window.removeEventListener('resize', ScrollTrigger.refresh);
+        // [중요] 페이지 이동 시 남아있는 모든 ScrollTrigger 인스턴스 제거
+        ScrollTrigger.getAll().forEach(t => t.kill());
       };
     } else {
       // 모바일 버전은 기존과 동일하게 유지 (핀 고정 없음)

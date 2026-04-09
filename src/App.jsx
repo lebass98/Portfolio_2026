@@ -10,10 +10,23 @@ import CustomCursor from './components/CustomCursor';
 import ProjectSeowon from './pages/ProjectSeowon';
 import ThemeSelection from './components/ThemeSelection';
 import { AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('nb_theme') || 'dark');
   const [showThemeSelection, setShowThemeSelection] = useState(false);
+  const { pathname } = useLocation();
+
+  // 페이지 이동 시 스크롤 초기화 및 ScrollTrigger 정리
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    ScrollTrigger.refresh();
+  }, [pathname]);
 
   useEffect(() => {
     const lastSelected = localStorage.getItem('nb_theme_last_selected');
