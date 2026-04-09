@@ -43,7 +43,7 @@ function App() {
 
   return (
     <SmoothScroll>
-      <div className="min-h-screen transition-colors duration-300 relative z-0 overflow-y-hidden">
+      <div className="min-h-screen transition-colors duration-300 relative z-0">
         <AnimatePresence>
           {showThemeSelection && (
             <ThemeSelection onSelect={handleThemeSelect} />
@@ -51,7 +51,7 @@ function App() {
         </AnimatePresence>
         <CustomCursor />
         <Header toggleTheme={toggleTheme} theme={theme} />
-        <main style={{overflow:"hidden"}}>
+        <main>
           <Routes>
             <Route path="/" element={<Home theme={theme} />} />
             <Route path="/info" element={<Info theme={theme} />} />

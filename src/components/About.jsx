@@ -43,27 +43,36 @@ const About = ({ theme }) => {
       const introBlock = containerRef.current.querySelector('.about-intro');
       
       const updatePin = () => {
+        // [중요] 섹션 전체의 자연스러운 높이와 리스트의 실제 높이를 측정
         const totalHeight = experienceList.scrollHeight;
         const viewHeight = window.innerHeight;
-        const buffer = 40; // Highly optimized buffer to eliminate ANY dead scroll
-        const scrollDistance = totalHeight - viewHeight + buffer;
+        
+        // 섹션 상단에서 리스트가 시작되는 오프셋 (타이틀 h2 등 포함)
+        const sectionRect = sectionRef.current.getBoundingClientRect();
+        const listRect = experienceList.getBoundingClientRect();
+        const offsetTop = listRect.top - sectionRect.top;
+        
+        // 스크롤 거리 계산: 리스트 끝이 뷰포트 하단에 닿을 때까지
+        // scrollDistance = (전체 컨텐츠가 차지하는 높이) - (현재 보이는 뷰포트 높이)
+        const scrollDistance = (offsetTop + totalHeight) - viewHeight;
         
         if (scrollDistance > 0) {
+          // 메인 핀 애니메이션
           gsap.to(experienceList, {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
               end: () => `+=${scrollDistance}`,
-              pin: true,
-              pinSpacing: true,
+              pin: sectionRef.current,
+              pinSpacing: true, // 이제 섹션 높이가 100vh이므로 스페이서가 정확한 높이만 차지함
               scrub: true,
               invalidateOnRefresh: true,
             },
-            y: () => -scrollDistance + 20, // Tighter spacing at bottom
+            y: -scrollDistance,
             ease: 'none'
           });
 
-          // Intro block entrance
+          // 소개 영역이 부드럽게 나타나도록 설정
           gsap.from(introBlock, {
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -77,11 +86,19 @@ const About = ({ theme }) => {
         }
       };
 
-      updatePin();
+      // 폰트나 이미지 로딩을 고려하여 약간의 지연 후 실행 및 리프레시
+      const timer = setTimeout(() => {
+        updatePin();
+        ScrollTrigger.refresh();
+      }, 100);
+
       window.addEventListener('resize', ScrollTrigger.refresh);
-      return () => window.removeEventListener('resize', ScrollTrigger.refresh);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', ScrollTrigger.refresh);
+      };
     } else {
-      // Mobile - Standard staggered reveal (No pinning)
+      // 모바일 버전은 기존과 동일하게 유지 (핀 고정 없음)
       gsap.from('.about-intro', {
         scrollTrigger: {
           trigger: '.about-intro',
@@ -132,7 +149,11 @@ const About = ({ theme }) => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-visible">
+    <section 
+      id="about" 
+      ref={sectionRef} 
+      className="bg-yellow-theme transition-colors duration-500 relative overflow-visible lg:h-screen lg:pb-0"
+    >
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
       <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
         <h2 className="mb-24">About / Career</h2>
