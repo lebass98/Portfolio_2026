@@ -36,13 +36,16 @@ const About = ({ theme }) => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    const isDesktop = window.innerWidth >= 1024;
-    
-    if (isDesktop) {
+    let mm = gsap.matchMedia();
+
+    // Desktop
+    mm.add("(min-width: 1024px)", () => {
       const experienceList = containerRef.current.querySelector('#experience');
       const introBlock = containerRef.current.querySelector('.about-intro');
       
       const updatePin = () => {
+        if (!experienceList || !introBlock || !sectionRef.current) return;
+        
         // [중요] 섹션 전체의 자연스러운 높이와 리스트의 실제 높이를 측정
         const totalHeight = experienceList.scrollHeight;
         const viewHeight = window.innerHeight;
@@ -53,7 +56,6 @@ const About = ({ theme }) => {
         const offsetTop = listRect.top - sectionRect.top;
         
         // 스크롤 거리 계산: 리스트 끝이 뷰포트 하단에 닿을 때까지
-        // scrollDistance = (전체 컨텐츠가 차지하는 높이) - (현재 보이는 뷰포트 높이)
         const scrollDistance = (offsetTop + totalHeight) - viewHeight;
         
         if (scrollDistance > 0) {
@@ -73,16 +75,19 @@ const About = ({ theme }) => {
           });
 
           // 소개 영역이 부드럽게 나타나도록 설정
-          gsap.from(introBlock, {
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top center',
-            },
-            x: -50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-          });
+          gsap.fromTo(introBlock, 
+            { x: -50, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top center',
+              },
+              x: 0,
+              opacity: 1,
+              duration: 1,
+              ease: 'power3.out'
+            }
+          );
         }
       };
 
@@ -96,37 +101,56 @@ const About = ({ theme }) => {
       return () => {
         clearTimeout(timer);
         window.removeEventListener('resize', ScrollTrigger.refresh);
-        // [중요] 페이지 이동 시 남아있는 모든 ScrollTrigger 인스턴스 제거
         ScrollTrigger.getAll().forEach(t => t.kill());
       };
-    } else {
-      // 모바일 버전은 기존과 동일하게 유지 (핀 고정 없음)
-      gsap.from('.about-intro', {
-        scrollTrigger: {
-          trigger: '.about-intro',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out'
-      });
+    });
 
-      gsap.from('.experience-card', {
-        scrollTrigger: {
-          trigger: '#experience',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
-        y: 50,
-        scale: 0.98,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: 'power3.out'
-      });
-    }
+    // Mobile
+    mm.add("(max-width: 1023px)", () => {
+      // About Intro Animation
+      gsap.fromTo('.about-intro', 
+        { y: 50, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out'
+        }
+      );
+
+      // Experience Cards Animation
+      const experienceContainer = containerRef.current.querySelector('#experience');
+      if (experienceContainer) {
+        gsap.fromTo('.experience-card', 
+          { y: 50, opacity: 0, scale: 0.98 },
+          {
+            scrollTrigger: {
+              trigger: experienceContainer,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: 'power3.out'
+          }
+        );
+      }
+      
+      const timeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    });
+
   }, { scope: containerRef });
 
   const getSkillIcon = (skill) => {
@@ -154,7 +178,7 @@ const About = ({ theme }) => {
     <section 
       id="about" 
       ref={sectionRef} 
-      className="bg-yellow-theme transition-colors duration-500 relative overflow-visible lg:h-screen lg:pb-0"
+      className="bg-yellow-theme transition-colors duration-500 relative overflow-visible pb-20 pt-20 lg:pt-0 lg:h-screen lg:pb-0"
     >
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
       <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
