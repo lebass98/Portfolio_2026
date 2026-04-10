@@ -222,7 +222,7 @@ const About = ({ theme }) => {
             {experience.map((item, index) => (
               <div
                 key={index}
-                className="experience-card group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow p-6 mb-8 rounded-2xl"
+                className="experience-card group relative pb-12 border-b-2 border-dark/10 last:border-0 glass-glow mb-8 rounded-2xl"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                   <div>
