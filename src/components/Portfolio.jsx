@@ -46,24 +46,53 @@ const Portfolio = ({ theme }) => {
       }
     );
 
-    // Staggered cards batching
-    ScrollTrigger.batch('.portfolio-card', {
-      onEnter: batch => {
-        gsap.fromTo(batch, 
-          { opacity: 0, y: 50 }, 
-          { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power3.out", overwrite: true }
-        );
-      },
-      once: true
-    });
+    // Horizontal Scroll Trigger
+    const track = containerRef.current.querySelector('.portfolio-track');
+    
+    if (track) {
+      // Ensure track starts at 0 whenever filter changes
+      gsap.set(track, { x: 0 });
 
-    ScrollTrigger.refresh();
+      const getScrollAmount = () => {
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        
+        if (trackWidth > viewportWidth) {
+          const paddingOffset = window.innerWidth >= 768 ? 60 * 2 : 32 * 2;
+          return -(trackWidth - viewportWidth + paddingOffset);
+        }
+        return 0;
+      };
+
+      const getEndAmount = () => {
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        if (trackWidth > viewportWidth) {
+          return `+=${trackWidth * 1.2}`; // Extended scroll duration slightly for smoother feel
+        }
+        return `+=0`;
+      };
+
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: getEndAmount, // Dynamic end value based on track width
+          pin: true,
+          scrub: 1, // Add scrub smoothing
+          invalidateOnRefresh: true, // Automatically recalculates widths on browser resize or content load
+        }
+      });
+    }
+
   }, { scope: containerRef, dependencies: [filteredProjects, loading] });
 
   return (
-    <section id="portfolio" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
+    <section id="portfolio" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden pt-20 pb-20 min-h-screen flex flex-col justify-center">
       <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
-      <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
+      <div className="px-8 md:px-[60px] relative z-10 w-full" ref={containerRef}>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="portfolio-header">
             <p className="text-sm font-bold tracking-[0.2em] mb-4 text-dark/80 uppercase">Selected Works</p>
@@ -87,15 +116,19 @@ const Portfolio = ({ theme }) => {
           </div>
         </div>
 
-        {/* Project Grid - 3 Columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+        {/* Project Track - Horizontal */}
+        <div className="portfolio-track flex flex-nowrap gap-6 sm:gap-12 w-max pb-12 pt-4">
           {loading ? (
-            Array(6).fill(0).map((_, i) => <ProjectSkeleton key={i} />)
+            Array(6).fill(0).map((_, i) => (
+              <div key={`sk-${i}`} className="w-[85vw] sm:w-[450px] lg:w-[550px] shrink-0">
+                <ProjectSkeleton />
+              </div>
+            ))
           ) : (
             filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="portfolio-card group cursor-pointer glass-glow"
+                className="portfolio-card group cursor-pointer glass-glow w-[85vw] sm:w-[450px] lg:w-[550px] shrink-0"
               >
                 <div className="relative aspect-[16/10] glass-card rounded-[5px] overflow-hidden shadow-2xl transition-all duration-700 staggered-scroll-container">
                   {/* Project Image */}
