@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -38,7 +38,7 @@ const About = ({ theme }) => {
   useGSAP(() => {
     let mm = gsap.matchMedia();
 
-    // Desktop
+    // Desktop Only GSAP
     mm.add("(min-width: 1024px)", () => {
       const experienceList = containerRef.current.querySelector('#experience');
       const introBlock = containerRef.current.querySelector('.about-intro');
@@ -46,27 +46,23 @@ const About = ({ theme }) => {
       const updatePin = () => {
         if (!experienceList || !introBlock || !sectionRef.current) return;
         
-        // [중요] 섹션 전체의 자연스러운 높이와 리스트의 실제 높이를 측정
         const totalHeight = experienceList.scrollHeight;
         const viewHeight = window.innerHeight;
         
-        // 섹션 상단에서 리스트가 시작되는 오프셋 (타이틀 h2 등 포함)
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const listRect = experienceList.getBoundingClientRect();
         const offsetTop = listRect.top - sectionRect.top;
         
-        // 스크롤 거리 계산: 리스트 끝이 뷰포트 하단에 닿을 때까지
         const scrollDistance = (offsetTop + totalHeight) - viewHeight;
         
         if (scrollDistance > 0) {
-          // 메인 핀 애니메이션
           gsap.to(experienceList, {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
               end: () => `+=${scrollDistance}`,
               pin: sectionRef.current,
-              pinSpacing: true, // 이제 섹션 높이가 100vh이므로 스페이서가 정확한 높이만 차지함
+              pinSpacing: true,
               scrub: true,
               invalidateOnRefresh: true,
             },
@@ -74,7 +70,6 @@ const About = ({ theme }) => {
             ease: 'none'
           });
 
-          // 소개 영역이 부드럽게 나타나도록 설정
           gsap.fromTo(introBlock, 
             { x: -50, opacity: 0 },
             {
@@ -91,7 +86,6 @@ const About = ({ theme }) => {
         }
       };
 
-      // 폰트나 이미지 로딩을 고려하여 약간의 지연 후 실행 및 리프레시
       const timer = setTimeout(() => {
         updatePin();
         ScrollTrigger.refresh();
@@ -105,53 +99,44 @@ const About = ({ theme }) => {
       };
     });
 
-    // Mobile
-    mm.add("(max-width: 1023px)", () => {
-      // About Intro Animation
-      gsap.fromTo('.about-intro', 
-        { y: 50, opacity: 0 },
-        {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: 'power3.out'
+  }, { scope: containerRef });
+
+  // Native IntersectionObserver fallback for Mobile
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1024;
+    if (!isMobile || !containerRef.current) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
+          observer.unobserve(entry.target);
         }
-      );
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-      // Experience Cards Animation
-      const experienceContainer = containerRef.current.querySelector('#experience');
-      if (experienceContainer) {
-        gsap.fromTo('.experience-card', 
-          { y: 50, opacity: 0, scale: 0.98 },
-          {
-            scrollTrigger: {
-              trigger: experienceContainer,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: 'power3.out'
-          }
-        );
-      }
-      
-      const timeout = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 500);
+    const intro = containerRef.current.querySelector('.about-intro');
+    const cards = containerRef.current.querySelectorAll('.experience-card');
 
-      return () => clearTimeout(timeout);
+    if (intro) {
+      intro.style.opacity = '0';
+      intro.style.transform = 'translateY(50px)';
+      intro.style.transition = 'opacity 1s ease-out, transform 1s cubic-bezier(0.215, 0.61, 0.355, 1)';
+      observer.observe(intro);
+    }
+
+    cards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px) scale(0.98)';
+      card.style.transition = 'opacity 1s ease-out, transform 1s cubic-bezier(0.215, 0.61, 0.355, 1)';
+      // Add slight delay based on index for stagger effect
+      card.style.transitionDelay = `${(index % 5) * 0.15}s`; 
+      observer.observe(card);
     });
 
-  }, { scope: containerRef });
+    return () => observer.disconnect();
+  }, []);
 
   const getSkillIcon = (skill) => {
     const s = skill.toLowerCase();
