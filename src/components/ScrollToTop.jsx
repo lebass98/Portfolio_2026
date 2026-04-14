@@ -39,7 +39,7 @@ const ScrollToTop = () => {
     <>
       {/* Fixed Button Group */}
       <AnimatePresence>
-        <div className="fixed bottom-10 right-15 z-50 flex flex-col gap-4 mb:right-[20px]">
+        <div className="fixed bottom-10 right-[20px] sm:right-15 z-50 flex flex-col gap-4">
           {/* Family Site Button */}
           <motion.button
             onClick={() => setIsFamilyOpen(true)}
