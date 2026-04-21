@@ -40,10 +40,10 @@ const Info = ({ theme }) => {
     visible: (custom = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { 
-        delay: custom * 0.12, 
-        duration: 1, 
-        ease: [0.22, 1, 0.36, 1] 
+      transition: {
+        delay: custom * 0.12,
+        duration: 1,
+        ease: [0.22, 1, 0.36, 1]
       }
     })
   };
@@ -53,7 +53,7 @@ const Info = ({ theme }) => {
 
       {/* SPECTER-INSPIRED INFO HERO */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-yellow-theme pt-32 pb-20">
-        
+
         {/* Abstract Background Geometry (Subtle Lines) */}
         <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
           <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
@@ -65,73 +65,72 @@ const Info = ({ theme }) => {
         </div>
 
         <div className="relative z-10 w-full max-w-7xl px-8 md:px-[60px] flex flex-col items-center text-center">
-          
+
           {/* Top Floating Notification Cards */}
           <div className="relative h-40 w-full flex justify-center items-center mb-10">
-             <motion.div 
-               initial={{ opacity: 0, y: 20, scale: 0.9 }}
-               animate={{ opacity: 1, y: 0, scale: 1 }}
-               transition={{ duration: 0.8, delay: 0.2 }}
-               className="absolute z-30 glass-card shadow-2xl rounded-2xl p-4 flex items-center gap-4 border border-dark/5"
-             >
-                <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                  <Monitor size={20} className="text-dark" />
-                </div>
-                <div className="text-left">
-                  <p className="text-[10px] font-bold text-dark/40 uppercase">System Status</p>
-                  <p className="text-sm font-black text-dark">Optimization Complete by 98%</p>
-                </div>
-             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute z-30 glass-card shadow-2xl rounded-2xl p-4 flex items-center gap-4 border border-dark/5"
+            >
+              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                <Monitor size={20} className="text-dark" />
+              </div>
+              <div className="text-left">
+                <p className="text-[10px] font-bold text-dark/40 uppercase">System Status</p>
+                <p className="text-sm font-black text-dark">Optimization Complete by 98%</p>
+              </div>
+            </motion.div>
 
-             <motion.div 
-               initial={{ opacity: 0, x: -50, rotate: -5 }}
-               animate={{ opacity: 0.6, x: -140, y: -40, rotate: -12 }}
-               transition={{ duration: 1, delay: 0.4 }}
-               className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
-             >
-                <Smartphone size={16} className="text-dark/40" />
-                <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Responsive Layout Ready</p>
-             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -50, rotate: -5 }}
+              animate={{ opacity: 0.6, x: -140, y: -40, rotate: -12 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
+            >
+              <Smartphone size={16} className="text-dark/40" />
+              <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Responsive Layout Ready</p>
+            </motion.div>
 
-             <motion.div 
-               initial={{ opacity: 0, x: 50, rotate: 5 }}
-               animate={{ opacity: 0.6, x: 140, y: 20, rotate: 8 }}
-               transition={{ duration: 1, delay: 0.5 }}
-               className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
-             >
-                <PenTool size={16} className="text-dark/40" />
-                <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Pixel Perfect Design</p>
-             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50, rotate: 5 }}
+              animate={{ opacity: 0.6, x: 140, y: 20, rotate: 8 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute z-20 glass-card shadow-xl rounded-2xl p-3 flex items-center gap-3 hidden md:flex"
+            >
+              <PenTool size={16} className="text-dark/40" />
+              <p className="text-xs font-bold text-dark/60 whitespace-nowrap">Pixel Perfect Design</p>
+            </motion.div>
           </div>
 
           {/* Main Headline with Mask Reveal and Hover Interaction */}
-          <div className="overflow-hidden mb-10">
-            <motion.h2 
+          <div className="mb-10">
+            <motion.h2
               className="font-black text-dark"
-              style={{ 
-                fontSize: 'min(8vw, 130px)', 
-                lineHeight: '1.1', 
-                letterSpacing: '-0.04em' 
+              style={{
+                fontSize: 'min(8vw, 130px)',
+                lineHeight: '1.1',
+                letterSpacing: '-0.04em'
               }}
             >
               {"Crafting experiences as they happen.".split(" ").map((word, i) => (
-                <span key={i} className="inline-block overflow-hidden mr-[0.3em] align-top">
+                <span key={i} className="inline-block mr-[0.3em] align-top">
                   <motion.span
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: i * 0.1, 
-                      ease: [0.22, 1, 0.36, 1] 
+                    transition={{
+                      duration: 0.8,
+                      delay: i * 0.1,
+                      ease: [0.22, 1, 0.36, 1]
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                       color: theme === 'dark' ? "rgba(255,220,0,0.6)" : "rgba(0,0,0,0.6)",
                       transition: { duration: 0.2 }
                     }}
-                    className={`inline-block whitespace-nowrap cursor-default ${
-                      word.includes("happen") ? "opacity-30" : ""
-                    }`}
+                    className={`inline-block whitespace-nowrap cursor-default ${word.includes("happen") ? "opacity-30" : ""
+                      }`}
                   >
                     {word}
                   </motion.span>
@@ -141,13 +140,13 @@ const Info = ({ theme }) => {
           </div>
 
           {/* Subheadline */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             className="text-lg md:text-2xl font-bold text-dark/60 max-w-3xl mb-12 leading-relaxed"
           >
-            Harness the power of creative code and user-centric design <br className="hidden md:block"/>
+            Harness the power of creative code and user-centric design <br className="hidden md:block" />
             to build the digital future with confidence and precision.
           </motion.p>
 
@@ -163,7 +162,7 @@ const Info = ({ theme }) => {
           </motion.div>
 
           {/* Technology Logos (Social Proof Style) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 1 }}
@@ -171,11 +170,11 @@ const Info = ({ theme }) => {
           >
             <p className="text-[10px] font-black tracking-[0.3em] text-dark/30 uppercase mb-8">Trusted by Modern Technology</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-30 grayscale hover:opacity-80 transition-opacity duration-500">
-               <div className="flex items-center gap-2 font-black text-xl italic"><Layout size={24} /> REACT</div>
-               <div className="flex items-center gap-2 font-black text-xl italic"><Smartphone size={24} /> NEXT.JS</div>
-               <div className="flex items-center gap-2 font-black text-xl italic"><Terminal size={24} /> TAILWIND</div>
-               <div className="flex items-center gap-2 font-black text-xl italic"><Database size={24} /> FRAMER</div>
-               <div className="flex items-center gap-2 font-black text-xl italic"><Search size={24} /> GSAP</div>
+              <div className="flex items-center gap-2 font-black text-xl italic"><Layout size={24} /> REACT</div>
+              <div className="flex items-center gap-2 font-black text-xl italic"><Smartphone size={24} /> NEXT.JS</div>
+              <div className="flex items-center gap-2 font-black text-xl italic"><Terminal size={24} /> TAILWIND</div>
+              <div className="flex items-center gap-2 font-black text-xl italic"><Database size={24} /> FRAMER</div>
+              <div className="flex items-center gap-2 font-black text-xl italic"><Search size={24} /> GSAP</div>
             </div>
           </motion.div>
         </div>
