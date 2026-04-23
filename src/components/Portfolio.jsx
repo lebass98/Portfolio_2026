@@ -105,8 +105,8 @@ const Portfolio = ({ theme }) => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`text-[12px] font-bold tracking-widest px-6 py-2 rounded-full border-2 transition-all uppercase ${filter === cat
-                  ? 'bg-dark text-[var(--bg-main)] border-dark'
+                className={`text-[12px] font-bold tracking-widest px-6 py-2 rounded-full border-2 transition-all uppercase  ${filter === cat
+                  ? 'bg-dark text-[var(--bg-main)] border-dark glass-jk-bg'
                   : 'bg-transparent border-dark/20 text-dark/60 hover:border-dark/40 hover:text-dark'
                   }`}
               >
