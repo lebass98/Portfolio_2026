@@ -47,7 +47,7 @@ const ScrollToTop = () => {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="w-14 h-14 flex items-center justify-center rounded-full bg-dark text-accent shadow-2xl transition-all duration-300 font-extrabold text-base"
+            className="w-14 h-14 flex items-center justify-center rounded-full bg-dark text-accent shadow-2xl transition-all duration-300 font-extrabold text-base glass-jk-bg"
             aria-label="패밀리 사이트 열기"
           >
             F
@@ -60,7 +60,7 @@ const ScrollToTop = () => {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="w-14 h-14 flex items-center justify-center rounded-full bg-dark text-accent shadow-2xl transition-all duration-300 group"
+            className="w-14 h-14 flex items-center justify-center rounded-full bg-dark text-accent shadow-2xl transition-all duration-300 group glass-jk-bg"
             aria-label="Contact me"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
