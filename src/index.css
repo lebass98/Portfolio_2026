@@ -233,9 +233,11 @@ footer::before {
 }
 
 /* Section Specific Texture Variations */
-section#home::before {
-  background-position: top right;
-  transform: rotate(180deg) scale(1.2);
+section#home::before,
+[data-theme='dark'] section#home::before {
+  display: none !important;
+  background-image: none !important;
+  content: none !important;
 }
 
 section#about::before {
