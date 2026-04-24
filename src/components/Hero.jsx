@@ -2,10 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { TypeAnimation } from 'react-type-animation';
-import SectionParallaxBackground from './SectionParallaxBackground';
 import InteractiveParticles from './InteractiveParticles';
-import bgImage from '../assets/images/pic_plastic01.png';
-
 gsap.registerPlugin(useGSAP);
 
 const Hero = ({ theme }) => {
@@ -38,10 +35,7 @@ const Hero = ({ theme }) => {
 
   return (
     <section id="home" ref={sectionRef} className="min-h-[85vh] flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
-      {/* Background Graphic Element */}
       <InteractiveParticles theme={theme} />
-      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
-
       <div className="w-full px-8 md:px-[60px] z-10" ref={containerRef}>
         <div className="max-w-5xl hero-main-container">
           <p className="hero-headline text-xl md:text-2xl font-bold tracking-[0.2em] mb-8 text-dark uppercase opacity-80">

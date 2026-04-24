@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 // 컴포넌트 내부에서 사용할 목업용 빈 이미지들 (나중에 실제 이미지 경로로 수정하세요)
 import placeholderHero from '../assets/images/scr_03.jpg'; // 기존 서원 포트폴리오 썸네일 경로
-import bgTexture from '../assets/images/pic_plastic01.png'; // 배경 텍스처
-
 /*
   =========================================
   💡 [프로젝트 상세페이지 템플릿 사용 안내] 💡
@@ -52,8 +50,6 @@ const ProjectSeowon = ({ theme }) => {
   return (
     <div ref={containerRef} className="bg-yellow-theme transition-colors duration-500 relative min-h-screen">
 
-      {/* 백그라운드 텍스처 효과 */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply" style={{ backgroundImage: `url(${bgTexture})` }} />
 
       {/* ============================================================ 
           1️⃣ 히로 섹션 (Image 1 참고): 풀스크린 레이아웃 
@@ -63,8 +59,6 @@ const ProjectSeowon = ({ theme }) => {
             데스크탑 레이아웃 (md 이상)
             ============================================================ */}
         <div className="hidden md:flex relative h-screen min-h-[800px] items-center">
-          {/* 히로 섹션 내 배경 요소 */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `url(${bgTexture})`, mixBlendMode: 'overlay' }} />
 
           <div className="w-full px-8 md:px-[0] relative z-10 flex flex-row items-center justify-between gap-12">
             {/* 좌측: 타이틀 및 로고 영역 */}

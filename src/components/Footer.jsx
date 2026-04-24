@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { ArrowUpRight, Download, MoveRight } from 'lucide-react';
-import footerTexture from '../assets/images/footer_texture.png';
 
 import lebassLogo from '../lebass_logo.svg';
 

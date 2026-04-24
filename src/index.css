@@ -201,72 +201,7 @@ a:hover .autotext::after {
 
 
 
-/* Global Texture System */
-section,
-footer {
-  position: relative;
-  overflow: hidden;
-}
-
-/* section#about {
-  overflow: visible !important;
-} */
-
-section::before,
-footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('./assets/images/footer_texture.png');
-  background-size: 150%;
-  background-repeat: no-repeat;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.15;
-  transition: opacity 0.5s ease;
-}
-
-[data-theme='dark'] section::before,
-[data-theme='dark'] footer::before {
-  opacity: 0.08;
-}
-
-/* Section Specific Texture Variations */
-section#home::before,
-[data-theme='dark'] section#home::before {
-  display: none !important;
-  background-image: none !important;
-  content: none !important;
-}
-
-section#about::before {
-  background-position: center left;
-  transform: rotate(-15deg) scale(1.5);
-}
-
-section#portfolio::before {
-  background-position: bottom right;
-  transform: rotate(45deg) scale(1.1);
-}
-
-footer::before {
-  background-position: center center;
-  transform: rotate(0deg) scale(1.3);
-  opacity: 0.25;
-}
-
-/* Ensure content stays above the texture */
-section>div,
-footer>div {
-  position: relative;
-  z-index: 10;
-}
-
-.texture-overlay {
-  display: none;
-  /* Replaced by global system */
-}
+/* Global Texture System Removed */
 
 .nb-card {
   background: var(--glass-card-bg);

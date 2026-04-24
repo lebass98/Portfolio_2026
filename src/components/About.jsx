@@ -25,8 +25,6 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import profileImg from '../assets/images/lee.png';
-import SectionParallaxBackground from './SectionParallaxBackground';
-import bgImage from '../assets/images/pic_plastic02.png';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -165,7 +163,7 @@ const About = ({ theme }) => {
       ref={sectionRef} 
       className="bg-yellow-theme transition-colors duration-500 relative overflow-visible pb-20 pt-20 lg:pt-0 lg:h-screen lg:pb-0"
     >
-      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
+
       <div className="px-8 md:px-[60px] relative z-10" ref={containerRef}>
         <h2 className="mb-24">About / Career</h2>
 

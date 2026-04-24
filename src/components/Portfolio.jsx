@@ -6,8 +6,6 @@ import { portfolioData } from '../data/portfolioData';
 import { ExternalLink, Plus } from 'lucide-react';
 import { ProjectSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
-import SectionParallaxBackground from './SectionParallaxBackground';
-import bgImage from '../assets/images/pic_plastic03.png';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -91,7 +89,7 @@ const Portfolio = ({ theme }) => {
 
   return (
     <section id="portfolio" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden pt-20 pb-20 min-h-screen flex flex-col justify-center">
-      <SectionParallaxBackground bgImage={bgImage} theme={theme} containerRef={sectionRef} />
+
       <div className="px-8 md:px-[60px] relative z-10 w-full" ref={containerRef}>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="portfolio-header">
