@@ -1,13 +1,17 @@
-import { useRef } from 'react';
+import { lazy, Suspense, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { TypeAnimation } from 'react-type-animation';
-import InteractiveParticles from './InteractiveParticles';
 gsap.registerPlugin(useGSAP);
+
+// Three.js 번들은 첫 화면 로딩을 막지 않도록 지연 로드
+const HeroScene = lazy(() => import('./hero3d/HeroScene'));
 
 const Hero = ({ theme }) => {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
+  // 타이핑 중인 문구 인덱스 → 파티클 형태 전환에 사용 (리렌더 없이 공유)
+  const roleRef = useRef(0);
 
   useGSAP(() => {
     // GSAP Timeline for hero load sequence
@@ -35,7 +39,9 @@ const Hero = ({ theme }) => {
 
   return (
     <section id="home" ref={sectionRef} className="min-h-[85vh] flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
-      <InteractiveParticles theme={theme} />
+      <Suspense fallback={null}>
+        <HeroScene theme={theme} roleRef={roleRef} eventSource={sectionRef} />
+      </Suspense>
       <div className="w-full px-8 md:px-[60px] z-10" ref={containerRef}>
         <div className="max-w-5xl hero-main-container">
           <p className="hero-headline text-xl md:text-2xl font-bold tracking-[0.2em] mb-8 text-dark uppercase opacity-80">
@@ -44,14 +50,19 @@ const Hero = ({ theme }) => {
           <h1 className="hero-headline text-[3.4rem] sm:text-[4rem] md:text-[9rem] lg:text-[10rem] font-bold leading-[1.1] md:leading-[0.85] text-dark uppercase mb-12 whitespace-pre-line break-words">
             <TypeAnimation
               sequence={[
+                () => { roleRef.current = 0; },
                 'UI/UX\nDEVELOPER',
                 2000,
+                () => { roleRef.current = 1; },
                 'FRONTEND\nDEVELOPER',
                 2000,
+                () => { roleRef.current = 2; },
                 'WEB\nDESIGNER',
                 2000,
+                () => { roleRef.current = 3; },
                 'UI/UX\nDESIGNER',
                 2000,
+                () => { roleRef.current = 4; },
                 'WEB\nPUBLISHER',
                 2000,
               ]}
