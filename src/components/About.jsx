@@ -37,7 +37,7 @@ const About = ({ theme }) => {
     let mm = gsap.matchMedia();
 
     // Desktop Only GSAP
-    mm.add("(min-width: 1024px)", () => {
+    mm.add("(min-width: 1024px)", (context) => {
       const experienceList = containerRef.current.querySelector('#experience');
       const introBlock = containerRef.current.querySelector('.about-intro');
       
@@ -84,8 +84,9 @@ const About = ({ theme }) => {
         }
       };
 
+      // 지연 생성한 트리거도 이 matchMedia 컨텍스트에 등록해야 정리 시 About 것만 제거됨
       const timer = setTimeout(() => {
-        updatePin();
+        context.add(updatePin);
         ScrollTrigger.refresh();
       }, 100);
 
@@ -93,7 +94,6 @@ const About = ({ theme }) => {
       return () => {
         clearTimeout(timer);
         window.removeEventListener('resize', ScrollTrigger.refresh);
-        ScrollTrigger.getAll().forEach(t => t.kill());
       };
     });
 

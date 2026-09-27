@@ -21,10 +21,11 @@ function App() {
   const [showThemeSelection, setShowThemeSelection] = useState(false);
   const { pathname } = useLocation();
 
-  // 페이지 이동 시 스크롤 초기화 및 ScrollTrigger 정리
+  // 페이지 이동 시 스크롤 초기화 및 ScrollTrigger 위치 재계산
+  // (각 컴포넌트의 트리거는 useGSAP이 언마운트 시 정리함. 여기서 kill하면 부모 effect가
+  //  자식보다 늦게 실행되어 방금 만든 트리거까지 제거되므로 refresh만 수행)
   useEffect(() => {
     window.scrollTo(0, 0);
-    ScrollTrigger.getAll().forEach(t => t.kill());
     ScrollTrigger.refresh();
   }, [pathname]);
 

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { setLenis } from '../lib/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ const SmoothScroll = ({ children }) => {
       touchMultiplier: 2,
       infinite: false,
     });
+    setLenis(lenis);
 
     // Add smooth scroll for anchor links
     const handleHashLinkClick = (e) => {
@@ -45,6 +47,7 @@ const SmoothScroll = ({ children }) => {
 
     return () => {
       document.removeEventListener('click', handleHashLinkClick);
+      setLenis(null);
       lenis.destroy();
     };
   }, []);

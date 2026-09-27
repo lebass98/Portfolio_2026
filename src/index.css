@@ -492,45 +492,12 @@ html.lenis body {
   background-color: var(--nb-dark) !important;
 }
 
-/* Staggered Scroll Animation for Portfolio Thumbnails */
-@keyframes staggeredScroll {
-  0% {
-    object-position: top;
-  }
 
-  15% {
-    object-position: 0 20%;
-  }
-
-  25% {
-    object-position: 0 20%;
-  }
-
-  40% {
-    object-position: 0 50%;
-  }
-
-  50% {
-    object-position: 0 50%;
-  }
-
-  65% {
-    object-position: 0 80%;
-  }
-
-  75% {
-    object-position: 0 80%;
-  }
-
-  90% {
-    object-position: bottom;
-  }
-
-  100% {
-    object-position: bottom;
-  }
+/* 가로 스크롤 영역의 스크롤바 숨김 (Portfolio 필터 등) */
+.no-scrollbar {
+  scrollbar-width: none;
 }
 
-.staggered-scroll-container:hover .staggered-scroll-img {
-  animation: staggeredScroll 8s ease-in-out infinite alternate;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
