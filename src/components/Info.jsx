@@ -4,12 +4,16 @@ import {
   Monitor, Book, Calendar, Gift, Heart, Stethoscope,
   Smile, Coffee, Terminal, Layout, Smartphone, Database, ChevronRight, Plus, Search
 } from 'lucide-react';
-import { useRef } from 'react';
+import { lazy, Suspense, useRef } from 'react';
 import coinImg from '../assets/images/coin.png';
 import plasticBg from '../assets/images/pic_plastic01.png';
 
+// Three.js 배경은 첫 화면 로딩을 막지 않도록 지연 로드
+const InfoWaveScene = lazy(() => import('./info3d/InfoWaveScene'));
+
 const Info = ({ theme }) => {
   const sectionRef = useRef(null);
+  const heroRef = useRef(null);
 
   const benefits = [
     { icon: <Monitor size={24} />, title: 'MOTION DESK', desc: '모션데스크 지원' },
@@ -52,17 +56,12 @@ const Info = ({ theme }) => {
     <section id="info" ref={sectionRef} className="bg-yellow-theme transition-colors duration-500 relative overflow-hidden">
 
       {/* SPECTER-INSPIRED INFO HERO */}
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-yellow-theme pt-32 pb-20">
+      <div ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-yellow-theme pt-32 pb-20">
 
-        {/* Abstract Background Geometry (Subtle Lines) */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-          <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-            <path d="M0,200 Q500,100 1000,200" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
-            <path d="M0,500 Q500,400 1000,500" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
-            <path d="M0,800 Q500,700 1000,800" fill="none" stroke="var(--nb-dark)" strokeWidth="0.5" />
-            <circle cx="500" cy="500" r="300" fill="none" stroke="var(--nb-dark)" strokeWidth="0.2" />
-          </svg>
-        </div>
+        {/* 3D 물결 라인 배경 (마우스 물결 + 스크롤 시 카메라 상승) */}
+        <Suspense fallback={null}>
+          <InfoWaveScene theme={theme} eventSource={heroRef} />
+        </Suspense>
 
         <div className="relative z-10 w-full max-w-7xl px-8 md:px-[60px] flex flex-col items-center text-center">
 
