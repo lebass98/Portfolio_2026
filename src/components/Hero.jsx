@@ -1,93 +1,89 @@
-import { lazy, Suspense, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { TypeAnimation } from 'react-type-animation';
-gsap.registerPlugin(useGSAP);
+import { useEffect, useRef, useState } from 'react';
 
-// Three.js 번들은 첫 화면 로딩을 막지 않도록 지연 로드
-const HeroScene = lazy(() => import('./hero3d/HeroScene'));
+// 메인 비주얼 타이포그래피 모션 영상 (원본: motion/hero-typo.html, 렌더: motion/render.mjs)
+const videoBase = (theme, orient) => `${import.meta.env.BASE_URL}videos/hero-${theme}-${orient}`;
+
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = (e) => setMatches(e.matches);
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, [query]);
+  return matches;
+};
 
 const Hero = ({ theme }) => {
   const sectionRef = useRef(null);
-  const containerRef = useRef(null);
-  // 타이핑 중인 문구 인덱스 → 파티클 형태 전환에 사용 (리렌더 없이 공유)
-  const roleRef = useRef(0);
+  const videoRef = useRef(null);
+  const lastTimeRef = useRef(0);
+  const portrait = useMediaQuery('(orientation: portrait)');
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const base = videoBase(theme === 'dark' ? 'dark' : 'light', portrait ? 'portrait' : 'landscape');
 
-  useGSAP(() => {
-    // GSAP Timeline for hero load sequence
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  // 테마·방향이 바뀌어 영상이 교체돼도 재생 위치를 이어감
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const resume = () => {
+      video.currentTime = lastTimeRef.current;
+      video.play().catch(() => {});
+    };
+    video.addEventListener('loadedmetadata', resume, { once: true });
+    return () => {
+      lastTimeRef.current = video.currentTime;
+      video.removeEventListener('loadedmetadata', resume);
+    };
+  }, [base]);
 
-    // Initial states set in CSS or inline are overridden by GSAP .from()
-    tl.from('.hero-main-container', {
-      y: 100,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power4.out"
-    })
-    .from('.hero-headline', {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2
-    }, "-=1")
-    .from('.hero-subcontent', {
-      y: 30,
-      opacity: 0,
-      duration: 1
-    }, "-=0.6");
-  }, { scope: containerRef });
+  // 화면 밖에서는 일시정지 (영상이 교체될 수 있으므로 항상 현재 요소를 참조)
+  useEffect(() => {
+    if (reducedMotion) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [reducedMotion]);
 
   return (
-    <section id="home" ref={sectionRef} className="min-h-[85vh] flex items-center justify-start bg-accent pt-16 relative overflow-hidden max-w-none transition-colors duration-500">
-      <Suspense fallback={null}>
-        <HeroScene theme={theme} roleRef={roleRef} eventSource={sectionRef} />
-      </Suspense>
-      <div className="w-full px-8 md:px-[60px] z-10" ref={containerRef}>
-        <div className="max-w-5xl hero-main-container">
-          <p className="hero-headline text-xl md:text-2xl font-bold tracking-[0.2em] mb-8 text-dark uppercase opacity-80">
-          </p>
+    <section id="home" ref={sectionRef} className="h-screen relative overflow-hidden bg-accent transition-colors duration-500">
+      {reducedMotion ? (
+        <img src={`${base}.jpg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      ) : (
+        <video
+          ref={videoRef}
+          key={base}
+          className="absolute inset-0 w-full h-full object-cover"
+          src={`${base}.mp4`}
+          poster={`${base}.jpg`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+      )}
 
-          <h1 className="hero-headline text-[3.4rem] sm:text-[4rem] md:text-[9rem] lg:text-[10rem] font-bold leading-[1.1] md:leading-[0.85] text-dark uppercase mb-12 whitespace-pre-line break-words">
-            <TypeAnimation
-              sequence={[
-                () => { roleRef.current = 0; },
-                'UI/UX\nDEVELOPER',
-                2000,
-                () => { roleRef.current = 1; },
-                'FRONTEND\nDEVELOPER',
-                2000,
-                () => { roleRef.current = 2; },
-                'WEB\nDESIGNER',
-                2000,
-                () => { roleRef.current = 3; },
-                'UI/UX\nDESIGNER',
-                2000,
-                () => { roleRef.current = 4; },
-                'WEB\nPUBLISHER',
-                2000,
-              ]}
-              wrapper="span"
-              speed={10}
-              repeat={Infinity}
-            />
-          </h1>
+      {/* 영상 속 문구는 장식이므로 검색엔진·스크린 리더용 제목을 별도 제공 */}
+      <h1 className="sr-only">
+        이재광 — UI/UX 디자이너 · 프론트엔드 개발자 · 웹 퍼블리셔. 디자인과 코드의 경계를 허무는 20년 차 퍼블리셔.
+      </h1>
 
-          <div className="hero-subcontent flex flex-col md:flex-row gap-12 mt-16 md:mt-24">
-            <div className="max-w-md">
-              <p className="text-2xl font-bold leading-tight text-dark mb-6">
-                Creating intuitive digital experiences through bold design and precise publishing.
-              </p>
-              <a href="#portfolio" className="inline-flex items-center gap-4 text-sm font-bold tracking-widest uppercase border-b-2 border-dark pb-2 hover:border-dark/30 hover:text-dark/60 transition-all">
-                View Projects
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <a
+        href="#portfolio"
+        className="absolute z-10 left-8 md:left-[60px] bottom-[5vh] inline-flex items-center gap-4 text-sm font-bold tracking-widest uppercase text-dark border-b-2 border-dark pb-2 hover:border-dark/30 hover:text-dark/60 transition-all"
+      >
+        View Projects
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
     </section>
   );
 };

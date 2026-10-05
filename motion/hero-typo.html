@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<!--
+  메인 비주얼 타이포그래피 모션 그래픽 (12초 루프)
+  - 브라우저에서 열면 실시간 재생, ?t=3.5 처럼 주면 해당 시점 정지 화면
+  - ?theme=light|dark 로 사이트 테마 색상 선택
+  - motion/render.mjs 가 window.renderAt(t)를 프레임마다 호출해 영상으로 렌더링
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<!-- 윤곽선 글자용 정적 폰트 (가변 폰트는 글리프 내부 겹친 윤곽이 선으로 드러남) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root {
+    --bg: #FFE600;
+    --fg: #111427;
+    --accent: #111427;
+  }
+  :root[data-theme='dark'] {
+    --bg: #111427;
+    --fg: #ffffff;
+    --accent: #FFE600;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100vw; height: 100vh; overflow: hidden;
+    background: var(--bg); color: var(--fg);
+    font-family: "Pretendard Variable", "Pretendard", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage { position: absolute; inset: 0; }
+  .center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .mask { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.02em; }
+  .mask > span { display: inline-block; will-change: transform; }
+  /* 윤곽선 글자: color가 transparent라 currentColor를 못 쓰므로 --stroke 변수로 지정 */
+  .outline { font-family: "Pretendard", sans-serif; color: transparent; -webkit-text-stroke: 0.022em var(--stroke, var(--fg)); }
+
+  /* 공통 장식: 화면 맨 아래 루프 진행 바 + 왼쪽 세로 문구
+     (사이트에서 object-fit: cover로 좌우가 잘리고 우측 하단엔 고정 버튼이 있으므로 가장자리를 비워 둠) */
+  .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: color-mix(in srgb, var(--fg) 15%, transparent); }
+  .progress i { display: block; height: 100%; background: var(--fg); width: 0; }
+  .side { position: absolute; left: 7vw; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left center;
+    font-size: max(10px, 0.7vw); font-weight: 700; letter-spacing: 0.35em; opacity: 0.5; white-space: nowrap; margin-left: 0.8em; }
+
+  /* 장면 1~2: DESIGN × CODE */
+  #s1 .eyebrow { position: absolute; top: 31%; width: 100%; text-align: center; font-weight: 700; letter-spacing: 0.4em;
+    font-size: max(12px, 0.9vw); }
+  #s1 .line { position: absolute; left: 8vw; right: 8vw; top: 63%; height: 2px; background: var(--fg); transform-origin: left; }
+  #s1 .words { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #design, #code { font-weight: 900; font-size: 15vw; line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap; }
+  #code { color: var(--accent); display: flex; align-items: center; gap: 0.12em; }
+  #code .x { font-weight: 300; display: inline-block; color: var(--fg); }
+
+  /* 장면 3: 역할 마키 (반전 색상) */
+ #s3 { --stroke: var(--bg); background: var(--fg); color: var(--bg); display: flex; flex-direction: column; justify-content: center; gap: 0.6vh; }
+  #s3 .row { font-weight: 900; font-size: 8.6vw; line-height: 1; letter-spacing: -0.04em; white-space: nowrap; will-change: transform; }
+
+  /* 장면 4: 20 YEARS 카운터 */
+  #s4 .wrap { display: flex; align-items: center; gap: 3vw; }
+  #counter { display: flex; align-items: flex-start; font-weight: 900; font-size: 30vw; line-height: 1; letter-spacing: -0.06em; }
+  /* 숫자 한 칸 = 높이 1em 창, 안쪽 strip(0~9,0)을 em 단위로 굴림 */
+  /* 세로로만 잘라내고 가로는 글자 폭만큼 여유 (좁은 자간 때문에 글자 끝이 잘리지 않도록) */
+  #counter .col { height: 1em; clip-path: inset(0 -0.15em); }
+  #counter .strip { display: block; will-change: transform; }
+  #counter .strip span { display: block; height: 1em; }
+  #counter .plus { color: var(--accent); font-size: 0.35em; line-height: 1; margin-left: 0.04em; align-self: flex-start; padding-top: 0.12em; }
+  #s4 .label { font-weight: 900; font-size: 4.6vw; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
+  #s4 .label .mask { display: block; }
+  #s4 .sub { margin-top: 2.2vh; font-size: max(12px, 1vw); font-weight: 700; letter-spacing: 0.25em; opacity: 0.7; }
+
+  /* 장면 5: 한글 헤드라인 */
+  #s5 .ko { font-weight: 800; font-size: 8.4vw; line-height: 1.12; letter-spacing: -0.04em; }
+  #s5 .ko .mask { display: block; padding-bottom: 0.06em; }
+  #s5 .accent { color: var(--accent); }
+  #s5 .underline { height: 0.06em; background: var(--fg); transform-origin: left; margin-top: 0.05em; }
+
+  /* 세로 화면 (모바일) */
+  @media (orientation: portrait) {
+    #design, #code { font-size: 18vw; }
+    #s1 .eyebrow { top: 36%; font-size: 2.4vw; }
+    #s1 .line { top: 58%; left: 14vw; right: 14vw; }
+    #s3 .row { font-size: 15vw; }
+    #s4 .wrap { flex-direction: column; gap: 1vh; text-align: center; }
+    #counter { font-size: 44vw; }
+    #s4 .label { font-size: 8.5vw; }
+    #s4 .sub { font-size: 2.3vw; }
+    #s5 .ko { font-size: 10.5vw; }
+    .side { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="side">SINCE 2009 · SEOUL, KOREA</div>
+  <div class="progress"><i id="progress"></i></div>
+
+  <div class="stage" id="s1">
+    <div class="eyebrow" id="eyebrow">UI/UX · FRONTEND · WEB PUBLISHING</div>
+    <div class="line" id="line"></div>
+    <div class="words">
+      <div id="design" data-split>DESIGN</div>
+      <div id="code"><span class="mask"><span class="x" id="x">×</span></span><span data-split id="code-word">CODE</span></div>
+    </div>
+  </div>
+
+  <div class="stage" id="s3"></div>
+
+  <div class="stage center" id="s4">
+    <div class="wrap">
+      <div id="counter">
+        <div class="col"><span class="strip" id="tens"></span></div>
+        <div class="col"><span class="strip" id="ones"></span></div>
+        <span class="plus" id="plus">+</span>
+      </div>
+      <div>
+        <div class="label">
+          <span class="mask"><span>Years of</span></span>
+          <span class="mask"><span>Crafting</span></span>
+          <span class="mask"><span>The Web.</span></span>
+        </div>
+        <div class="sub" id="sub">UI/UX DESIGN · FRONTEND · PUBLISHING</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage center" id="s5">
+    <div class="ko">
+      <span class="mask"><span>디자인과 코드의</span></span>
+      <span class="mask"><span><span class="accent">경계</span>를 허무는</span></span>
+      <span class="mask"><span>퍼블리셔, 이재광.</span></span>
+      <div class="underline" id="underline"></div>
+    </div>
+  </div>
+
+<script>
+  const DURATION = 12;
+  const params = new URLSearchParams(location.search);
+  document.documentElement.dataset.theme = params.get('theme') === 'dark' ? 'dark' : 'light';
+  const portrait = matchMedia('(orientation: portrait)').matches;
+
+  // ---------- 이징 / 유틸 ----------
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const prog = (t, s, e) => clamp((t - s) / (e - s));
+  const outExpo = (x) => (x >= 1 ? 1 : 1 - Math.pow(2, -10 * x));
+  const inExpo = (x) => (x <= 0 ? 0 : Math.pow(2, 10 * x - 10));
+  const inOutCubic = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const outBack = (x) => 1 + 2.4 * Math.pow(x - 1, 3) + 1.4 * Math.pow(x - 1, 2);
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+
+  // 글자 단위로 마스크 분리
+  const splitChars = (el) => {
+    const text = el.textContent;
+    el.textContent = '';
+    return [...text].map((ch) => {
+      const mask = document.createElement('span');
+      mask.className = 'mask';
+      const inner = document.createElement('span');
+      inner.textContent = ch;
+      mask.appendChild(inner);
+      el.appendChild(mask);
+      return inner;
+    });
+  };
+  const designChars = splitChars($('#design'));
+  const codeChars = splitChars($('#code-word'));
+
+  // 역할 마키 행 생성
+  const ROLES = ['UI/UX DEVELOPER', 'FRONTEND DEVELOPER', 'WEB DESIGNER', 'UI/UX DESIGNER', 'WEB PUBLISHER'];
+  const rowCount = portrait ? 8 : 4; // 반전 띠 높이에 맞춰 잘리지 않는 행 수
+  const rows = Array.from({ length: rowCount }, (_, i) => {
+    const row = document.createElement('div');
+    row.className = 'row' + (i % 2 ? ' outline' : '');
+    const text = Array.from({ length: 4 }, (_, k) => ROLES[(i + k) % ROLES.length]).join('  ✦  ') + '  ✦  ';
+    row.textContent = text + text;
+    $('#s3').appendChild(row);
+    return row;
+  });
+
+  // 카운터 숫자 열 (0~9 + 0으로 순환)
+  for (const id of ['#tens', '#ones']) {
+    $(id).innerHTML = Array.from({ length: 11 }, (_, i) => `<span>${i % 10}</span>`).join('');
+  }
+  const s4Labels = $$('#s4 .label .mask > span');
+  const s5Lines = $$('#s5 .ko .mask > span');
+
+  const show = (el, on) => { el.style.visibility = on ? 'visible' : 'hidden'; };
+  const rise = (el, p, from = 110) => { el.style.transform = `translateY(${(1 - p) * from}%)`; };
+
+  // ---------- 프레임 렌더 ----------
+  window.renderAt = (t) => {
+    t = ((t % DURATION) + DURATION) % DURATION;
+
+    // 루프 진행 바
+    $('#progress').style.width = `${(t / DURATION) * 100}%`;
+
+    // 장면 1~2 : DESIGN → DESIGN × CODE
+    const s1 = $('#s1');
+    show(s1, t < 5.0);
+    const eb = outExpo(prog(t, 0.15, 0.9)) * (1 - prog(t, 2.0, 2.4));
+    $('#eyebrow').style.opacity = eb;
+    $('#eyebrow').style.transform = `translateY(${(1 - outExpo(prog(t, 0.15, 0.9))) * 20}px)`;
+    const lineIn = outExpo(prog(t, 0.2, 1.1));
+    const lineOut = inOutCubic(prog(t, 2.0, 2.5));
+    const line = $('#line');
+    line.style.transformOrigin = lineOut > 0 ? 'right' : 'left';
+    line.style.transform = `scaleX(${lineOut > 0 ? 1 - lineOut : lineIn})`;
+
+    designChars.forEach((c, i) => {
+      const p = outExpo(prog(t, 0.55 + i * 0.06, 1.45 + i * 0.06));
+      rise(c, p);
+    });
+    // DESIGN 위로 이동 + 축소, CODE 등장
+    const lift = inOutCubic(prog(t, 2.1, 2.8));
+    const drift = prog(t, 2.8, 4.6) * 0.03;
+    $('#design').style.transform = `translateY(${lift * 0.08}em) scale(${1 - lift * 0.08 + drift})`;
+    $('#code').style.display = lift > 0 ? 'flex' : 'none';
+    $('#code').style.transform = `scale(${1 + drift})`;
+    const xp = outBack(prog(t, 2.35, 3.0));
+    $('#x').style.transform = `translateY(${(1 - clamp(xp)) * 100}%) rotate(${(1 - xp) * -180}deg)`;
+    codeChars.forEach((c, i) => rise(c, outExpo(prog(t, 2.5 + i * 0.07, 3.4 + i * 0.07))));
+
+    // 장면 3 : 아래에서 위로 반전 띠가 덮으며 역할 마키
+    // 사이트의 상단 메뉴·하단 버튼이 반전 색 위에서 안 보이지 않도록 위아래는 원래 배경을 남긴 '띠'로 처리
+    const s3 = $('#s3');
+    const [bandTop, bandBottom] = portrait ? [11, 15] : [13, 17];
+    const bandHeight = 100 - bandTop - bandBottom;
+    const wipeIn = inOutCubic(prog(t, 4.3, 4.95));
+    const wipeOut = inOutCubic(prog(t, 7.3, 7.95));
+    show(s3, wipeIn > 0 && wipeOut < 1);
+    s3.style.clipPath = `inset(${bandTop + (1 - wipeIn) * bandHeight}% 0 ${bandBottom + wipeOut * bandHeight}% 0)`;
+    rows.forEach((row, i) => {
+      const dir = i % 2 ? 1 : -1;
+      const enter = outExpo(prog(t, 4.55 + i * 0.05, 5.4 + i * 0.05));
+      const travel = (t - 4.3) * 7 * dir; // vw/초
+      row.style.transform = `translateX(${(dir > 0 ? -50 : 0) + travel - (1 - enter) * 30 * dir}vw) skewX(${(1 - enter) * -12 * dir}deg)`;
+    });
+
+    // 장면 4 : 00 → 20 YEARS
+    const s4 = $('#s4');
+    show(s4, t > 7.4 && t < 10.3);
+    const v = outExpo(prog(t, 7.9, 9.1)) * 20;
+    const ones = v % 10;
+    const tens = Math.floor(v / 10) + Math.max(0, ones - 9);
+    $('#ones').style.transform = `translateY(${-ones}em)`;
+    $('#tens').style.transform = `translateY(${-tens}em)`;
+    const s4Out = inExpo(prog(t, 9.6, 10.15));
+    $('#counter').style.transform = `translateY(${-s4Out * 110}%)`;
+    $('#counter').style.opacity = 1 - prog(t, 9.9, 10.15);
+    $('#plus').style.transform = `scale(${outBack(prog(t, 9.0, 9.4))})`;
+    s4Labels.forEach((el, i) => {
+      const p = outExpo(prog(t, 8.1 + i * 0.1, 8.9 + i * 0.1));
+      const out = inExpo(prog(t, 9.6 + i * 0.05, 10.1 + i * 0.05));
+      el.style.transform = `translateY(${(1 - p) * 110 - out * 110}%)`;
+    });
+    $('#sub').style.opacity = outExpo(prog(t, 8.7, 9.3)) * (1 - prog(t, 9.6, 9.9));
+
+    // 장면 5 : 한글 헤드라인
+    const s5 = $('#s5');
+    show(s5, t > 9.9);
+    s5Lines.forEach((el, i) => {
+      const p = outExpo(prog(t, 10.05 + i * 0.12, 10.95 + i * 0.12));
+      const out = inExpo(prog(t, 11.3 + i * 0.07, 11.8 + i * 0.07));
+      el.style.transform = `translateY(${(1 - p) * 110 - out * 110}%)`;
+    });
+    const ul = $('#underline');
+    const ulIn = outExpo(prog(t, 10.7, 11.2));
+    const ulOut = inOutCubic(prog(t, 11.3, 11.75));
+    ul.style.transformOrigin = ulOut > 0 ? 'right' : 'left';
+    ul.style.transform = `scaleX(${ulOut > 0 ? 1 - ulOut : ulIn})`;
+  };
+
+  // ?t= 가 있으면 정지 화면, 없으면 실시간 재생 (렌더러는 ?render 로 직접 제어)
+  if (params.has('t')) window.renderAt(parseFloat(params.get('t')));
+  else if (!params.has('render')) {
+    const start = performance.now();
+    const loop = () => { window.renderAt((performance.now() - start) / 1000); requestAnimationFrame(loop); };
+    loop();
+  } else window.renderAt(0);
+</script>
+</body>
+</html>
